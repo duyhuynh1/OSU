@@ -3,17 +3,18 @@
 
 /********************************************************************* 
 ** Author: Tony Huynh
-** Date: 
+** Date: Jan 10, 2018
 ** Description: Read and display user's input to the console.
 *********************************************************************/
 
+// a simple example program
 int main()
 {
-	std::string faveAnimal;
+	std::string faveAnimal;  // String variable declared 
 	std::cout << "Please enter your favorite animal." << std::endl;
-	std::cin >> faveAnimal;
+	std::cin >> faveAnimal;  // User input stored in string variable 
 	std::cout << "Your favorite animal is the " << faveAnimal;
 	std::cout << "." << std::endl;
 
-	return 0;	// main() return type is int (Integer); 0 = success, 1 = failed
+	return 0;	// main() return type is int (Integer); 
 }
