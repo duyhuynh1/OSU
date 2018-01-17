@@ -1,11 +1,11 @@
-#include <iostream>
-#include <string>
-
 /********************************************************************* 
 ** Author: Tony Huynh
 ** Date: Jan 10, 2018
 ** Description: Read and display user's input to the console.
 *********************************************************************/
+
+#include <iostream>
+#include <string>
 
 // a simple example program
 int main()
