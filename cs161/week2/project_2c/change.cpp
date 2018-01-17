@@ -32,6 +32,7 @@ int main()
 	qtyOfQuarters = numberOfCents / VALUE_QUARTER;
 	numberOfCents %= VALUE_QUARTER;
 	// Check if numberOfCent is above 0 after subtracting the previous coin value
+	// If TRUE, repeat procedure with the next highest value coin until numberOfCent reaches 0
 	if (numberOfCents > 0) {
 		qtyOfDimes = numberOfCents / VALUE_DIME;
 		numberOfCents %= VALUE_DIME;
@@ -51,6 +52,7 @@ int main()
 	}
 
 	// RESULTS
+	cout << "Your change will be:\n";
 	cout << "Q: " << qtyOfQuarters << endl;
 	cout << "D: " << qtyOfDimes << endl;
 	cout << "N: " << qtyOfNickles << endl;
