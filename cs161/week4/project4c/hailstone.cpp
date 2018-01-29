@@ -5,22 +5,18 @@
 ** user's selected positive integer. The program returns the number 
 ** of steps taken to end up with the number 1.
 *********************************************************************/
-#include <iostream>
+// #include <iostream>
 
 int getNextSequence(int num);
 
 int hailstone(int num) {
-	int steps;
+	int steps = 0;
 
-	// Unique case num = 1, which results in 0 steps
-	if(num == 1) {
-		steps = 0;
-	}
 	while(num != 1) {
 		num = getNextSequence(num);
 		steps++;
 	}
-
+	// Returns steps = 0, if initial num = 1
 	return steps;
 }
 
