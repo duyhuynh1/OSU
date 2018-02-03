@@ -7,9 +7,9 @@
 void smallSort(int &a, int &b, int &c);
 
 int main() {
-    int a = 14;
-    int b = -90;
-    int c = 2;
+    int a = -1;
+    int b = -10;
+    int c = -10;
     smallSort(a, b, c);
     std::cout << a << ", " << b << ", " << c << std::endl;
 
