@@ -1,4 +1,9 @@
-#include <iostream>
+/*********************************************************************
+** Author: Tony Huynh
+** Date: 2/07/2018
+** Description: Box class implementation file
+*********************************************************************/
+// #include <iostream>
 #include <cmath>
 #include "Box.hpp"
 
@@ -16,10 +21,10 @@ Box::Box(double h, double w, double l) {
     setLength(l);
 }
 
-// Note ~ after scope resolution operator
-Box::~Box() {
-    std::cout << "Deconstructing object" << std::endl;
-}
+/** Box object destructor */
+// Box::~Box() {
+//     std::cout << "Destructing object" << std::endl;
+// }
 
 /** Set the height dimension of the Box object. */
 void Box::setHeight(double h) {
@@ -36,39 +41,28 @@ void Box::setLength(double l) {
     length = l;
 }
 
-
 /**
     Returns the volume of a Box object.
-    Surface Area Formula = height * width * length
-
-    @param Box Object
-    @return The volume of the Box object.
+    Volume Formula = height * width * length
 */
-double Box::calcVolume() {
-    return height * width * length;
+double Box::calcVolume() { 
+    return height * width * length; 
 }
 
 /**
     Returns the surface area of a Box object.
     Surface Area Formula = 2 * (width * height) + 2 (length * height)
     + 2 * (width * length)
-
-    @param none required
-    @return The surface area of the Box object.
 */
 double Box::calcSurfaceArea() {
     return 2 * (width * height) + 2 * (length * height) + 2 * (width * length);
 }
 
-/**
-    Returns a Box objec's member variable values.
-
-    @return All member variables values are displayed.
-*/
-void Box::toString() {
-    std::cout << "Box{ ";
-    std::cout << "height: " << height << "; ";
-    std::cout << "width: " << width << "; ";
-    std::cout << "length: " << length;
-    std::cout << " }" << std::endl;
-}
+/** Returns a Box object's member variable values. */
+// void Box::toString() {
+//     std::cout << "Box{ "
+//               << "height: " << height << "; "
+//               << "width: " << width << "; "
+//               << "length: " << length
+//               << " }" << std::endl;
+// }

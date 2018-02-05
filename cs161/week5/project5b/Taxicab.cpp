@@ -1,11 +1,9 @@
-
 /*********************************************************************
 ** Author: Tony Huynh
 ** Date: 2/07/2018
-** Description: 
+** Description: Taxicab class implementation file
 *********************************************************************/
-#include <iostream>
-#include <cmath>
+#include <cstdlib>
 #include "Taxicab.hpp"
 
 /** Default constructor sets all variables to 0 */
@@ -22,9 +20,10 @@ Taxicab::Taxicab(int x, int y) {
 }
 
 /** Taxicab destructor */
-Taxicab::~Taxicab() {
-	std::cout << "Destructing Taxicab object" << std::endl;
-}
+// Taxicab::~Taxicab() {
+// 	std::cout << "Destructing Taxicab object" << std::endl;
+// }
+
 /** Returns current x-coordinate value. */
 int Taxicab::getXCoord() const {
 	return xCoord;
@@ -42,12 +41,12 @@ int Taxicab::getDistanceTraveled() const {
 
 /** Moves the Taxicab object in the x-coordinate. */
 void Taxicab::moveX(int distance) {
-	totalDistance += abs(distance);
+	totalDistance += std::abs(distance);
 	xCoord += distance;
 }
 
 /** Moves the Taxicab object in the y-coordinate. */
 void Taxicab::moveY(int distance) {
-	totalDistance += abs(distance);
+	totalDistance += std::abs(distance);
 	yCoord += distance;
 }

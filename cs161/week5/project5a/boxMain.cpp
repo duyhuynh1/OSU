@@ -6,12 +6,12 @@ int main() {
 	// Test 1: Default Constructor
 	std::cout << "[TEST_1]: Calling default constructor w/ 0 args" << std::endl;
 	Box box1;
-	box1.toString();
+	// box1.toString();
 
 	// Test 2: Box Constructor w/ 3 args
 	std::cout << "[TEST_2]: Calling constructor w/ 3 args" << std::endl;
 	Box box2(2.0, 3.0, 4.0);
-	box2.toString();
+	// box2.toString();
 
 	// Test 3: box1 setHeight(2.0)
 	std::cout << "[TEST_3]: Setting box1 height = 2 using box1.setHeight(2.0)" << std::endl;
@@ -34,8 +34,8 @@ int main() {
 	}
 	std::cout << "box1's volume = " << box1.calcVolume() << std::endl;
 	std::cout << "box2's volume = " << box2.calcVolume() << std::endl;
-	box1.toString();
-	box2.toString();
+	// box1.toString();
+	// box2.toString();
 
 	// Test 7: calcSurfaceArea()
 	std::cout << "[TEST_7]: Verify box1 and box2 surface area is equal" << std::endl;
@@ -46,7 +46,8 @@ int main() {
 	}
 	std::cout << "box1's volume = " << box1.calcSurfaceArea() << std::endl;
 	std::cout << "box2's volume = " << box2.calcSurfaceArea() << std::endl;
-	box1.toString();
-	box2.toString();
+	// box1.toString();
+	// box2.toString();
+
     return 0;
 }

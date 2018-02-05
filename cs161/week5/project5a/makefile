@@ -1,5 +1,4 @@
 CC = g++
-
 CFLAGS = -std=c++0x -c -Wall
 
 Box: boxMain.o Box.o
