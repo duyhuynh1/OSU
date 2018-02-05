@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <string>
 #include "Box.hpp"
 
 /** Box object default constructor. Sets height = width = length = 1 */
@@ -11,25 +10,30 @@ Box::Box() {
 }
 
 /** Box object constructor with 3 doubles args */
-Box::Box(double heightIn, double widthIn, double lengthIn) {
-    setHeight(heightIn);
-    setWidth(widthIn);
-    setLength(lengthIn);
+Box::Box(double h, double w, double l) {
+    setHeight(h);
+    setWidth(w);
+    setLength(l);
+}
+
+// Note ~ after scope resolution operator
+Box::~Box() {
+    std::cout << "Deconstructing object" << std::endl;
 }
 
 /** Set the height dimension of the Box object. */
-void Box::setHeight(double heightIn) {
-    height = heightIn;
+void Box::setHeight(double h) {
+    height = h;
 }
 
 /** Set the width dimension of the Box object. */
-void Box::setWidth(double widthIn) {
-    width = widthIn;
+void Box::setWidth(double w) {
+    width = w;
 }
 
 /** Set the length dimension of the Box object. */
-void Box::setLength(double lengthIn) {
-    length = lengthIn;
+void Box::setLength(double l) {
+    length = l;
 }
 
 
@@ -40,8 +44,8 @@ void Box::setLength(double lengthIn) {
     @param Box Object
     @return The volume of the Box object.
 */
-double calcVolume(Box box) {
-    return box.height * box.width * box.length;
+double Box::calcVolume() {
+    return height * width * length;
 }
 
 /**
@@ -52,19 +56,19 @@ double calcVolume(Box box) {
     @param none required
     @return The surface area of the Box object.
 */
-double calcSurfaceArea() {
+double Box::calcSurfaceArea() {
     return 2 * (width * height) + 2 * (length * height) + 2 * (width * length);
 }
 
 /**
-    Returns a string representation of the Box object.
+    Returns a Box objec's member variable values.
 
-    @return All member variables values are displayed as string.
+    @return All member variables values are displayed.
 */
-std::string Box::toString() {
-    std::cout << "Box( " << std::endl;
-    std::cout << "\theight = " << height << std::endl;
-    std::cout << "\twidth = " << width << std::endl;
-    std::cout << "\tlength = " << length << std::endl;
-    std::cout << ")" << std::endl;
+void Box::toString() {
+    std::cout << "Box{ ";
+    std::cout << "height: " << height << "; ";
+    std::cout << "width: " << width << "; ";
+    std::cout << "length: " << length;
+    std::cout << " }" << std::endl;
 }

@@ -1,3 +1,8 @@
+/*********************************************************************
+** Author: Tony Huynh
+** Date: 2/07/2018
+** Description: 
+*********************************************************************/
 #ifndef BOX_HPP
 #define BOX_HPP
 
@@ -10,12 +15,13 @@ class Box {
 
     public: // Member function prototype
         Box(); // Default constructor
-        Box(double heightIn, double widthIn, double lengthIn);
-        void setHeight(double heightIn);
-        void setWidth(double widthIn);
-        void setLength(double lengthIn);
-        double calcVolume(Box box);
-        double calcSurfaceArea(Box box);
-        std::string toString(); // REMOVED for assignment submission
+        Box(double h, double w, double l);
+        ~Box(); // Deconstructor
+        void setHeight(double h);
+        void setWidth(double w);
+        void setLength(double l);
+        double calcVolume();
+        double calcSurfaceArea();
+        void toString(); // REMOVED for assignment submission
 };
 #endif

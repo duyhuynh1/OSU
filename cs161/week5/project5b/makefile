@@ -1,9 +1,15 @@
 CC = g++
 
-CPPFLAG = -std=c++0x
+CFLAGS = -std=c++0x -c -Wall
 
-all:
-	$(CC) $(CPPFLAG) fallDistance.cpp fallDistanceMain.cpp -o fallDistance
+Taxicab: taxicabMain.o Taxicab.o
+	$(CC) taxicabMain.o Taxicab.o -o Taxicab
+
+taxicabMain.o: taxicabMain.cpp
+	$(CC) $(CFLAGS) taxicabMain.cpp
+
+Taxicab.o: Taxicab.cpp Taxicab.hpp
+	$(CC) $(CFLAGS) Taxicab.cpp
 
 clean:
-	rm -rf fallDistance
+	rm -rf *.o *.out
