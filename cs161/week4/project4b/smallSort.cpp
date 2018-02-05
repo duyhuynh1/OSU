@@ -11,19 +11,14 @@ void smallSort(int &a, int &b, int &c);
 void swap(int &num1, int &num2); // only used by smallSort()
 
 void smallSort(int &a, int &b, int &c) {
-    if(a > b) {
+    if (a > b) {
         swap(a, b);
-        if(b > c) {
-            swap(b, c);
-            if(a > b) {
-                swap(a, b);
-            }
-        }
-    } else if(b > c) {
+    }
+    if (b > c) {
         swap(b, c);
-        if(a > b) {
-            swap(a, b);
-        }
+    }
+    if (a > b) {
+        swap(a, b);
     }
 }
 
