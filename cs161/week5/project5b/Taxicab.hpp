@@ -15,7 +15,6 @@ class Taxicab {
 	public:
 		Taxicab(); // Default constructor, sets all variables = 0;
 		Taxicab(int x, int y);
-		// ~Taxicab();
 		int getXCoord() const;
 		int getYCoord() const;
 		int getDistanceTraveled() const;

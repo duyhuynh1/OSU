@@ -3,7 +3,6 @@
 ** Date: 2/07/2018
 ** Description: Box class implementation file
 *********************************************************************/
-// #include <iostream>
 #include <cmath>
 #include "Box.hpp"
 
@@ -20,11 +19,6 @@ Box::Box(double h, double w, double l) {
     setWidth(w);
     setLength(l);
 }
-
-/** Box object destructor */
-// Box::~Box() {
-//     std::cout << "Destructing object" << std::endl;
-// }
 
 /** Set the height dimension of the Box object. */
 void Box::setHeight(double h) {

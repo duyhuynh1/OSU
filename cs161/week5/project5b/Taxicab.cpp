@@ -19,11 +19,6 @@ Taxicab::Taxicab(int x, int y) {
 	yCoord = y;
 }
 
-/** Taxicab destructor */
-// Taxicab::~Taxicab() {
-// 	std::cout << "Destructing Taxicab object" << std::endl;
-// }
-
 /** Returns current x-coordinate value. */
 int Taxicab::getXCoord() const {
 	return xCoord;

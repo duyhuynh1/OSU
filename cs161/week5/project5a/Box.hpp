@@ -16,7 +16,6 @@ class Box {
     public: // Member function prototype
         Box(); // Default constructor
         Box(double h, double w, double l);
-        // ~Box(); // Deconstructor
         void setHeight(double h);
         void setWidth(double w);
         void setLength(double l);
