@@ -35,13 +35,13 @@ int Taxicab::getDistanceTraveled() const {
 }
 
 /** Moves the Taxicab object in the x-coordinate. */
-void Taxicab::moveX(int distance) {
-	totalDistance += std::abs(distance);
-	xCoord += distance;
+void Taxicab::moveX(int deltaX) {
+	totalDistance += std::abs(deltaX);
+	xCoord += deltaX;
 }
 
 /** Moves the Taxicab object in the y-coordinate. */
-void Taxicab::moveY(int distance) {
-	totalDistance += std::abs(distance);
-	yCoord += distance;
+void Taxicab::moveY(int deltaY) {
+	totalDistance += std::abs(deltaY);
+	yCoord += deltaY;
 }
