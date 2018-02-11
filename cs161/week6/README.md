@@ -25,28 +25,5 @@ For example, these classes might be used as follows:
     Player p = team1.getShootingGuard();
     cout << p.getName() << endl;
 ```
-## TODO List
-The methods of the Player class should have the following names:
 
-     - [DONE] getName
-     - [DONE] setPoints
-     - [DONE] getPoints
-     - [DONE] setRebounds
-     - [DONE] getRebounds
-     - [DONE] setAssists
-     - [DONE] getAssists
-     - [DONE] hasMorePointsThan
-The methods of the Team class should have the following names:
-
-     - setPointGuard
-     - getPointGuard
-     - setShootingGuard
-     - getShootingGuard
-     - setSmallForward
-     - getSmallForward
-     - setPowerForward
-     - getPowerForward
-     - setCenter
-     - getCenter
-     - totalPoints
 The files must be named: Player.hpp, Player.cpp, Team.hpp and Team.cpp

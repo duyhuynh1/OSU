@@ -1,9 +1,11 @@
-/**
-    @author Tony Huynh
-
-    @date 2/14/2018
-    @version v1.0.0
-*/
+/*********************************************************************
+** Author: Tony Huynh
+** Date: 2/14/2018
+** Description: Create a Player object that stores the Player's name,
+** points, rebounds, and assists score. Provides getters/setters 
+** functions to access and set the Player's name and stats. Also 
+** provides the functionality to compare two player's points.
+*********************************************************************/
 #include "Player.hpp"
 
 /** Default Player object constructor */
@@ -14,11 +16,14 @@ Player::Player() {
     setAssists(-1);
 }
 
-/** 
-    Player object constructor with # args 
-
-    @param mName 
-    @returns
+/**
+ *  Player object's constructor with 4 argurments. Initializes the Player's name,
+ *  number of points, rebounds, and assists.
+ *
+ *  @param mName        The Player object's name
+ *  @param numPoints    The Player object's number of points
+ *  @param numRebounds  The Player object's number of rebounds
+ *  @param numAssists   The Player object's number of assists
 */
 Player::Player(std::string mName, int numPoints, int numRebounds, int numAssists) {
     name = mName;
@@ -63,20 +68,14 @@ int Player::getAssists() const {
 }
 
 /**
- *  Compares the total points of two Player objects.  
+ *  Compares the points of two Player objects.  
  *
- *  @param aPlayer Another Player object. The calling Player
- *  object's total number of points will be compared with 
- *  the passed in Player argument.
- *  @return TRUE if calling Player has more points, otherwise FALSE
+ *  @param aPlayer The other Player object that will be compared.
+ *  @return        true if calling Player has more points, otherwise false
  */
 bool Player::hasMorePointsThan(const Player &aPlayer) const {
-   int totalPointsP1 = points + rebounds + assists;
-   int totalPointsP2 = aPlayer.getPoints() + 
-                       aPlayer.getAssists() +
-                       aPlayer.getRebounds();
-   if (totalPointsP1 > totalPointsP2) {
-       return true;
+   if (points > aPlayer.getPoints()) {
+       return true; // The calling Player has more points
    } else {
        return false;
    }

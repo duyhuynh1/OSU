@@ -3,7 +3,7 @@ GOOGLE_TEST_INCLUDE = /usr/local/include
 CC = g++
 CFLAGS = -std=c++0x -c -Wall -I $(GOOGLE_TEST_INCLUDE)
 LD_FLAGS = -L /usr/local/lib -l $(GOOGLE_TEST_LIB) -l pthread
-OBJECTS = Player.o teamMain.o
+OBJECTS = Player.o Team.o teamMain.o
 
 TARGET = Team
 
