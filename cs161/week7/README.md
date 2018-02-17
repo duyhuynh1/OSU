@@ -1,9 +1,9 @@
 # Project 7.a
 ## Requirements
  - Create a function called **findMedian**
-		 - @param: *mIntArray* an array of integers
-		 - @param: *SIZE* an integer storing the size of an array
-		 - @return: *median* the median integer of the array
+	- @param: *mIntArray* an array of integers
+	- @param: *SIZE* an integer storing the size of an array
+	- @return: *median* the median integer of the array
 
 ## Finding the Median
 The median is the middle number. To calculate the median of any set of numbers, you need to write the numbers in order.
