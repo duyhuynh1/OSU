@@ -15,11 +15,16 @@ Standard deviation is a calculation of the dispersion or variation in a set of n
 There are two types of standard deviation calculations. **Population standard deviation** looks at the square root of the variance of the set of numbers.
 
 It's used to determine a confidence interval for drawing conclusions (such as accepting or rejecting a hypothesis). A slightly more complex calculation is called sample standard deviation. This is a simple example of how to calculate variance and population standard deviation. First, let's review how to calculate the population standard deviation:
+
 $$
 \sigma = \sqrt{\sum\frac{(x-\mu)^2}{N}}
 $$
-> x = 
-> $ \mu $
+
+Where:
+\sigma = population standard deviation
+x1,...,xN = the population age data set
+\mu = mean age of the population data set
+N = size of the population data set
 
 1. Find the mean age of all the People. Store value in \mu
 2. Calculate variance by summing each (Person's age - mean age)^2

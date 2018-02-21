@@ -6,7 +6,7 @@
 #include <algorithm>
 
 // Function prototype
-double findMedian(int array[], int size);
+double findMedian(int [], int);
 
 double findMedian(int intArray[], int size) {
 	double median = 0;
