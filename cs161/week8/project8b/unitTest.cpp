@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
 // Function prototype
-void transformArray(int *&, const int);
+void transformArray(int * &, const int);
 
 // TEST(transformArrayTest, case123) {
 // 	int 
@@ -15,18 +15,17 @@ void transformArray(int *&, const int);
 int main() {
 	const int SIZE = 3;
 	int *myArray = new int[SIZE];
-	myArray[0] = 4;
+	myArray[0] = 1;
 	myArray[1] = 2;
-	myArray[2] = 5;
+	myArray[2] = 3;
 
-	std::cout << "myArray original addr: " << myArray << std::endl;
 	transformArray(myArray, SIZE);
-	std::cout << "myArray updated addr: " << myArray << std::endl;
+	std::cout << "myArray[]: { ";
 	for (int i = 0; i < 6; i++) {
-		std::cout << myArray[i] << std::endl;
+		std::cout << myArray[i] << " ";
 	}
-
-	delete []myArray;
+	std::cout << "};" << std::endl;
+	delete [] myArray;
 	myArray = NULL;
 	return 0;
 }

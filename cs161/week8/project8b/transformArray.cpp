@@ -6,7 +6,7 @@
 *********************************************************************/
 #include <iostream>
 
-void transformArray(int *&oldArrayPtr, const int SIZE) {
+void transformArray(int * &oldArrayPtr, const int SIZE) {
 	// Allocate new array with double the size
 	int *newArrayPtr = new int[SIZE * 2];
 
@@ -15,15 +15,13 @@ void transformArray(int *&oldArrayPtr, const int SIZE) {
 		newArrayPtr[i] = oldArrayPtr[i];
 	}
 
-	// Add 1 to elements in old array and append value to new array
+	// Starting from the first element, add 1 and then append to end
+	// of new array.
 	for (int i = 0, j = SIZE; (i < SIZE) && (j < SIZE * 2); i++, j++) {
 		newArrayPtr[j] = oldArrayPtr[i] + 1;
 	}
-	
-	// Replace old array with new array
-	oldArrayPtr = newArrayPtr;
 
 	// Clean up
-	delete []newArrayPtr;
-	newArrayPtr = NULL;
+	delete [] oldArrayPtr;
+	oldArrayPtr = newArrayPtr;	// Replace old array with new array address
 }
