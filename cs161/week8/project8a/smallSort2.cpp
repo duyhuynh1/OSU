@@ -5,7 +5,6 @@
 ** sorts them in ascending order. This implementation utilizes 
 ** pointers to achieve the desired results.
 *********************************************************************/
-#include <iostream>
 
 void swap(int *, int *);
 
