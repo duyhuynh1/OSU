@@ -1,10 +1,10 @@
 /*********************************************************************
 ** Author: Tony Huynh
 ** Date: 2/28/2018
-** Description: This function increases each element of the original
-** integer array by 1 and appends the results into the original array.
+** Description: This function replaces the original array with one 
+** that is twice as long, with the values from the original array
+** followed by each of those values plus one.
 *********************************************************************/
-#include <iostream>
 
 void transformArray(int * &oldArrayPtr, const int SIZE) {
 	// Allocate new array with double the size
@@ -15,8 +15,7 @@ void transformArray(int * &oldArrayPtr, const int SIZE) {
 		newArrayPtr[i] = oldArrayPtr[i];
 	}
 
-	// Starting from the first element, add 1 and then append to end
-	// of new array.
+	// Add 1 to each value in old array and append result to new array
 	for (int i = 0, j = SIZE; (i < SIZE) && (j < SIZE * 2); i++, j++) {
 		newArrayPtr[j] = oldArrayPtr[i] + 1;
 	}
