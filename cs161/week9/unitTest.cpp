@@ -7,11 +7,7 @@ int main() {
 	std::cout << "x_value: " << static_cast<int>('x') << std::endl;
 	std::cout << "o_value: " << static_cast<int>('o') << std::endl;
 	std::cout << "whitespace_value: " << static_cast<int>(' ') << std::endl; 
-	if (test.readGameFile(filename)) {
-		std::cout << "readGameFile works" << std::endl;
-	} else {
-		std::cout << "readGameFile failed" << std::endl;
-	}
+	
 }
 // Function prototype
 // void transformArray(int * &, const int);

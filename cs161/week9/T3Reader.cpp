@@ -48,8 +48,9 @@ bool T3Reader::readGameFile(const std::string filename) {
 		while (inputFile >> xCord >> yCord) {
 			std::cout << "\nplayer: " << currentPlayer;	// REMOVE ME
 			std::cout << "; row: " << xCord;			// REMOVE ME
-			std::cout << ", col: " << yCord << std::endl;	// REMOVE ME
+			std::cout << ", col: " << yCord;			// REMOVE ME
 			game.makeMove(xCord, yCord, currentPlayer);
+			std::cout << "; Status: " << game.gameState() << std::endl;	// REMOVE ME
 			game.printBoard();
 			switchCurrentPlayer(currentPlayer);
 		}
