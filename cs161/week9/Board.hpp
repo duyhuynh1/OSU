@@ -15,7 +15,6 @@ class Board {
 		const char markX = 'x';			// represents a square marked 'x' 
 		const char markO = 'o';			// represents a square marked 'o'
 		const char markEmpty = ' ';		// represents an empty square ' '
-		char gameVictory();				// Returns the player who won
 	public:
 		Board();						// Default Constructor
 		bool makeMove(int, int, char);	// Allows the user to mark a location

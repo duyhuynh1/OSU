@@ -14,7 +14,7 @@
 
 class T3Reader {
 	private:
-		Board game;
+		Board board;
 		char currentPlayer;
 		void switchCurrentPlayer(char &);
 	public:

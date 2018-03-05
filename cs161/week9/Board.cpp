@@ -20,39 +20,6 @@ Board::Board() {
 }
 
 /**
- *	Check if a player has won the game
- *	@return a coded integer indicating the player who has won and 
- *	how they won
- */
-char Board::gameVictory() {
-	std::cout << "inside Board::gameVictory()" << std::endl;	// REMOVE
-
-	// Check if 'x' or 'o' won on a vertical line
-	for (int i = 0; i < 3; i++) {
-		std::cout << "Checking col#" << i << std::endl;	// REMOVE
-		if (grid[0][i] == grid[1][i] && grid[1][i] == grid[2][i]) {
-			return grid[0][i];
-		}
-	}
-
-	// Check if 'x' or 'o' won on a horizontal line
-	for (int i = 0; i < 3; i++) {
-		std::cout << "Checking row#" << i << std::endl;	// REMOVE
-		if (grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2]) {
-			return grid[i][0];
-		}
-	}
-
-	// Check if 'x' or 'o' won on a diagonal line
-	std::cout << "Checking diagonal win" s<< std::endl;	// REMOVE
-	if (grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2]) {
-		return grid[1][1];
-	} else if (grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0]) {
-		return grid[1][1];
-	}
-}
-
-/**
  *	Validates the user's attempt to move to the grid position.
  *	@param row x-coordinates (row)
  *	@param col y-coordinates (column)
@@ -70,34 +37,76 @@ bool Board::makeMove(int row, int col, char mark) {
 }
 
 /**
- *	Returns the game's current Status
+ *	Returns the game's current Status. Scan's the grid to see if a player has won
+ *
  *	@return Status enum representing the various game status:
  *	X_WON, O_WON, DRAW, UNFINISHED
  */
 Status Board::gameState() {
-	static int numberOfMoves = 1;
+	printBoard();	// REMOVE
 
-	std::cout << "number of moves: " << numberOfMoves; 	// REMOVE
-	// Check if game is UNFINISHED
-	if (numberOfMoves < 5) {
-		numberOfMoves++;
-		return UNFINISHED;
-	}
-
-	switch (numberOfMoves) {
-		case 5:
-		case 6:
-		case 7:
-		case 8:
-			numberOfMoves++;
-			if (gameVictory() == 'x') {
+	// TODO: Fix bug with markEmpty trigerring X_WON/O_WON enum Status
+	// Check if 'x' or 'o' won on a vertical line
+	std::cout << "Board::gameState() checking vertical line" << std::endl;	// REMOVE
+	for (int i = 0; i < 3; i++) {
+		if (grid[0][i] == grid[1][i] && grid[1][i] == grid[2][i]) {
+			if (grid[0][i] == markX) {
+				std::cout << "return: X_WON" << std::endl;	// REMOVE
 				return X_WON;
-			} else if (gameVictory() == 'o'){
+			} else if (grid[0][i] == markO) {
+				std::cout << "return: O_WON" << std::endl;	// REMOVE
 				return O_WON;
 			}
-			break;
-		case 9:
-			return DRAW;
+		}
+	}
+
+	// Check if 'x' or 'o' won on a horizontal line
+	std::cout << "Board::gameState() checking horizontal line" << std::endl;	// REMOVE
+	for (int i = 0; i < 3; i++) {
+		if (grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2]) {
+			if (grid[i][0] == markX) {
+				std::cout << "return: X_WON" << std::endl;	// REMOVE
+				return X_WON;
+			} else if (grid[i][0] == markO) {
+				std::cout << "return: O_WON" << std::endl;	// REMOVE
+				return O_WON;
+			}
+		}
+	}
+
+	// Check if 'x' or 'o' won on a diagonal line
+	std::cout << "Board::gameState() checking diagonal line" << std::endl;	// REMOVE
+	if (grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2]) {
+		if (grid[1][1] == markX) {
+			std::cout << "return: X_WON" << std::endl;	// REMOVE
+			return X_WON;
+		} else if (grid[1][1] == markO) {
+			std::cout << "return: O_WON" << std::endl;	// REMOVE
+			return O_WON;
+		}
+	} else if (grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0]) {
+		if (grid[1][1] == markX) {
+			std::cout << "return: X_WON" << std::endl;
+			return X_WON;
+		} else if (grid[1][1] == markO) {
+			std::cout << "return: O_WON" << std::endl;
+			return O_WON;
+		}
+	}
+
+	// Check for a DRAW. All squares should be occupied.
+	// x = 120, o = 111
+	std::cout << "Board::gameState() checking DRAW or UNFINISHED" << std::endl;	// REMOVE
+	int sum = 0;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			sum += static_cast<int>(grid[i][j]);
+		}
+	}
+	if (sum == 1044 || sum == 1035) {
+		return DRAW;
+	} else {
+		return UNFINISHED;
 	}
 }
 
