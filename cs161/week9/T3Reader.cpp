@@ -40,21 +40,42 @@ void T3Reader::switchCurrentPlayer(char &player) {
 bool T3Reader::readGameFile(const std::string filename) {
 	int xCord = 0;
 	int yCord = 0;
-	bool done = false;
 	std::ifstream inputFile;
 
 	inputFile.open(filename);
 	if (inputFile) {
+		// Sucessfully opened game file
 		while (inputFile >> xCord >> yCord) {
-			std::cout << "\nplayer: " << currentPlayer;	// REMOVE ME
-			std::cout << "; row: " << xCord;			// REMOVE ME
-			std::cout << ", col: " << yCord << std::endl;	// REMOVE ME
-			game.makeMove(xCord, yCord, currentPlayer);
-			game.printBoard();
+			// Check if move is valid
+			if (board.makeMove(xCord, yCord, currentPlayer)) {
+				
+				// Check the current game Status
+				switch (board.gameState()) {
+					// [NOTE]: GROUP THESE CASES TOGETHER!!!
+					case X_WON:
+						std::cout << "case: X_WON" << std::endl;
+						inputFile.close();
+						return true;
+					case O_WON:
+						std::cout << "case: O_WON" << std::endl;
+						inputFile.close();
+						return true;
+					case DRAW:
+						std::cout << "case: DRAW" << std::endl;
+						inputFile.close();
+						return true;
+					case UNFINISHED:
+						std::cout << "case: UNFINISHED" << std::endl;
+						break;
+				}
+			} else {
+				return false;	// Invalid move, square is already occupied
+			}
+			std::cout << "switching players" << std::endl;
 			switchCurrentPlayer(currentPlayer);
 		}
-		return done;
+		return false;
+	} else {
+		return false;	// Failed to open filename
 	}
-	inputFile.close();
-	return done = true;
 }

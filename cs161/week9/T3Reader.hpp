@@ -14,10 +14,9 @@
 
 class T3Reader {
 	private:
-		Board game;
+		Board board;
 		char currentPlayer;
 		void switchCurrentPlayer(char &);
-		// Need a couple private function that readGame uses...
 	public:
 		T3Reader(char);					// Default Constructor
 		bool readGameFile(const std::string);	// Read specified game file
