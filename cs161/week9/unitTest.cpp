@@ -4,7 +4,7 @@
 int main() {
 	// Game 1: UNFINISHED
 	std::cout << "\n*** STARTING GAME 1 ***" << std::endl;
-	std::string filename1 = "game1.txt";
+	std::string filename1 = "data/game1.txt";
 	T3Reader game1('x');
 	if (game1.readGameFile(filename1)) {
 		std::cout << "GAME COMPLETE!" << std::endl;
@@ -12,45 +12,45 @@ int main() {
 		std::cout << "UNFINISHED GAME" << std::endl;
 	}
 
-	// Game 2: UNFINISHED
-	std::cout << "\n*** STARTING GAME 2 ***" << std::endl;
-	std::string filename2 = "game2.txt";
-	T3Reader game2('o');
-	if (game2.readGameFile(filename2)) {
-		std::cout << "GAME COMPLETE!" << std::endl;
-	} else {
-		std::cout << "UNFINISHED GAME" << std::endl;
-	}
+	// // Game 2: UNFINISHED
+	// std::cout << "\n*** STARTING GAME 2 ***" << std::endl;
+	// std::string filename2 = "game2.txt";
+	// T3Reader game2('o');
+	// if (game2.readGameFile(filename2)) {
+	// 	std::cout << "GAME COMPLETE!" << std::endl;
+	// } else {
+	// 	std::cout << "UNFINISHED GAME" << std::endl;
+	// }
 
-	// Game 3: UNFINISHED
-	std::cout << "\n*** STARTING GAME 3 ***" << std::endl;
-	std::string filename3 = "game3.txt";
-	T3Reader game3('x');
-	if (game3.readGameFile(filename3)) {
-		std::cout << "GAME COMPLETE!" << std::endl;
-	} else {
-		std::cout << "UNFINISHED GAME" << std::endl;
-	}
+	// // Game 3: UNFINISHED
+	// std::cout << "\n*** STARTING GAME 3 ***" << std::endl;
+	// std::string filename3 = "game3.txt";
+	// T3Reader game3('x');
+	// if (game3.readGameFile(filename3)) {
+	// 	std::cout << "GAME COMPLETE!" << std::endl;
+	// } else {
+	// 	std::cout << "UNFINISHED GAME" << std::endl;
+	// }
 
-	// Game 4: UNFINISHED
-	std::cout << "\n*** STARTING GAME 4 ***" << std::endl;
-	std::string filename4 = "game4.txt";
-	T3Reader game4('o');
-	if (game4.readGameFile(filename4)) {
-		std::cout << "GAME COMPLETE!" << std::endl;
-	} else {
-		std::cout << "UNFINISHED GAME" << std::endl;
-	}
+	// // Game 4: UNFINISHED
+	// std::cout << "\n*** STARTING GAME 4 ***" << std::endl;
+	// std::string filename4 = "game4.txt";
+	// T3Reader game4('o');
+	// if (game4.readGameFile(filename4)) {
+	// 	std::cout << "GAME COMPLETE!" << std::endl;
+	// } else {
+	// 	std::cout << "UNFINISHED GAME" << std::endl;
+	// }
 
-	// Game 5: X_WON
-	std::cout << "\n*** STARTING GAME 5 ***" << std::endl;
-	std::string filename5 = "game5.txt";
-	T3Reader game5('x');
-	if (game5.readGameFile(filename5)) {
-		std::cout << "GAME COMPLETE!" << std::endl;
-	} else {
-		std::cout << "UNFINISHED GAME" << std::endl;
-	}
+	// // Game 5: X_WON
+	// std::cout << "\n*** STARTING GAME 5 ***" << std::endl;
+	// std::string filename5 = "game5.txt";
+	// T3Reader game5('x');
+	// if (game5.readGameFile(filename5)) {
+	// 	std::cout << "GAME COMPLETE!" << std::endl;
+	// } else {
+	// 	std::cout << "UNFINISHED GAME" << std::endl;
+	// }
 }
 // Function prototype
 // void transformArray(int * &, const int);
