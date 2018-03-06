@@ -1,8 +1,10 @@
 /*********************************************************************
 ** Author: Tony Huynh
-** Date: 2/21/2018
+** Date: 03/07/2018
 ** Description: This class represents a tic-tac-toe board. It has 
-** constructors that 
+** constructors that initializes a 3x3 grid of empty squares. It also
+** provides functions to validate player moves and returns the current
+** game Status.
 *********************************************************************/
 #ifndef BOARD_HPP
 #define BOARD_HPP

@@ -1,8 +1,10 @@
 /*********************************************************************
 ** Author: Tony Huynh
-** Date: 2/21/2018
+** Date: 03/07/2018
 ** Description: Create a Board object that represents a Tic-Tac-Toe 
-** board game. 
+** board game. Provides a function called readGameFile used to
+** validate a Tic-Tac-Toe game. Helper function switchCurrentPlayer
+** is used to swap the current player.
 *********************************************************************/
 #include "T3Reader.hpp"
 
@@ -14,11 +16,11 @@
  */
 T3Reader::T3Reader(char marker) {
 	currentPlayer = marker;
-	std::cout << "starting player: " << currentPlayer << std::endl;	// REMOVE ME
 }
 
 /**
  *	Switches the current player
+ *
  *	@param player The current player 
  */
 void T3Reader::switchCurrentPlayer(char &player) {
@@ -30,7 +32,7 @@ void T3Reader::switchCurrentPlayer(char &player) {
 }
 
 /**
- *	Returns the status of the game
+ *	Returns the game file validity.
  *	
  *	@param filename The game file that will be read
  *	@return false if any of the moves is for a square that was
@@ -40,42 +42,37 @@ void T3Reader::switchCurrentPlayer(char &player) {
 bool T3Reader::readGameFile(const std::string filename) {
 	int xCord = 0;
 	int yCord = 0;
+	bool finished = false;
 	std::ifstream inputFile;
 
 	inputFile.open(filename);
-	if (inputFile) {
-		// Sucessfully opened game file
-		while (inputFile >> xCord >> yCord) {
-			// Check if move is valid
-			if (board.makeMove(xCord, yCord, currentPlayer)) {
-				
-				// Check the current game Status
-				switch (board.gameState()) {
-					// [NOTE]: GROUP THESE CASES TOGETHER!!!
-					case X_WON:
-						std::cout << "case: X_WON" << std::endl;
-						inputFile.close();
-						return true;
-					case O_WON:
-						std::cout << "case: O_WON" << std::endl;
-						inputFile.close();
-						return true;
-					case DRAW:
-						std::cout << "case: DRAW" << std::endl;
-						inputFile.close();
-						return true;
-					case UNFINISHED:
-						std::cout << "case: UNFINISHED" << std::endl;
-						break;
+	if (inputFile) {									// Check if open succeed
+		while (inputFile >> xCord >> yCord) {			// Read file values
+			if (!finished) {
+				// Check if move is valid
+				if (board.makeMove(xCord, yCord, currentPlayer)) {
+					switch (board.gameState()) {
+						case X_WON:
+						case O_WON:
+						case DRAW:
+							finished = true;			// Game is finished
+							break;
+						case UNFINISHED:
+							break;
+					}
+				} else {
+					inputFile.close();
+					return false;						// Move is invalid
 				}
+				switchCurrentPlayer(currentPlayer);		// Helper function
 			} else {
-				return false;	// Invalid move, square is already occupied
+				inputFile.close(); 
+				return false;
 			}
-			std::cout << "switching players" << std::endl;
-			switchCurrentPlayer(currentPlayer);
 		}
-		return false;
+		inputFile.close();
+		return true;									// Completed reading file
 	} else {
-		return false;	// Failed to open filename
+		return false;									// Failed to open file
 	}
 }
