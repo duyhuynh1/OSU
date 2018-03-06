@@ -18,7 +18,7 @@ class T3Reader {
 		char currentPlayer;
 		void switchCurrentPlayer(char &);
 	public:
-		T3Reader(char);					// Default Constructor
-		bool readGameFile(const std::string);	// Read specified game file
+		T3Reader(char);					          // Default Constructor
+		bool readGameFile(const std::string);     // Read specified game file
 };
 #endif	// T3READER_HPP
