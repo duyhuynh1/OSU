@@ -2,7 +2,7 @@
 #define CUSTOMER_HPP
 
 #include <vector>
-#include "Product.hpp"
+#include "Product-1.hpp"
 
 class Customer
 {
