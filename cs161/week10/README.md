@@ -5,21 +5,21 @@ You must submit these files: Product.cpp, Customer.cpp, and Store.cpp.  You do n
 
 In the main method you use for testing, you should only need to #include Store.hpp.  Remember that your compile command needs to list all of the .cpp files.
 ## Requirements
-- [ ] Implement **Product** Class:
+- [x] Implement **Product** Class:
   @brief A Product object represents a product with an ID code, title, description, price and quantity available.
-    - [ ] Create a constructor that initializes a Product object taking the following five values: 
+    - [x] Create a constructor that initializes a Product object taking the following five values: 
       - _idCode_ is a string representing the Product's ID Code
       - _title_ is a string representing the Product's title
       - _description_ is a string representing the Product's description
       - _price_ is a double representing the Product's price
       - _quantityAvailable_ is an integer representing the Product's current available quantity
-    - [ ] Create get methods for each member variables
-      - _getIdCode()_ - return the Product's ID Code
-      - _getTitle()_ - return the Product's title
-      - _getDescription()_ - return the Product's description
-      - _getPrice()_ - return the Product's price
-      - _getPrice()_ - return the Product's current available quantity
-    - [ ] Create a method to decrease Product's quantity
+    - [x] Create get methods for each member variables
+      - [x] _getIdCode()_ - return the Product's ID Code
+      - [x] _getTitle()_ - return the Product's title
+      - [x] _getDescription()_ - return the Product's description
+      - [x] _getPrice()_ - return the Product's price
+      - [x] _getQuantityAvailable()_ - return the Product's current available quantity
+    - [x] Create a method to decrease Product's quantity
       - _decreaseQuantity()_ - decrease's the Product's current quantity by one
 
 - [ ] Implement **Customer** Class:
