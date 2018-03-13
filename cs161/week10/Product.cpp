@@ -3,7 +3,7 @@
 ** Date: 03/14/2018
 ** Description: Create a Product object
 *********************************************************************/
-#include "Product-1.hpp"
+#include "Product.hpp"
 
 /**
  *	Constructor that initializes a Product object taking the following five values:
@@ -39,7 +39,7 @@ std::string Product::getTitle() { return title; }
 std::string Product::getDescription() { return description; }
 
 /**
- *	Return the Product's price
+ *	Return the Prod                                                                                                                                                       uct's price
  */
 double Product::getPrice() { return price; }
 
@@ -52,6 +52,4 @@ int Product::getQuantityAvailable() { return quantityAvailable; }
 /**
  *	Decrease the Product's current available quantity by one
  */
-void Product::decreaseQuantity() {
-	quantityAvailable -= 1;
-}
+void Product::decreaseQuantity() { quantityAvailable -= 1; }
