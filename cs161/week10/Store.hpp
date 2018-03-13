@@ -18,6 +18,9 @@ public:
     std::vector<std::string>  productSearch(std::string str);
     std::string addProductToMemberCart(std::string pID, std::string mID);
     double checkOutMember(std::string mID);
+
+    void showInventory();	// REMOVE
+    void showMembers();		// REMOVE
 };
 
 #endif

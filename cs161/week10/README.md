@@ -24,30 +24,31 @@ In the main method you use for testing, you should only need to #include Store.h
 
 - [ ] Implement **Customer** Class:
   @brief A Customer object represents a customer with a name and account ID. Customers must be members of the Store to make a purchase.  Premium members get free shipping.
-    - [ ] Create a constructor that initializes a Customer object taking the following three values:
+    - [x] Create a constructor that initializes a Customer object taking the following three values:
       - _name_ is a string representing the Customer's name
       - _accountID_ is a string representing the Customer's account ID
       - _premiumMember_ is a boolean that indicates if a Customer is a premium member
-    - [ ] Create get methods for the Customer object's member variables
-      - _getAccountID()_ - return the Customer's account ID
-      - _isPremiumMember()_ - return true if the Customer is a premium member, otherwise false
-    - [ ] Create a method to add Product objects to the Customer's cart
-      - _addProductToCart()_ - add a Product object's ID code to the Customer's cart.
-    - [ ] Create a method to empty the Customer's cart
-      - _emptyCart()_ clear the Customer's cart 
+    - [x] Create get methods for the Customer object's member variables
+      - [x] _getAccountID()_ - return the Customer's account ID
+      - [x] _getCart()_ - return the Customer's cart
+      - [x] _isPremiumMember()_ - return true if the Customer is a premium member, otherwise false
+    - [x] Create a method to add Product objects to the Customer's cart
+      - [x] _addProductToCart()_ - add a Product object's ID code to the Customer's cart.
+    - [x] Create a method to empty the Customer's cart
+      - [x] _emptyCart()_ clear the Customer's cart 
 - [ ] Implement **Store** Class:
   @brief A Store object represents a store, which has some number of products in its inventory and some number of customers as members.
-    - [ ] Create a method to add a Product to the inventory
-      - _addProduct()_ - add a Product object to the inventory vector
-    - [ ] Create a method to add a Customer to the members
-      - _addMember()_ - add a Customer object to the members vector
-    - [ ] Create a method to return a pointer to a matching Product object's ID Code
-      - _getProductFromID()_ - return pointer to product with matching ID.  Returns NULL if no matching ID is found.
-        - @param is a string
-    - [ ] Create a method to return a pointer to a matching Customer object's account ID
-      - _getMemberFromID()_ - return pointer to customer with matching ID.  Returns NULL if no matching ID is found.
-    - [ ] Create a method to return a vector of ID codes using title or description as search parameters
-      - _productSearch()_ - return a sorted vector of ID codes for every product whose title or description contains the search string. 
+    - [x] Create a method to add a Product to the inventory
+      - [x] _addProduct()_ - add a Product object to the inventory vector
+    - [x] Create a method to add a Customer to the members
+      - [x] _addMember()_ - add a Customer object to the members vector
+    - [x] Create a method to return a pointer to a matching Product object's ID Code
+      - [x]_getProductFromID()_ - return pointer to product with matching ID.  Returns NULL if no matching ID is found.
+        - @param searchIDCode is a string used as a search parameter
+    - [x] Create a method to return a pointer to a matching Customer object's account ID
+      - [x] _getMemberFromID()_ - return pointer to customer with matching ID.  Returns NULL if no matching ID is found.
+    - [x] Create a method to return a vector of ID codes using title or description as search parameters
+      - [x] _productSearch()_ - return a sorted vector of ID codes for every product whose title or description contains the search string. 
         - The first letter of the search string should be case-insensitive, (i.e. a search for "wood" should match Products that have "Wood" in their title or description, and a search for "Wood" should match Products that have "wood" in their title or description.)
         - You may use string::find() and string::npos (Links to an external site.) Links to an external site...
         - You may assume that the search string will consist of a single word.
