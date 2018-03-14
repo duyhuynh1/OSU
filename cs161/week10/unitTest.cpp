@@ -6,40 +6,57 @@
 
 int main() {
 	// Product Object test cases
-	Product item1("001aBc", "item1", "item1 test description", 0.99, 10);
-	Product item2("002dEf", "item2", "item2 test description", 1.99, 20);
-	Product item3("123gHi", "item3", "item3 test description", 2.50, 30);
+	Product item1("001aBc", "item1", "item1 test description", 0.99, 1);
+	// Product item2("002dEf", "item2", "item2 test description", 1.99, 20);
+	// Product item3("123gHi", "item3", "item3 test description", 2.50, 30);
+	// Product item4("987JkL", "item4", "item4 test description", 99.99, 0);
 	Customer member1("Tony", "123456789", true);
-	Customer member2("Bob", "987654321", false);
+	// Customer member2("Bob", "987654321", false);
 
 	std::cout << "Object Addresses: " << std::endl;
 	std::cout << "item1: " << &item1 << std::endl;
-	std::cout << "item2: " << &item2 << std::endl;
+	// std::cout << "item2: " << &item2 << std::endl;
+	// std::cout << "item3: " << &item3 << std::endl;
+	// std::cout << "item4: " << &item4 << std::endl;
 	std::cout << "member1: " << &member1 << std::endl;
-	std::cout << "member2: " << &member2 << std::endl;
+	// std::cout << "member2: " << &member2 << std::endl;
 	Store mStoreObj;
 	std::cout << "Generating inventory" << std::endl;
 	mStoreObj.addProduct(&item1);
-	mStoreObj.addProduct(&item2);
-	mStoreObj.addProduct(&item3);
+	// mStoreObj.addProduct(&item2);
+	// mStoreObj.addProduct(&item3);
+	// mStoreObj.addProduct(&item4);
 	mStoreObj.showInventory();
 
 	std::cout << "Querying members from database" << std::endl;
 	mStoreObj.addMember(&member1);
-	mStoreObj.addMember(&member2);
+	// mStoreObj.addMember(&member2);
 	mStoreObj.showMembers();
 
-	std::cout << "Search for Product using ID Code" << std::endl;
-	Product * productObjPtr = mStoreObj.getProductFromID("001aBc");
-	productObjPtr->decreaseQuantity();
-	mStoreObj.showInventory();
+	// std::cout << "Search for Product using ID Code" << std::endl;
+	// Product * productObjPtr = mStoreObj.getProductFromID("001aBc");
+	// productObjPtr->decreaseQuantity();
+	// mStoreObj.showInventory();
 
-	std::vector<std::string> result = mStoreObj.productSearch("item3");
+	std::cout << "[TEST]: Store::productSearch()" << std::endl;
+	std::vector<std::string> result = mStoreObj.productSearch("blah");
 	for (std::string id : result) {
 		std::cout << id << " ";
 	}
+
+	std::cout << "[TEST]: Store::addProductToMemberCart()" << std::endl;
+	// mStoreObj.addProductToMemberCart("001aBc", "123456789");
+	// std::cout << "Cart at checkout: " << mStoreObj.getMemberFromID()->getCart();
+	mStoreObj.addProductToMemberCart("001aBc", "123456789");
+	mStoreObj.addProductToMemberCart("001aBc", "123456789");
+	mStoreObj.showInventory();
+	std::cout << "[TEST]: Store::checkOutMember()" << std::endl;
+	std::cout << "total: " << mStoreObj.checkOutMember("123456789") << std::endl;
+	mStoreObj.showInventory();
 }
-// Product Object test cases
+// // ************************************************************
+// // Product Object test cases
+// // ************************************************************
 // Product item1("001aBc", "item1", "item1 test description", 0.99, 10);
 // Product item2("002dEf", "item2", "item2 test description", 1.99, 20);
 
@@ -69,7 +86,9 @@ int main() {
 // 	EXPECT_EQ(8, item1.getQuantityAvailable());
 // }
 
+// // ************************************************************
 // // Customer Object test cases
+// // ************************************************************
 // Customer member1("Tony", "123456789", true);
 // Customer member2("Bob", "987654321", false);
 
@@ -101,7 +120,22 @@ int main() {
 // 	EXPECT_EQ(0, member1Cart.size());
 // }
 
+// // ************************************************************
+// // Store Object Test Cases
+// // ************************************************************
+// TEST(StoreTest, addProductToInventory) { }
 
+// TEST(StoreTest, addMemberToMembers) { }
+
+// TEST(StoreTest, getProductFromID) { }
+
+// TEST(StoreTest, getMemberFromID) { }
+
+// TEST(StoreTest, productSearch) { }
+
+// TEST(StoreTest, addProductToMemberCart) {
+	
+// }
 // int main(int argc, char **argv) {
 //     ::testing::InitGoogleTest(&argc, argv);
 //     return RUN_ALL_TESTS();

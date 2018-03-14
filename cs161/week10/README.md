@@ -43,7 +43,7 @@ In the main method you use for testing, you should only need to #include Store.h
     - [x] Create a method to add a Customer to the members
       - [x] _addMember()_ - add a Customer object to the members vector
     - [x] Create a method to return a pointer to a matching Product object's ID Code
-      - [x]_getProductFromID()_ - return pointer to product with matching ID.  Returns NULL if no matching ID is found.
+      - [x] _getProductFromID()_ - return pointer to product with matching ID.  Returns NULL if no matching ID is found.
         - @param searchIDCode is a string used as a search parameter
     - [x] Create a method to return a pointer to a matching Customer object's account ID
       - [x] _getMemberFromID()_ - return pointer to customer with matching ID.  Returns NULL if no matching ID is found.
@@ -52,12 +52,12 @@ In the main method you use for testing, you should only need to #include Store.h
         - The first letter of the search string should be case-insensitive, (i.e. a search for "wood" should match Products that have "Wood" in their title or description, and a search for "Wood" should match Products that have "wood" in their title or description.)
         - You may use string::find() and string::npos (Links to an external site.) Links to an external site...
         - You may assume that the search string will consist of a single word.
-    - [ ] Create a method to allow members to add products to their cart.
-      - _addProductToMemberCart()_ - returns various statements depending on the following conditions:
-        - If the product isn't found in the inventory, return "product ID not found". 
-        - If the member isn't found in the members, return "member ID not found".
-        - If both are found and the product is still available, call the member's addProductToCart method to add the product and then return "product added to cart".
-        - If the product was not still available, return "product out of stock". 
+    - [x] Create a method to allow members to add products to their cart.
+      - [x] _addProductToMemberCart()_ - returns various statements depending on the following conditions:
+        - [x] If the product isn't found in the inventory, return "product ID not found". 
+        - [x] If the member isn't found in the members, return "member ID not found".
+        - [x] If both are found and the product is still available, call the member's addProductToCart method to add the product and then return "product added to cart".
+        - [x] If the product was not still available, return "product out of stock". 
         - This function does not need to check how many of that product are available - just that there is at least one.  
         - It should also not change how many are available - that happens during checkout. 
         - The same product can be added multiple times if the customer wants more than one of something.
