@@ -70,10 +70,10 @@ std::vector<std::string> Store::productSearch(std::string searchString1) {
 
 	// Search for matching Product title or description
 	for (Product * item : inventory) {
-		if (item->getTitle().find(searchString1) != std::string::npos ||
-			item->getTitle().find(searchString2) != std::string::npos ||
-			item->getDescription().find(searchString1) != std::string::npos ||
-			item->getDescription().find(searchString2) != std::string::npos) {
+		std::string str = item->getTitle() + " " + item->getDescription();
+		std::cout << str << std::endl;
+		if (str.find(searchString1) != std::string::npos ||
+			str.find(searchString2) != std::string::npos) {
 			// append ID code if match found
 			result.push_back(item->getIdCode());
 		}
@@ -82,6 +82,119 @@ std::vector<std::string> Store::productSearch(std::string searchString1) {
 	// return sorted vector of ID codes
 	std::sort(result.begin(), result.end());
 	return result;
+}
+
+/**
+ *	Allow members to add Products to their cart
+ *
+ *	@param pID is a string representing the Product's ID code that will be added
+ *	@param mID is a string representing the member whose cart the Product
+ *	will be added to.
+ */      
+std::string Store::addProductToMemberCart(std::string pID, std::string mID) {
+	const std::string PRODUCT_NOT_FOUND_ERROR = "product ID not found";
+	const std::string CUSTOMER_NOT_FOUND_ERROR = "member ID not found";
+	const std::string PRODUCT_OUT_OF_STOCK_ERROR = "product out of stock";
+	const std::string PRODUCT_ADD_SUCCESS = "product added to cart";
+
+	bool productFoundInInventory = false;
+	bool customerFoundInMembers = false;
+	bool productIsAvailable = false;
+
+	Product * productObjPtr = getProductFromID(pID);
+	std::cout << "productObjPtr: " << productObjPtr << std::endl;	// REMOVE
+	Customer * customerObjPtr = getMemberFromID(mID);
+	std::cout << "customerObjPtr: " << customerObjPtr << std::endl;	// REMOVE
+
+	// Verify product exist in the inventory
+	if (productObjPtr == NULL) {
+		std::cout << PRODUCT_NOT_FOUND_ERROR << std::endl;	// REMOVE
+		return PRODUCT_NOT_FOUND_ERROR;
+	}
+	std::cout << "Store::addProductToMemberCart() - product ID found" << std::endl;	// REMOVE
+	productFoundInInventory = true; 
+	
+	// Verify customer exist in the members list
+	if (customerObjPtr == NULL) {
+		std::cout << CUSTOMER_NOT_FOUND_ERROR << std::endl;	// REMOVE
+		return CUSTOMER_NOT_FOUND_ERROR;
+	}
+	std::cout << "Store::addProductToMemberCart() - member ID found" << std::endl; // REMOVE
+	customerFoundInMembers = true;
+
+	// Verify Product quantity available is greater than 1
+	if (productObjPtr->getQuantityAvailable() >= 1) {
+		std::cout << "quantity available!" << std::endl;	// REMOVE
+		productIsAvailable = true;
+	} else {
+		std::cout << PRODUCT_OUT_OF_STOCK_ERROR << std::endl;	// REMOVE
+		return PRODUCT_OUT_OF_STOCK_ERROR;
+	}
+
+	std::cout << "productFoundInInventory: " << productFoundInInventory << std::endl;	// REMOVE
+	std::cout << "customerFoundInMembers: " << customerFoundInMembers << std::endl;	// REMOVE
+	std::cout << "productIsAvailable: " << productIsAvailable << std::endl;	// REMOVE
+	if (productFoundInInventory == customerFoundInMembers && 
+		customerFoundInMembers == productIsAvailable) {
+		std::cout << PRODUCT_ADD_SUCCESS << std::endl;	// REMOVE
+		customerObjPtr->addProductToCart(productObjPtr->getIdCode());
+		return PRODUCT_ADD_SUCCESS;
+	}
+}
+
+/**
+ *	Allow customers to checkout their cart
+ *	
+ *	@param mID is a string 
+ *	@return the 
+ */
+// - _checkOutMember()_ - returns various statements depending on the following conditions:
+//   - **[NOTE]**: This will be the total cost of all the items in the cart, not including any items that are not in the inventory or are out of stock, plus the shipping cost.
+// - If a product is not out of stock, you should add its cost to the total and decrease the available quantity of that product by 1. 
+//   - **[Note]**: That it is possible for an item to go out of stock during checkout. 
+//   - For example, if the customer has two of the same product in their cart, but the store only has one of that product left, the customer will be able to buy the one that's available, but won't be able to buy a second one, because it's now out of stock.  
+// - For **premium members**, the shipping cost is $0.
+// - For **normal members**, the shipping cost is 7% of the total cost of the items in the cart. 
+// - When the charge for the member's cart has been tabulated, the member's cart should be emptied, and the charge amount returned.
+double Store::checkOutMember(std::string mID) {
+	const double NORMAL_MEMBER_SHIPPING_COST = 0.07;	// 7% of Total Cost
+	const double PREMIUM_MEMBER_SHIPPING_COST = 0;
+	double itemsTotalCost = 0;
+	double totalCost = 0;
+	Customer * customerObjPtr = getMemberFromID(mID);
+	std::cout << "customerObjPtr: " << customerObjPtr << std::endl;	// REMOVE
+	std::vector<std::string> checkoutCart;
+
+	// If the member ID isn't found, return -1. Otherwise return the charge for the member's cart.
+	if (customerObjPtr == NULL) {
+		return -1;
+	} else {
+		std::cout << "member found" << std::endl;	// REMOVE
+		std::cout << "calculating total:..." << std::endl;	// REMOVE
+		// Get the cart. Cart contains Product Obj ID Codes
+		checkoutCart = customerObjPtr->getCart();
+
+		// For each item in the cart check if qty available.
+		// If qty = 0; then skip adding to total and subtracting qty
+		for (std::string id : checkoutCart) {
+			if (getProductFromID(id)->getQuantityAvailable() > 0) {
+				std::cout << "product is still available" << std::endl;	// REMOVE
+				itemsTotalCost += getProductFromID(id)->getPrice();
+				getProductFromID(id)->decreaseQuantity();
+			}
+		}
+
+		// Apply shipping cost to itemsTotalCost
+		std::cout << "applying shipping rates" << std::endl;
+		if (customerObjPtr->isPremiumMember()) {
+			totalCost = itemsTotalCost + PREMIUM_MEMBER_SHIPPING_COST;
+		} else {
+			totalCost = itemsTotalCost + (itemsTotalCost * NORMAL_MEMBER_SHIPPING_COST);
+		}
+
+		customerObjPtr->emptyCart();
+		return totalCost;
+	}
 }
 
 // [DEBUG]: Display's the Store's current inventory
