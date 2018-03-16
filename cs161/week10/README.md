@@ -22,7 +22,7 @@ In the main method you use for testing, you should only need to #include Store.h
     - [x] Create a method to decrease Product's quantity
       - _decreaseQuantity()_ - decrease's the Product's current quantity by one
 
-- [ ] Implement **Customer** Class:
+- [x] Implement **Customer** Class:
   @brief A Customer object represents a customer with a name and account ID. Customers must be members of the Store to make a purchase.  Premium members get free shipping.
     - [x] Create a constructor that initializes a Customer object taking the following three values:
       - _name_ is a string representing the Customer's name
@@ -36,7 +36,7 @@ In the main method you use for testing, you should only need to #include Store.h
       - [x] _addProductToCart()_ - add a Product object's ID code to the Customer's cart.
     - [x] Create a method to empty the Customer's cart
       - [x] _emptyCart()_ clear the Customer's cart 
-- [ ] Implement **Store** Class:
+- [x] Implement **Store** Class:
   @brief A Store object represents a store, which has some number of products in its inventory and some number of customers as members.
     - [x] Create a method to add a Product to the inventory
       - [x] _addProduct()_ - add a Product object to the inventory vector
@@ -61,15 +61,15 @@ In the main method you use for testing, you should only need to #include Store.h
         - This function does not need to check how many of that product are available - just that there is at least one.  
         - It should also not change how many are available - that happens during checkout. 
         - The same product can be added multiple times if the customer wants more than one of something.
-    - [ ] Create a method to allow a Customer to checkout their cart
-      - _checkOutMember()_ - returns various statements depending on the following conditions:
-        - If the member ID isn't found, return -1. Otherwise return the charge for the member's cart.
+    - [x] Create a method to allow a Customer to checkout their cart
+      - [x]_checkOutMember()_ - returns various statements depending on the following conditions:
+        - [x] If the member ID isn't found, return -1. Otherwise return the charge for the member's cart.
           - **[NOTE]**: This will be the total cost of all the items in the cart, not including any items that are not in the inventory or are out of stock, plus the shipping cost.
-        - If a product is not out of stock, you should add its cost to the total and decrease the available quantity of that product by 1. 
+        - [x] If a product is not out of stock, you should add its cost to the total and decrease the available quantity of that product by 1. 
           - **[Note]**: That it is possible for an item to go out of stock during checkout. 
           - For example, if the customer has two of the same product in their cart, but the store only has one of that product left, the customer will be able to buy the one that's available, but won't be able to buy a second one, because it's now out of stock.  
-        - For **premium members**, the shipping cost is $0.
-        - For **normal members**, the shipping cost is 7% of the total cost of the items in the cart. 
+        - [x] For **premium members**, the shipping cost is $0.
+        - [x]For **normal members**, the shipping cost is 7% of the total cost of the items in the cart. 
         - When the charge for the member's cart has been tabulated, the member's cart should be emptied, and the charge amount returned.
 ---
 
