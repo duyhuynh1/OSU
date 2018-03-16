@@ -1,7 +1,9 @@
 /*********************************************************************
 ** Author: Tony Huynh
-** Date: 03/14/2018
-** Description: Create a Customer object
+** Date: 03/15/2018
+** Description: Create a Customer object that represents a customer 
+** with a name and account ID. Customers must be members of the 
+** Store to make a purchase. Premium members get free shipping.
 *********************************************************************/
 #include "Customer.hpp"
 

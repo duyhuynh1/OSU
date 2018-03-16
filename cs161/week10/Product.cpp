@@ -1,7 +1,8 @@
 /*********************************************************************
 ** Author: Tony Huynh
-** Date: 03/14/2018
-** Description: Create a Product object
+** Date: 03/15/2018
+** Description: Create a Product object that contains an ID code, 
+** title, description, price and quantity available.
 *********************************************************************/
 #include "Product.hpp"
 
@@ -47,7 +48,6 @@ double Product::getPrice() { return price; }
  *	Return the Product's current available quantity
  */
 int Product::getQuantityAvailable() { return quantityAvailable; }
-
 
 /**
  *	Decrease the Product's current available quantity by one
