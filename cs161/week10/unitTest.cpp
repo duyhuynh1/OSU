@@ -81,30 +81,29 @@
 Product item1("001aBc", "item1", "item1 test description", 0.99, 10);
 Product item2("002dEf", "item2", "item2 test description", 1.99, 20);
 
-TEST(ProductTest, getIdCode) {
-	EXPECT_EQ("001aBc", item1.getIdCode()); 
+TEST(Product, getIdCode_returnProductObjIDCode) {
+	EXPECT_EQ("001aBc", item1.getIdCode());
 }
 
-TEST(ProductTest, getTitle) {
+TEST(Product, getTitle_returnProductObjTitle) {
 	EXPECT_EQ("item1", item1.getTitle());
 }
 
-TEST(ProductTest, getDescription) {
+TEST(Product, getDescription_returnProductObjDescription) {
 	EXPECT_EQ("item1 test description", item1.getDescription());
 }
 
-TEST(ProductTest, getPrice) {
+TEST(Product, getPrice_returnProductObjPrice) {
 	EXPECT_EQ(0.99, item1.getPrice());
 }
 
-TEST(ProductTest, getQuantityAvailable) {
+TEST(Product, getQuantityAvailable_returnProductObjQuantityAvailable) {
 	EXPECT_EQ(10, item1.getQuantityAvailable());
 }
 
-TEST(ProductTest, decreaseQuantity) {
+TEST(Product, decreaseQuantity_decreaseProductObjQtyValueByOne) {
 	item1.decreaseQuantity();
-	item1.decreaseQuantity();
-	EXPECT_EQ(8, item1.getQuantityAvailable());
+	EXPECT_EQ(9, item1.getQuantityAvailable());
 }
 
 // ************************************************************

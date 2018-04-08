@@ -1,3 +1,6 @@
 **templates
 cs161/week4/project4b/unitTest.cpp
 cs161/week8/.ignore
+cs161/*/*/.dSYM/
+*.pdf
+cs162/*/*.dSYM/
