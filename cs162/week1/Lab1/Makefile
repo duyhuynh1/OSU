@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
 OBJECTS = determinant.o readMatrix.o main.o
 
-TARGET = runProgram
+TARGET = matrixCalculator
 
 all: $(TARGET)
 
@@ -13,4 +13,4 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) $<
 
 clean:
-	rm -f $(TARGET) $(OBJECTS)
+	rm -rf $(TARGET)* $(OBJECTS)

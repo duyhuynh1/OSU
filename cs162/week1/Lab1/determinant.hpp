@@ -2,15 +2,13 @@
 ** Program name: Matrix Calculator
 ** Author: Tony Huynh
 ** Date: 04/08/2018
-** Description: Matrix calculator determinant calculation
+** Description: Matrix calculator determinant function prototype. This
+** function takes 2 parameters: a pointer to a 2D array and the size 
+** of the matrix.
 *********************************************************************/
-// https://www.mathsisfun.com/algebra/matrix-determinant.html
-#ifndef DETERMINANT_HPP
-#define DETERMINANT_HPP
-#include <iostream>     // REMOVE
 /**
- *  [NOTE]: Determinant of a matrix can only be calcaulated from a 
- *  square matrixes.
+ *  [NOTE]: Determinant of a matrix can only be calculated from a
+ *  square matrices.
  *  det A = |A|
  *  - For a 2x2 Matrix
  *  | a b | = ad - bc
@@ -20,6 +18,9 @@
  *  | d e f |
  *  | g h i |
  */
+
+#ifndef DETERMINANT_HPP
+#define DETERMINANT_HPP
 
 int determinant(int **aPtr, int size);
 
