@@ -21,9 +21,9 @@ class Ant {
 	public:
 		Ant(int x, int y, int steps, Board mBoard);
 		~Ant();
-		int getCurrentXPosition() const;
-		int getCurrentYPosition() const;
-		Direction getDirection() const;
+		int getCurrentXPosition();
+		int getCurrentYPosition();
+		Direction getDirection();
 		int getSteps() const;
 		void moveForward();
 		void showInfo();					// TODO: This can be replaced with a helper
