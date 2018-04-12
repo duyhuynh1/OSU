@@ -17,9 +17,14 @@ class Board {
 		int xCoordOutOfBound;
 		int yCoordOutOfBound;
 		char **grid = NULL;
+		bool isOutOfBound(int row, int col);
 	public:
 		Board(int row, int col);	// TODO: Need to prevent people from modifying
-		bool isOutOfBound(int row, int col);
+		~Board();					// TODO: Destructor to clear grid object
+		void fill(int &x, int &y);	// TODO: The board will receive 2 args for space to fill
+		char getSpaceValue(int x, int y);
 		void show();
+
+									// TODO: The board will have logic to switch the space appropriately
 };
 #endif	// BOARD_HPP

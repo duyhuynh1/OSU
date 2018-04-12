@@ -9,33 +9,46 @@
 
 /**
  *	Board constructor 
- *	@param row An integer depicting the number of rows
- *	@param col An integer depicting the number of columns
+ *	@param x An integer depicting the number of xs
+ *	@param y An integer depicting the number of yumns
  */
-Board::Board(int row, int col) {
-	yCoordOutOfBound = row;
-	xCoordOutOfBound = col;
+Board::Board(int x, int y) {
+	yCoordOutOfBound = x;
+	xCoordOutOfBound = y;
 
-	grid = new char *[row];
-	for (int i = 0; i < row; i++) {
-		grid[i] = new char[col];
+	grid = new char *[x];
+	for (int i = 0; i < x; i++) {
+		grid[i] = new char[y];
 	}
 
-	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < col; j++) {
+	for (int i = 0; i < x; i++) {
+		for (int j = 0; j < y; j++) {
 			grid[i][j] = WHITE_SPACE;
 		}
 	}
 }
 
 /**
- *	Return ???
+ *	Board destructor
+ */
+Board::~Board() {
+	std::cout << "[D]: Inside ~Board() destructor" << std::endl;	// REMOVE
+	// for (int i = 0; i < xCoordOutOfBound; i++) {
+	// 	delete [] grid[i];
+	// }
+	// delete [] grid;
+	// std::cout << "[D]: Board freed memory" << std::endl;	// REMOVE
+	// // TODO: Delete all memory allocated to array
+}
+
+/**
+ *	Validates the forward movement.
  *	@return TRUE if forward movement positions the Ant to an out of bound location.
  *	Otherwise FALSE if forward movement positions the Ant within the grid. 
  */
-bool Board::isOutOfBound(int row, int col) {
+bool Board::isOutOfBound(int x, int y) {
 	std::cout << "[D]: Inside Board::isOutOfBound()" << std::endl;	// REMOVE
-	if (row > yCoordOutOfBound || col > xCoordOutOfBound) {
+	if (y > yCoordOutOfBound || x > xCoordOutOfBound) {
 		return true;
 	} else {
 		return false;
@@ -43,7 +56,25 @@ bool Board::isOutOfBound(int row, int col) {
 }
 
 /**
- *	Display the current Board
+ *	Maybe should be private
+ */
+char Board::getSpaceValue(int x, int y) {
+	return grid[x][y];
+}
+
+/**
+ *	Space Fill logic
+ */
+void Board::fill(int &x, int &y) {
+	if (!isOutOfBound(x, y)) {
+		std::cout << "[D]: move to location is valid" << std::endl;	// REMOVE
+		grid[x][y] = ANT_SPACE;
+	}
+	// Check where 
+}
+
+/**
+ *	Display the current Board. The Ant's current position should be passed here
  */
 void Board::show() {
 	std::cout << "[D]: Inside Board::show()" << std::endl;	// REMOVE

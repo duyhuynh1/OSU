@@ -8,53 +8,30 @@
 
 /**
  *	Ant constructor
+ *	@param x An integer depicting the starting x coordinate
+ *	@param y An integer depicting the starting y coordinate
+ *	@param numStep, 
  */
-Ant::Ant(int x, int y) {
+Ant::Ant(int x, int y, int steps, Board mBoard) {
 	std::cout << "[D]: Inside Ant constructor()" << std::endl;	// REMOVE
-	setPosition(x, y);
-	std::cout << "[D]: Setting default direction to NORTH" << std::endl;	// REMOVE
-	setDirection(0);
-}
-
-/**
- *	Set the Ant's position
- */
-void Ant::setPosition(int x, int y) {
-	// TODO: Need to check if position is going to be out of bound
-	// TODO: Need to check the Ant's current Facing
-	std::cout << "[D]: Inside Ant::setPosition()" << std::endl;	// REMOVE
 	this->x = x;
 	this->y = y;
-	std::cout << "[D]: set Ant's position x = " << this->x << "; y = " << this->y << std::endl;	// REMOVE
+	this->direction = WEST;			// Default direction in wikipedia
+	this->steps = steps;
+	boardPtr = &mBoard;
 }
 
 /**
- *	Set the Ant's cardinal direction
+ *	Ant destructor
  */
-void Ant::setDirection(int choice) {
-	std::cout << "[D]: Inside Ant::setDirection()" << std::endl;	// REMOVE
-	switch (choice) {
-		case 0:
-			std::cout << "[D]: Direction is set to NORTH" << std::endl;	// REMOVE
-			this->direction = NORTH;
-			break;
-		case 1:
-			std::cout << "[D]: Direction is set to SOUTH" << std::endl;	// REMOVE
-			this->direction = SOUTH;
-			break;
-		case 2:
-			std::cout << "[D]: Direction is set to EAST" << std::endl;	// REMOVE
-			this->direction = EAST;
-			break;
-		case 3:
-			std::cout << "[D]: Direction is set to WEST" << std::endl;	// REMOVE
-			this->direction = WEST;
-			break;
-	}
+Ant::~Ant() {
+	std::cout << "[D]: Inside ~Ant() destructor" << std::endl;	// REMOVE
+	// delete [] boardPtr;
+	// std::cout << "[D]: Ant freed memory" << std::endl;	// REMOVE
 }
 
 /**
- *	@return 
+ *	@return An integer depicting the Ant's current x coordinate
  */
 int Ant::getCurrentXPosition() const {
 	return this->x;
@@ -72,4 +49,66 @@ int Ant::getCurrentYPosition() const {
  */
 Direction Ant::getDirection() const {
 	return this->direction;
+}
+
+/**
+ *
+ */
+int Ant::getSteps() const {
+	return this->steps;
+}
+
+/**
+ *	Moves the Ant forward depending on it's location and direction.
+ *	If direction is NORTH then move forward by y - 1;
+ *	If direction is SOUTH then move forward by y + 1;
+ *	If direction is EAST then move forward by x + 1;
+ *	If direction is WEST then move forward by x - 1;
+ */
+void Ant::moveForward() {
+	std::cout << "[D]: Inside Ant::moveForward()" << std::endl;	// REMOVE
+	int moveX;
+	int moveY;
+	char currentOccupiedSpace = boardPtr->getSpaceValue(getCurrentXPosition(), getCurrentYPosition());
+	// 1 - Need to check the space the Ant is currently occupying
+	std::cout << "[D]: The Ant is occupying a \'"
+			  << currentOccupiedSpace << "\' space " << std::endl;
+
+	if (currentOccupiedSpace == '#') {
+		std::cout << "[D]: BLACK_SPACE" << std::endl;
+	} else {
+		std::cout << "[D]: WHITE_SPACE" << std::endl;
+	}
+	// if (boardPtr->getSpaceValue(getCurrentXPosition(), getCurrentYPosition()) {
+
+	// }
+
+	// switch (this->direction) {
+	// 	case NORTH:
+	// 		moveY = getCurrentYPosition() - 1;
+	// 		// setPosition(getCurrentXPosition(), moveY);
+	// 		break;
+	// 	case SOUTH:
+	// 		moveY = getCurrentYPosition() + 1;
+	// 		// setPosition(getCurrentXPosition(), moveY);
+	// 		break;
+	// 	case EAST:
+	// 		moveX = getCurrentXPosition() + 1;
+	// 		// setPosition(moveX, getCurrentYPosition());
+	// 		break;
+	// 	case WEST:
+	// 		moveX = getCurrentXPosition() - 1;
+	// 		// setPosition(moveX, getCurrentYPosition()); 
+	// 		break;
+	// }
+	this->steps -= 1;
+}
+
+void Ant::showInfo() {
+	std::cout << "Ant: {"
+			  << "\n\tx = " << getCurrentYPosition()
+			  << "\n\ty = " << getCurrentYPosition()
+			  << "\n\tdirection = " << getDirection()
+			  << "\n\tsteps = " << getSteps()
+			  << "\n};" << std::endl;
 }

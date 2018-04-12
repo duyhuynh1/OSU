@@ -2,21 +2,23 @@
 #include "Ant.hpp"
 
 int main() {
-	// int nRow = 3;
-	// int nCol = 3; 
-	// Board board(nRow, nCol);
-	// board.show();
-	int x = 1;
-	int y = 2;
-	Ant ant(x, y);
-	std::cout << "Ant's current x position = " << ant.getCurrentXPosition() << std::endl;
-	std::cout << "Ant's current y position = " << ant.getCurrentYPosition() << std::endl;
-	std::cout << "Ant's current direction = " << ant.getDirection() << std::endl;
+	int nRow = 5;
+	int nCol = 5; 
+	Board board(nRow, nCol);
 
+	int x = 2;
+	int y = 1;
+	int steps = 5;
+	Ant ant(x, y, steps, board);
+	ant.showInfo();
+	board.show();
+
+	// Start routine
+	while (ant.getSteps() > 0) {
+		std::cout << "[D]: # of steps left = " << std::endl;
+		ant.moveForward();
+		std::cout << "-----------------------" << std::endl;	// REMOVE
+		ant.showInfo();	// REMOVE
+	}
 	return 0;
-
-	// TODO: Free memory
-	// for (int i = 0; i < nRow; i++) {
-	// 	delete [] board
-	// }
 }

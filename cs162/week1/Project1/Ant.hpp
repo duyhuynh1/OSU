@@ -13,17 +13,19 @@ enum Direction { NORTH, SOUTH, EAST, WEST };
 
 class Ant {
 	private:
-		Board *boardPtr = NULL;
-		Direction direction;
 		int x;
 		int y;
-		void setPosition(int x, int y);
-		void setDirection(int choice);	// Set from menu options???
+		Direction direction;
+		int steps;
+		Board *boardPtr = NULL;
 	public:
-		Ant(int x, int y);
+		Ant(int x, int y, int steps, Board mBoard);
+		~Ant();
 		int getCurrentXPosition() const;
 		int getCurrentYPosition() const;
 		Direction getDirection() const;
-
+		int getSteps() const;
+		void moveForward();
+		void showInfo();					// TODO: This can be replaced with a helper
 };
 #endif	// ANT_HPP
