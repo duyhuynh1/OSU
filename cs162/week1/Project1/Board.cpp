@@ -32,13 +32,10 @@ Board::Board(int x, int y) {
  *	Board destructor
  */
 Board::~Board() {
-	std::cout << "[D]: Inside ~Board() destructor" << std::endl;	// REMOVE
-	// for (int i = 0; i < yLimit; i++) {
-	// 	delete [] grid[i];
-	// }
-	// delete [] grid;
-	// std::cout << "[D]: Board freed memory" << std::endl;	// REMOVE
-	// // TODO: Delete all memory allocated to array
+	for (int i = 0; i < xLimit ; i++) {
+		delete [] grid[i];
+	}
+	delete [] grid;
 }
 
 /**
@@ -47,8 +44,7 @@ Board::~Board() {
  *	Otherwise FALSE if forward movement positions the Ant within the grid. 
  */
 bool Board::isOutOfBound(int x, int y) {
-	std::cout << "[D]: Inside Board::isOutOfBound()" << std::endl;	// REMOVE
-	if (y > yLimit || x > xLimit) {
+	if ((x < 0 || x > getXLimit()) || (y < 0 || y > getYLimit())) {
 		return true;
 	} else {
 		return false;
@@ -67,16 +63,10 @@ char Board::getSpaceValue(int x, int y) {
  */
 void Board::fill(int x, int y) {
 	grid[x][y] = ANT_SPACE;
-	// if (!isOutOfBound(x, y)) {
-	// 	std::cout << "[D]: move to location is valid" << std::endl;	// REMOVE
-	// 	grid[x][y] = ANT_SPACE;
-	// } else {
-	// 	std::cout << "[D]: move is INVALID, SEG FAULT" << std::endl;	// REMOVE
-	// }
 }
 
 /**
- *
+ *	Flip the previous space the Ant was occupying
  */
 void Board::flipSpace(int x, int y, char value) {
 	if (value == ' ') {
@@ -87,24 +77,23 @@ void Board::flipSpace(int x, int y, char value) {
 }
 
 /**
- *
+ *	Returns the 'x' coordinate upper_limit 
  */
 int Board::getXLimit() const {
 	return this->xLimit - 1;
 }
 
 /**
- *
+ *	Return the 'y' coordinate upper_limit
  */
 int Board::getYLimit() const {
 	return this->yLimit - 1;
 }
 
 /**
- *	Display the current Board. The Ant's current position should be passed here
+ *	Display the current Board.
  */
 void Board::show() {
-	std::cout << "[D]: Inside Board::show()" << std::endl;	// REMOVE
 	for (int i = 0; i < xLimit; i++) {
 		for (int j = 0; j < yLimit; j++) {
 			std::cout << "|" << grid[i][j];

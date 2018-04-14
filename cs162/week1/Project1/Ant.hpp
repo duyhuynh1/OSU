@@ -18,14 +18,14 @@ class Ant {
 		Direction direction;
 		int steps;
 		Board *boardPtr = NULL;
+		int getCurrentXPosition() const;
+		int getCurrentYPosition() const;
+		Direction getDirection() const;
+		void turn(Direction direction, char spaceValue);
 	public:
-		Ant(int x, int y, int steps, Board mBoard);
+		Ant(int x, int y, int steps, Board *mBoard);
 		~Ant();
-		int getCurrentXPosition();
-		int getCurrentYPosition();
-		Direction getDirection();
 		int getSteps() const;
 		void moveForward();
-		void showInfo();					// TODO: This can be replaced with a helper
 };
 #endif	// ANT_HPP

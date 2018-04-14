@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
-OBJECTS = Ant.o Board.o main.o
+OBJECTS = Menu.o Ant.o Board.o main.o
 
 TARGET = runProgram
 

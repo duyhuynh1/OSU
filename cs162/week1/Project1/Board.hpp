@@ -27,7 +27,5 @@ class Board {
 		int getXLimit() const;
 		int getYLimit() const;
 		void show();
-
-									// TODO: The board will have logic to switch the space appropriately
 };
 #endif	// BOARD_HPP
