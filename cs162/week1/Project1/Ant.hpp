@@ -2,7 +2,9 @@
 ** Program name: Langton's Ant
 ** Author: Tony Huynh
 ** Date: 04/15/2018
-** Description: ADD COMMENTS HERE
+** Description: The Ant class provides all the functionality needed 
+** to navigate the board. Direction allows the Ant to store it's
+** current orientation.
 *********************************************************************/
 #ifndef ANT_HPP
 #define ANT_HPP
@@ -24,7 +26,6 @@ class Ant {
 		void turn(Direction direction, char spaceValue);
 	public:
 		Ant(int x, int y, int steps, Board *mBoard);
-		~Ant();
 		int getSteps() const;
 		void moveForward();
 };

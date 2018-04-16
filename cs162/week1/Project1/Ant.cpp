@@ -2,7 +2,9 @@
 ** Program name: Langton's Ant
 ** Author: Tony Huynh
 ** Date: 04/15/2018
-** Description: ADD COMMENTS HERE
+** Description: The Ant class implementation. It provides the
+** necessary functions for the ant to perform required actions based
+** off of set rules.
 *********************************************************************/
 #include "Ant.hpp"
 
@@ -22,42 +24,31 @@ Ant::Ant(int x, int y, int steps, Board *mBoard) {
 }
 
 /**
- *	Ant destructor
+ *	Returns The Ant's current x-coordinate
+ *	@return x coordinate of the Ant
  */
-Ant::~Ant() {
-	// delete [] boardPtr
-}
+int Ant::getCurrentXPosition() const { return this->x; }
 
 /**
- *	@return An integer depicting the Ant's current x coordinate
+ *	Returns the Ant's current y-coordinate
+ *	@return y coordinate of the Ant
  */
-int Ant::getCurrentXPosition() const {
-	return this->x;
-}
+int Ant::getCurrentYPosition() const { return this->y; }
 
 /**
- *	@return 
+ *	Returns the Ant's current facing direction
+ *	@return direction of the Ant.
  */
-int Ant::getCurrentYPosition() const {
-	return this->y;
-}
+Direction Ant::getDirection() const { return this->direction; }
 
 /**
- *	@return
+ *	Returns the Ant's current amount of steps
+ *	@return steps of the Ant
  */
-Direction Ant::getDirection() const {
-	return this->direction;
-}
+int Ant::getSteps() const { return this->steps; }
 
 /**
- *
- */
-int Ant::getSteps() const {
-	return this->steps;
-}
-
-/**
- *	Moves the Ant forward depending on it's location and direction.
+ *	Moves the Ant forward depending on it's location and direction
  *	If direction is NORTH then move forward by x - 1;
  *	If direction is SOUTH then move forward by x + 1;
  *	If direction is EAST then move forward by y + 1;
@@ -69,7 +60,9 @@ void Ant::moveForward() {
 	char spaceValue = boardPtr->getSpaceValue(oldXCoord, oldYCoord);
 
 	boardPtr->fill(oldXCoord, oldYCoord);
+	std::cout << "Number of steps left: " << steps << std::endl;
 	boardPtr->show();
+
 	turn(getDirection(), spaceValue);
 
 	switch (getDirection()) {
@@ -109,7 +102,10 @@ void Ant::moveForward() {
 }
 
 /**
- *	Performs the turning operation depending on current direction and space value
+ *	Performs the turning operation depending on current direction 
+ *	and space value
+ *	@param direction The Direction the Ant is currently facing
+ *	@param spaceValue The current space the Ant is occupying
  */
 void Ant::turn(Direction direction, char spaceValue) {
 	if (spaceValue == ' ') {

@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
 OBJECTS = Menu.o Ant.o Board.o main.o
 
-TARGET = runProgram
+TARGET = langtonAntSimulation
 
 all: $(TARGET)
 

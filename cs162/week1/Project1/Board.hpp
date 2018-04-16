@@ -2,7 +2,8 @@
 ** Program name: Langton's Ant
 ** Author: Tony Huynh
 ** Date: 04/15/2018
-** Description: ADD COMMENTS HERE
+** Description: The Board Class provides the necessary functions and
+** information for the Ant to navigate the grid.
 *********************************************************************/
 #ifndef BOARD_HPP
 #define BOARD_HPP
@@ -18,9 +19,9 @@ class Board {
 		int yLimit;
 		char **grid = NULL;
 	public:
-		Board(int row, int col);	// TODO: Need to prevent people from modifying
-		~Board();					// TODO: Destructor to clear grid object
-		void fill(int x, int y);	// TODO: The board will receive 2 args for space to fill
+		Board(int row, int col);
+		~Board();
+		void fill(int x, int y);
 		bool isOutOfBound(int row, int col);
 		void flipSpace(int x, int y, char value);
 		char getSpaceValue(int x, int y);
