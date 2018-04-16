@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
-OBJECTS =  file_io.o main.o
+OBJECTS = file_io.o main.o
 
 TARGET = fileIO
 

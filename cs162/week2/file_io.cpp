@@ -2,14 +2,19 @@
 ** Program name: File I/O
 ** Author: Tony Huynh
 ** Date: 04/15/2018
-** Description: ????
+** Description: File I/O functions implemented. These two functions 
+** together reads a file and tallies up the frequency of letters, and
+** then writes the results of each paragraph into a new file.
 *********************************************************************/
 #include "file_io.hpp"
 
 /**
- *	
- *	@param input ???
- *	@param frequency ???
+ *	Reads the paragraph string from the input file stream, then
+ *	counts the letter frequencies of that paragraph, and stores the
+ *	results in an integer array.
+ *	@param input An input file stream used to read data from a file
+ *	@param frequency A pointer to an integer array containing 
+ *	frequency data
  */
 void count_letters(std::ifstream &input, int *frequency) {
 	int freqArray[26] = {};
@@ -37,18 +42,26 @@ void count_letters(std::ifstream &input, int *frequency) {
 }
 
 /**
- *	
- *	@param output ???
- *	@param frequency ???
+ *	Prompts the user for output filename and writes the frequencies of
+ *	letters to the specified file.
+ *	@param output An output file stream used to write data to a file
+ *	@param frequency A pointer to an integer array containing 
+ *	frequency data
  */
 void output_letters(std::ofstream &output, int *frequency) {
 	std::string outputFilename = "";
-	std::cout << "Please enter name for output file: ";
-	std::cin >> outputFilename;
-	output.open(outputFilename);
-	for (char letter = 'a'; letter <= 'z'; letter++) {
-		output << letter << ": " << *frequency << std::endl;	// TODO: proper way to send endl???
-		frequency++;
-	}
-	output.close();
+	bool success = false;
+	do {
+		std::cout << "Please enter name for output file: ";
+		std::getline(std::cin, outputFilename);
+		if (outputFilename.size() != 0) {
+			output.open(outputFilename);
+			for (char letter = 'a'; letter <= 'z'; letter++) {
+				output << letter << ": " << *frequency << std::endl;
+				frequency++;
+			}
+			success = true;
+			output.close();		// Clean up
+		}
+	} while (!success);
 }
