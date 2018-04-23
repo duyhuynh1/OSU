@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Die.hpp"
 
-class LoadedDie: public Die {
+class LoadedDie : public Die {
     private:
         // const int N_SIDES;
     public:

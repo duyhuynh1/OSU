@@ -10,6 +10,7 @@ class Die {
         int numberOfSides;
     public:
         Die(int side);
-        int roll();
+        virtual ~Die();
+        virtual int roll();
 };
 #endif  // DIE_HPP

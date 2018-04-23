@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
-OBJECTS = LoadedDie.o Die.o main.o
+OBJECTS = Menu.o Game.o Player.o LoadedDie.o Die.o main.o
 
 TARGET = warGame
 
