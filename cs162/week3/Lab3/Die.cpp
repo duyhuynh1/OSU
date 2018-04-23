@@ -1,19 +1,37 @@
+/*********************************************************************
+** Program name: Dice War Game
+** Author: Tony Huynh
+** Date: 04/22/2018
+** Description: The Die class is the base class that provides all
+** the necessary properties to create a Die object. It stores the
+** number of sides and the roll function simulats a dice roll.
+*********************************************************************/
 #include "Die.hpp"
 
 /**
  *  Die constructor
  */
 Die::Die(int side) {
-    std::cout << "Die constructor" << std::endl;        // REMOVE
     numberOfSides = side;
+    std::srand(std::time(0));
 }
 
-Die::~Die() {
-    std::cout << "~Die() destructor called" << std::endl;   // REMOVE
-}
+/**
+ *	Die default destructor
+ */
+Die::~Die() { }
 
+/**
+ *	Die roll function returns a random number that is between 1 and
+ *	the numberOfSides.
+ */
 int Die::roll() {
-    std::cout << "Die::roll() called" << std::endl;     // REMOVE
-    srand(time(NULL));
-    return (rand() % numberOfSides) + 1;
+    return (std::rand() % numberOfSides) + 1;
+}
+
+/**
+ *	Returns the number of sides a Die has
+ */
+int Die::getNumberOfSides() const {
+	return numberOfSides;
 }

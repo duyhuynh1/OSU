@@ -1,8 +1,8 @@
 CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
-OBJECTS = Menu.o Game.o Player.o LoadedDie.o Die.o main.o
+OBJECTS = Option.o Menu.o Game.o Player.o LoadedDie.o Die.o main.o
 
-TARGET = warGame
+TARGET = diceWarGame
 
 all: $(TARGET)
 
