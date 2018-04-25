@@ -6,41 +6,57 @@
 ** Buildings and people that work for or study at OSU.
 *********************************************************************/
 #include "University.hpp"
-// TODO: https://stackoverflow.com/questions/9560861/downcasting-from-base-pointer-to-templated-derived-types
-
 
 /**
  *  University class default constructor
  */
-University::University() {
+University::University() {  // REMOVE
     std::cout << "[D]: University constructor called" << std::endl; // REMOVE
+}
+
+University::~University() {
+    std::cout << "[D]: University destructor called" << std::endl;  // REMOVE
+    for (int i = 0; i < buildings.size(); i++) {
+        delete buildings[i];
+    }
+    for (int i = 0; i < people.size(); i++) {
+        delete people[i];
+    }
 }
 
 /**
  *  Appends a Building object to the buildings vector
  */
-void University::addBuilding(Building * mBuilding) {
-    buildings.push_back(mBuilding);
-}
+void University::addBuilding(Building * mBuilding) { buildings.push_back(mBuilding); }
 
 /**
  *  Appends a Person object to the people vector 
  */
-void University::addPeople(Person * mPerson) {
-    people.push_back(mPerson);
-}
+void University::addPeople(Person * mPerson) { people.push_back(mPerson); }
 
 /**
  *  Function that prints the information for all buildings in its
  *  information system including: name, address, and building's size
  */
-// TODO: Add dynamic width adjustments
 void University::getBuildingInfo() const {
+    std::cout << "+" << std::string(29, '-')
+              << "+" << std::string(49, '-')
+              << "+" << std::string(15, '-')
+              << std::left << std::setw(30) << "\n| Property Name"
+              << std::left << std::setw(50) << " | Address"
+              << std::right << std::setw(15) << " | Usuable Sqft |\n"
+              << "+" << std::string(29, '-')
+              << "+" << std::string(49, '-')
+              << "+" << std::string(15, '-') << std::endl;
     for (int i = 0; i < buildings.size(); i++) {
-        std::cout << "[ Property Name: " << buildings[i]->getName() << " | "
-                  << "Address: " << buildings[i]->getAddress() << " | "
-                  << "Usuable Sqft: " << buildings[i]->getSize() << " ]" << std::endl;
+        std::cout << "| "
+                  << std::left << std::setw(27) << buildings[i]->getName() << " |"
+                  << std::left << std::setw(49) << buildings[i]->getAddress() << "|"
+                  << std::right << std::setw(13) << buildings[i]->getSize() << " |\n";
     }
+    std::cout << "+" << std::string(29, '-')
+              << "+" << std::string(49, '-')
+              << "+" << std::string(15, '-') << std::endl;
 }
 
 /**
