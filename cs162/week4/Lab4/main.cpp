@@ -15,66 +15,68 @@
 #include "Menu.hpp"
 #include "Option.hpp"
 
-void loadBuildingInfo(University &);
-void loadPeopleInfo(University &);
-void addNewBuildingInfo(University &);
-void addNewPersonInfo(University &);
+void loadBuildingInfo(University &, const std::string &);
+void loadPeopleInfo(University &, const std::string &);
+void addNewBuildingInfo(University &, const std::string &);
+void addNewPersonInfo(University &, const std::string &);
 
 int main() {
+    const std::string buildingInfoFilename = "./data/BuildingInfo.txt";
+    const std::string peopleInfoFilename = "./data/PeopleInfo.txt";
+
     University mUniversity;
-    loadBuildingInfo(mUniversity);
-    loadPeopleInfo(mUniversity);
+    loadBuildingInfo(mUniversity, buildingInfoFilename);
+    loadPeopleInfo(mUniversity, peopleInfoFilename);
     mUniversity.getBuildingInfo();
     mUniversity.getPeopleInfo();
 
-    // TODO: Write a queryDatabase() function to read in Building and Person objects
+    std::string mainMenuPrompt = "1. Show all building information\n"
+                                 "2. Show all people information\n"
+                                 "3. Choose a person to do work\n"
+                                 "4. Add new building\n"
+                                 "5. Add new person\n"
+                                 "6. Exit program\n> ";
+    std::string doWorkPrompt = "Select a person to do work: ";
 
-    // TEST REMOVE v
-    // Person * person1 = new Student("Tony", 25, 3.99);
-    // Person * person2 = new Instructor("Bob", 43, 4.89);
-    // Person * person3 = new Student("John", 24, 3.75);
+    Option * option1 = new Option(mainMenuPrompt, 1, 6);
+    Option * option2 = new Option(doWorkPrompt, 1, );
 
-    // University mUniversity;
-    // mUniversity.addPeople(person1);
-    // mUniversity.addPeople(person2);
-    // mUniversity.addPeople(person3);
-    // // TEST REMOVE ^
-    // std::string mainMenuPrompt = "1. Show all building information\n"
-    //                              "2. Show all people information\n"
-    //                              "3. Choose a person to do work\n"
-    //                              "4. Exit program\n> ";
-    // TODO: Need a menu that queries the name of all the people name
-    // std::string doWorkPrompt = "Select a person to do work: ";
+    Menu mMenu;
+    mMenu.addOption(option1);       // Index 0
 
-    // Option * option1 = new Option(mainMenuPrompt, 1, 4);
-    // // Option * option2 = new Option(doWorkPrompt, );
+    // mMenu.addOption(option2);
+    std::cout << "===============================================\n"
+              << "OSU INFORMATION SYSTEM\n"
+              << "===============================================\n";
+    int selection = mMenu.getValue(0);
 
-    // Menu mMenu;
-    // mMenu.addOption(option1);       // Index 0
-    // // mMenu.addOption(option2);
-    // std::cout << "===============================================\n"
-    //           << "OSU INFORMATION SYSTEM\n"
-    //           << "===============================================\n";
-    // int selection = mMenu.getValue(0);
+    switch (selection) {
+        case 1:
+            std::cout << "Querying all building information..." << std::endl;   // REMOVE
+            mUniversity.getBuildingInfo();
+            break;
+        case 2:
+            std::cout << "Querying all people information..." << std::endl; // REMOVE
+            mUniversity.getPeopleInfo();
+            break;
+        case 3:
+            std::cout << "[D]: Choose a person to work menu" << std::endl;  // REMOVE
+            break;
+        case 4:
+            std::cout << "[D]: Add a new building" << std::endl;    // REMOVE
+            addNewBuildingInfo();
+            break;
+        case 5:
+            std::cout << "[D]: Add a new person" << std::endl;  // REMOVE
+            addNewPersonInfo();
+            break;
+        case 6:
+            std::cout << ">>> Exit Program <<<" << std::endl;
+            break;
+    }
 
-    // switch (selection) {
-    //     case 1:
-    //         std::cout << "Querying all building information..." << std::endl;
-    //         break;
-    //     case 2:
-    //         std::cout << "Querying all people information..." << std::endl;
-    //         mUniversity.getPeopleInfo();
-    //         break;
-    //     case 3:
-    //         std::cout << "[D]: Choose a person to work menu" << std::endl;
-    //         break;
-    //     case 4:
-    //         std::cout << ">>> Exit Program <<<" << std::endl;
-    //         break;
-    // }
-
-    // delete option1;
-    // delete option2;
+    delete option1;
+    delete option2;
 
     return 0;
 }
@@ -82,12 +84,11 @@ int main() {
 /**
  *  Parses the BuildingInfo.txt file for Building information
  */
-void loadBuildingInfo(University &mUniversity) {
+void loadBuildingInfo(University &mUniversity, const std::string &filename) {
     std::ifstream input;
-    const std::string buildingInfoFilename = "./data/BuildingInfo.txt";
     bool success = false;
     do {
-        input.open(buildingInfoFilename);
+        input.open(filename);
         if (input) {
             std::string name, address, size;
             while (std::getline(input, name, ',') &&
@@ -98,8 +99,7 @@ void loadBuildingInfo(University &mUniversity) {
             }
             success = true;
         } else {
-            // TODO: Need to handle when build info is empty -> Return "Empty Database???"
-            std::cout << "ERROR: failed to read\"" << buildingInfoFilename << "\"\n";
+            std::cout << "ERROR: failed to read\"" << filename << "\"\n";
         }
     } while (!success);
     input.close();
@@ -108,12 +108,11 @@ void loadBuildingInfo(University &mUniversity) {
 /**
  *  Parses the PeopleInfo.txt file for Student and Instructor information
  */
-void loadPeopleInfo(University &mUniversity) {
+void loadPeopleInfo(University &mUniversity, const std::string &filename) {
     std::ifstream input;
-    const std::string peopleInfoFilename = "./data/PeopleInfo.txt";
     bool success = false;
     do {
-        input.open(peopleInfoFilename);
+        input.open(filename);
         if (input) {
             std::string personType, name, age, value;
             while (std::getline(input, personType, ',') &&
@@ -128,7 +127,7 @@ void loadPeopleInfo(University &mUniversity) {
             }
             success = true;
         } else {
-            std::cout << "ERROR: failed to read\"" << peopleInfoFilename << "\"\n";
+            std::cout << "ERROR: failed to read\"" << filename << "\"\n";
         }
     } while (!success);
     input.close();
@@ -136,9 +135,31 @@ void loadPeopleInfo(University &mUniversity) {
 
 /**
  *  Allows the user to add a new Building to the BuildingInfo.txt
+ *  Request user for the Building's name, 
  */
-
+// TODO: Update buildings.push_back();
+void addNewBuildingInfo(University &mUniversity, const std::string &filename) {
+    std::ofstream output;
+    bool success = false;
+    do {
+        output.open();
+        std::cout << "=== Adding new building ===";
+        std::cout << "Please enter name: ";
+        std::cout << "Please enter address: ";
+        std::cout << "Please enter ";
+        success = true;
+    } while (!success);
+}
 
 /**
  *  Allows the user to add a new Person to the PersonInfo.txt
  */
+// TODO: Update people.push_back();
+void addNewPersonInfo(University &mUniversity, const std::string &filename) {
+    std::ofstream output;
+    bool success = false;
+    do {
+        std::cout << "=== Adding new person ===";
+        success = true;
+    } while (!success);
+}

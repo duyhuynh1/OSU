@@ -30,5 +30,7 @@ class University {
         void addPeople(Person *);
         void getBuildingInfo() const;
         void getPeopleInfo() const;
+        int getNumberOfBuildings() const;
+        int getNumberOfPeople() const;
 };
 #endif  // UNIVERSITY_HPP
