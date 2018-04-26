@@ -20,6 +20,8 @@ Option::Option(std::string prompt, int min, int max) {
  *  Validation algorithm will verify the user's input is an integer and check
  *  if the number is within the range specified by the min and max values
  */
+// TODO: Rework algorithm to be more modular
+// TODO: Function should be called getUnsignedInt()
 int Option::getSelection() {
 	std::string number;
     int result;
@@ -49,4 +51,22 @@ int Option::getSelection() {
         }
     } while (!valid);
     return -1;
+}
+
+/**
+ *  Verify the user's input is a floating number
+ */
+float Option::getFloat() {
+    std::string number;
+    std::size_t found;
+    float result = 0.0;
+    bool valid = false;
+    do {
+        std::getline(std::cin, number);
+        found = number.find_first_not_of("1234567890.");
+        if (found == std::string::npos) {
+            valid = true;
+        }
+    } while (!valid);
+    return result;
 }

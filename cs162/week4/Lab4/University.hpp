@@ -26,6 +26,7 @@ class University {
     public:
         University();
         ~University();
+        void selectPersonToDoWork(int);
         void addBuilding(Building *);
         void addPeople(Person *);
         void getBuildingInfo() const;

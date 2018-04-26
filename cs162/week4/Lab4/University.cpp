@@ -25,6 +25,11 @@ University::~University() {
 }
 
 /**
+ *  Select a person to do work
+ */
+void University::selectPersonToDoWork(int index) { people[index - 1]->do_work(); }
+
+/**
  *  Appends a Building object to the buildings vector
  */
 void University::addBuilding(Building * mBuilding) { buildings.push_back(mBuilding); }
@@ -54,8 +59,8 @@ void University::getBuildingInfo() const {
               << "+" << std::string(14, '-') << "+\n";
         for (int i = 0; i < buildings.size(); i++) {
             std::cout << "| "
-                      << std::left << std::setw(27) << buildings[i]->getName() << " |"
-                      << std::left << std::setw(48) << buildings[i]->getAddress() << " |"
+                      << std::left << std::setw(27) << buildings[i]->getName() << " | "
+                      << std::left << std::setw(48) << buildings[i]->getAddress() << "|"
                       << std::right << std::setw(13) << buildings[i]->getSize() << " |\n";
         }
         std::cout << "+" << std::string(29, '-')
@@ -74,20 +79,23 @@ void University::getPeopleInfo() const {
         std::cout << "People database empty..." << std::endl;
     } else {
         std::cout << "=== PeopleDB ===" << "\n"
+                  << "+" << std::string(5, '-')
                   << "+" << std::string(12, '-')
                   << "+" << std::string(24, '-')
                   << "+" << std::string(5, '-')
                   << "+" << std::string(15, '-') << "+"
-                  << std::left << std::setw(13) << "\n| Type" 
+                  << std::left << std::setw(6)  << "\n| No."
+                  << std::left << std::setw(13) <<  " | Type" 
                   << std::left << std::setw(25) <<  " | Name"
                   << std::left << std::setw(6)  <<  " | Age"
                   << std::left << std::setw(15) <<  " | Score         |\n"
+                  << "+" << std::string(5, '-')
                   << "+" << std::string(12, '-')
                   << "+" << std::string(24, '-')
                   << "+" << std::string(5, '-')
                   << "+" << std::string(15, '-') << "+\n";
         for (int i = 0; i < people.size(); i++) {
-            std::cout << "|";
+            std::cout << "| " << std::right << std::setw(3) << (i + 1) << " |";
             if (typeid(* people[i]) == typeid(Instructor)) {
                 std::cout << std::left << std::setw(12) << " Instructor";
             } else {
@@ -104,7 +112,8 @@ void University::getPeopleInfo() const {
                 std::cout << std::right << std::setw(9) << "GPA: " << dynamic_cast<Student *>(people[i])->getGPA() << " |\n";
             }
         }
-        std::cout << "+" << std::string(12, '-')
+        std::cout << "+" << std::string(5, '-')
+                  << "+" << std::string(12, '-')
                   << "+" << std::string(24, '-')
                   << "+" << std::string(5, '-')
                   << "+" << std::string(15, '-') << "+\n";

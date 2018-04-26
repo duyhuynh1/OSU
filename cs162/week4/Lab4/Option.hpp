@@ -11,6 +11,7 @@
 #include <iostream>
 #include <algorithm>
 #include <climits>		// INT_MAX
+#include <cstddef>      // std::size_t    
 
 class Option {
 	private:
@@ -19,5 +20,6 @@ class Option {
 	public:
 		Option(std::string, int, int);
 		int getSelection();
+		float getFloat();
 };
 #endif	// OPTION_HPP
