@@ -56,16 +56,34 @@ int Option::getSelection() {
 /**
  *  Verify the user's input is a floating number
  */
-float Option::getFloat() {
+float Option::getUnsignedFloat() {
     std::string number;
     std::size_t found;
     float result = 0.0;
+    float minFloat = static_cast<float>(min);
+    float maxFloat = static_cast<float>(max);
     bool valid = false;
     do {
+        std::size_t occurence = 0;
+        std::cout << prompt;
         std::getline(std::cin, number);
         found = number.find_first_not_of("1234567890.");
         if (found == std::string::npos) {
-            valid = true;
+            // Check for double occurence of '.'
+            occurence = std::count(number.begin(), number.end(), '.');
+            if (occurence <= 1) {
+                std::cout << "NO extra '.'" << std::endl;   // REMOVE
+                std::cout << "VALID characters" << std::endl;   // REMOVE
+                result = std::stof(number);
+                if (result >= minFloat && result <= maxFloat) {
+                    std::cout << "float is in range" << std::endl;  // REMOVE
+                    valid = true;
+                }
+            } else {
+                std::cout << "EXTRA '.'" << std::endl;
+            }
+        } else {
+            std::cout << "INVALID characters" << std::endl; // REMOVE
         }
     } while (!valid);
     return result;

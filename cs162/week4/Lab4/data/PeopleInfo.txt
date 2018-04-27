@@ -1,3 +1,2 @@
-Student, Tony, 25, 3.99
-Student, Bob, 35, 2.99
-Instructor, Jamie, 45, 4.99
+Student,Tony,25,4.00
+Student,Bob,35,3.51

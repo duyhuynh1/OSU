@@ -9,7 +9,8 @@
 #include <fstream>
 #include <climits>      // INT_MAX
 #include <string>
-#include <cstddef>      // std::size_t     
+#include <cstddef>      // std::size_t
+#include <iomanip>      // std::setprecision
 #include "Person.hpp"
 #include "Student.hpp"
 #include "Instructor.hpp"
@@ -47,6 +48,7 @@ int main() {
     Menu mMenu;
     mMenu.addOption(option1);       // Index 0
     mMenu.addOption(option2);       // Index 1
+
     bool exit = false;
     do {
         std::cout << "===============================================\n"
@@ -171,20 +173,58 @@ void addNewBuildingInfo(University &mUniversity, const std::string &filename) {
 /**
  *  Allows the user to add a new Person to the PersonInfo.txt
  */
-// TODO: Need o restrict max characters?? or dynamically resize table width
 void addNewPersonInfo(University &mUniversity, const std::string &filename) {
+    std::string promptGPA = "Please enter Student's GPA { 0.0 - 4.0 }: ";
+    std::string promptRating = "Please enter Instructor's rating { 0.0 - 5.0 }: ";
     std::string name = "";
     int age = 0;
     float value = 0.0;
+    Option * tmpOption1 = new Option("Please select type of Person.\n"
+                                     "1. Student\n2. Instructor\n>", 1, 2);
+    Option * tmpOption2 = new Option("Please enter age { 18 - 100 }: ", 18, 100);
+    Option * tmpOption3 = new Option(promptGPA, 0, 4);
+    Option * tmpOption4 = new Option(promptRating, 0, 5);
+    // Option * tmpOption = new Option()
     std::ofstream output;
     bool success = false;
     do {
-        std::cout << "=== Adding new person ===";
-        name = validateStringInput("Please enter name: ", 23);
+        output.open(filename, std::ios_base::app);
+        if (output) {
+            std::cout << "=== Adding new person ===" << std::endl;
+            switch (tmpOption1->getSelection()) {
+                case 1:
+                    std::cout << "[D]: Adding a student object" << std::endl;   // REMOVE
+                    name = validateStringInput("Please enter name: ", 23);
+                    age = tmpOption2->getSelection();
+                    value = tmpOption3->getUnsignedFloat();
+                    mUniversity.addPeople(new Student(name, age, value));
+                    output << "\nStudent" << "," << name << "," << age << ",";
+                    output << std::fixed << std::setprecision(2);
+                    std::cout << value;
+                    output << value;
+                    break;
+                case 2:
+                    std::cout << "[D]: Adding an Instructor object" << std::endl;   // REMOVE
+                    name = validateStringInput("Please enter name: ", 23);
+                    tmpOption3 = new Option(promptRating, 0, 5);
+                    age = tmpOption2->getSelection();
+                    value = tmpOption4->getUnsignedFloat();
 
-        success = true;
+                    mUniversity.addPeople(new Instructor(name, age, value));
+                    output << "\nInstructor" << "," << name << "," << age << ",";
+                    output << std::setprecision(2) << std::fixed;
+                    output << value;
+                    break;
+            }
+            success = true;
+        }
     } while (!success);
-    // delete tmpOption;
+
+    output.close();
+    delete tmpOption1;
+    delete tmpOption2;
+    delete tmpOption3;
+    delete tmpOption4;
 }
 
 /**

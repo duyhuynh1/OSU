@@ -1,7 +1,7 @@
 /*********************************************************************
 ** Program name: OSU Information System
 ** Author: Tony Huynh
-** Date: 04/29/2018
+** Date: 04/75/2018
 ** Description: The University Class stores the information about
 ** Buildings and people that work for or study at OSU.
 *********************************************************************/
@@ -48,23 +48,23 @@ void University::getBuildingInfo() const {
         std::cout << "Buildings database empty..." << std::endl;
     } else {
         std::cout << "=== BuildingDB ===" << "\n"
-              << "+" << std::string(29, '-')
-              << "+" << std::string(49, '-')
+              << "+" << std::string(60, '-')
+              << "+" << std::string(60, '-')
               << "+" << std::string(14, '-') << "+"
-              << std::left  << std::setw(30) << "\n| Property Name"
-              << std::left  << std::setw(50) <<  " | Address"
+              << std::left  << std::setw(61) << "\n| Property Name"
+              << std::left  << std::setw(61) <<  " | Address"
               << std::right << std::setw(15) <<  " | Usuable Sqft |\n"
-              << "+" << std::string(29, '-')
-              << "+" << std::string(49, '-')
+              << "+" << std::string(60, '-')
+              << "+" << std::string(60, '-')
               << "+" << std::string(14, '-') << "+\n";
         for (int i = 0; i < buildings.size(); i++) {
             std::cout << "| "
-                      << std::left << std::setw(27) << buildings[i]->getName() << " | "
-                      << std::left << std::setw(48) << buildings[i]->getAddress() << "|"
+                      << std::left << std::setw(58) << buildings[i]->getName() << " | "
+                      << std::left << std::setw(59) << buildings[i]->getAddress() << "|"
                       << std::right << std::setw(13) << buildings[i]->getSize() << " |\n";
         }
-        std::cout << "+" << std::string(29, '-')
-                  << "+" << std::string(49, '-')
+        std::cout << "+" << std::string(60, '-')
+                  << "+" << std::string(60, '-')
                   << "+" << std::string(14, '-') << "+" << std::endl;
     }
     
@@ -101,15 +101,17 @@ void University::getPeopleInfo() const {
             } else {
                 std::cout << std::left << std::setw(12) << " Student";
             }
-            std::cout << "|" << std::left  << std::setw(23) << people[i]->getName() << " |"
+            std::cout << "| " << std::left  << std::setw(22) << people[i]->getName() << " |"
                       << std::right << std::setw(4) << people[i]->getAge() << " | ";
             // Run-time Type Indentification
             if (typeid(* people[i]) == typeid(Instructor)) {
                 // Dynamic cast Person object to derived Instructor Object
-                std::cout << std::right << std::setw(9) << "Rating: " << dynamic_cast<Instructor *>(people[i])->getRating() << " |\n";
+                std::cout << std::right << std::setw(9) << "Rating: ";
+                std::cout << std::fixed << std::setprecision(2) << dynamic_cast<Instructor *>(people[i])->getRating() << " |\n";
             } else {
                 // Dynamic cast Person object to derived Student Object
-                std::cout << std::right << std::setw(9) << "GPA: " << dynamic_cast<Student *>(people[i])->getGPA() << " |\n";
+                std::cout << std::right << std::setw(9) << "GPA: ";
+                std::cout << std::fixed << std::setprecision(2) << dynamic_cast<Student *>(people[i])->getGPA() << " |\n";
             }
         }
         std::cout << "+" << std::string(5, '-')
