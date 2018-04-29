@@ -1,2 +1,0 @@
-Student,Tony,25,4.00
-Student,Bob,35,3.51

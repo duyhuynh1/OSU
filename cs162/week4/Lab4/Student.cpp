@@ -35,6 +35,4 @@ void Student::do_work() {
 /**
  *  Return the Studen't GPA "Grade Point Average"
  */
-float Student::getGPA() const {
-    return GPA;
-}
+float Student::getGPA() const { return GPA; }

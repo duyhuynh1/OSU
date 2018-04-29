@@ -1,7 +1,7 @@
 /*********************************************************************
-** Program name: Dice War Game
+** Program name: OSU Information System
 ** Author: Tony Huynh
-** Date: 04/22/2018
+** Date: 04/29/2018
 ** Description: The Option class provides validation checks and will
 ** reprompt the user when a user inputs an invalid choice.
 *********************************************************************/
@@ -12,7 +12,6 @@
 #include <algorithm>
 #include <climits>		// INT_MAX
 #include <cstddef>      // std::size_t
-
 
 class Option {
 	private:

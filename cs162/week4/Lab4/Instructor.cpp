@@ -35,6 +35,4 @@ void Instructor::do_work() {
 /**
  *  Return the Instructor's rating
  */
-float Instructor::getRating() {
-    return rating;
-}
+float Instructor::getRating() { return rating; }

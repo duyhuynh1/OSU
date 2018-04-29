@@ -9,7 +9,7 @@
 #define PERSON_HPP
 
 #include <iostream>
-#include <cstdlib>       // srand, rand
+#include <cstdlib>      // srand, rand
 #include <ctime>        // time
 
 class Person {

@@ -21,14 +21,18 @@
 
 void loadBuildingInfo(University &, const std::string &);
 void loadPeopleInfo(University &, const std::string &);
-void addNewBuildingInfo(University &, const std::string &);
+// void addNewBuildingInfo(University &, const std::string &);
 void addNewPersonInfo(University &, const std::string &);
 std::string validateStringInput(std::string, int);
 
 
 int main() {
-    const std::string buildingInfoFilename = "./data/BuildingInfo.txt";
-    const std::string peopleInfoFilename = "./data/PeopleInfo.txt";
+    // It would probably be best to store data in a separate directory.
+    // But the requirements state that no extra directory should exist
+    // const std::string buildingInfoFilename = "./data/BuildingInfo.txt";
+    // const std::string peopleInfoFilename = "./data/PeopleInfo.txt";
+    const std::string buildingInfoFilename = "BuildingInfo.txt";
+    const std::string peopleInfoFilename = "PeopleInfo.txt";
 
     University mUniversity;
     loadBuildingInfo(mUniversity, buildingInfoFilename);
@@ -37,51 +41,45 @@ int main() {
     std::string mainMenuPrompt = "1. Show all building information\n"
                                  "2. Show all people information\n"
                                  "3. Choose a person to do work\n"
-                                 "4. Add new building\n"
-                                 "5. Add new person\n"
-                                 "6. Exit program\n> ";
+                                 "4. Add new person\n"
+                                 "5. Exit program\n> ";
     std::string doWorkPrompt = "Select a person to do work (No.): ";
 
-    Option * option1 = new Option(mainMenuPrompt, 1, 6);
+    Option * option1 = new Option(mainMenuPrompt, 1, 5);
     Option * option2 = new Option(doWorkPrompt, 1, mUniversity.getNumberOfPeople());
-
     Menu mMenu;
     mMenu.addOption(option1);       // Index 0
     mMenu.addOption(option2);       // Index 1
 
     bool exit = false;
     do {
+        Option * option3 = new Option(doWorkPrompt, 1, mUniversity.getNumberOfPeople());
         std::cout << "===============================================\n"
-                  << "OSU INFORMATION SYSTEM\n"
+                  <<  mUniversity.getName() << " Information System\n"
                   << "===============================================\n";
         int selection = mMenu.getValue(0);
         switch (selection) {
             case 1:
-                std::cout << "Querying all building information..." << std::endl;   // REMOVE
                 mUniversity.getBuildingInfo();
                 break;
             case 2:
-                std::cout << "Querying all people information..." << std::endl; // REMOVE
                 mUniversity.getPeopleInfo();
                 break;
             case 3:
-                std::cout << "[D]: Choose a person to work menu" << std::endl;  // REMOVE
                 mUniversity.getPeopleInfo();
-                mUniversity.selectPersonToDoWork(mMenu.getValue(1));
+                mMenu.addOption(option3);
+                mUniversity.selectPersonToDoWork(mMenu.getValue(2));
+                mMenu.removeOption(2);
                 break;
             case 4:
-                std::cout << "[D]: Add a new building" << std::endl;    // REMOVE
-                addNewBuildingInfo(mUniversity, buildingInfoFilename);
-                break;
-            case 5:
-                std::cout << "[D]: Add a new person" << std::endl;  // REMOVE
                 addNewPersonInfo(mUniversity, peopleInfoFilename);
                 break;
-            case 6:
+            case 5:
                 std::cout << ">>> Exit Program <<<" << std::endl;
                 exit = true;
                 break;
         }
+        delete option3;
     } while (!exit);
 
     delete option1;
@@ -143,32 +141,32 @@ void loadPeopleInfo(University &mUniversity, const std::string &filename) {
 }
 
 /**
+ *  This is not part of the Extra Credit so it will be REMOVED
  *  Allows the user to add a new Building to the BuildingInfo.txt
  *  Request user for the Building's name, 
  */
-// TODO: Update buildings.push_back();
-void addNewBuildingInfo(University &mUniversity, const std::string &filename) {
-    std::string name = "";
-    std::string address = "";
-    int size = 0;
-    Option * tmpOption = new Option("Please enter a size: ", 1, 250000);
-    std::ofstream output;
-    bool success = false;
-    do {
-        output.open(filename, std::ios_base::app);
-        if (output) {
-            std::cout << "=== Adding new building ===" << std::endl;
-            name = validateStringInput("Please enter name: ", 27); 
-            address = validateStringInput("Please enter address: ", 47);
-            size = tmpOption->getSelection();
-            // Update the University Object with new Building
-            mUniversity.addBuilding(new Building(name, address, size));
-            output << "\n" << name << "," << address << "," << size;
-            success = true;
-        }
-    } while (!success);
-    delete tmpOption;
-}
+// void addNewBuildingInfo(University &mUniversity, const std::string &filename) {
+//     std::string name = "";
+//     std::string address = "";
+//     int size = 0;
+//     Option * tmpOption = new Option("Please enter a size: ", 1, 250000);
+//     std::ofstream output;
+//     bool success = false;
+//     do {
+//         output.open(filename, std::ios_base::app);
+//         if (output) {
+//             std::cout << "=== Adding new building ===" << std::endl;
+//             name = validateStringInput("Please enter name: ", 27); 
+//             address = validateStringInput("Please enter address: ", 47);
+//             size = tmpOption->getSelection();
+//             // Update the University Object with new Building
+//             mUniversity.addBuilding(new Building(name, address, size));
+//             output << "\n" << name << "," << address << "," << size;
+//             success = true;
+//         }
+//     } while (!success);
+//     delete tmpOption;
+// }
 
 /**
  *  Allows the user to add a new Person to the PersonInfo.txt
@@ -180,11 +178,10 @@ void addNewPersonInfo(University &mUniversity, const std::string &filename) {
     int age = 0;
     float value = 0.0;
     Option * tmpOption1 = new Option("Please select type of Person.\n"
-                                     "1. Student\n2. Instructor\n>", 1, 2);
+                                     "1. Student\n2. Instructor\n> ", 1, 2);
     Option * tmpOption2 = new Option("Please enter age { 18 - 100 }: ", 18, 100);
     Option * tmpOption3 = new Option(promptGPA, 0, 4);
     Option * tmpOption4 = new Option(promptRating, 0, 5);
-    // Option * tmpOption = new Option()
     std::ofstream output;
     bool success = false;
     do {
@@ -193,27 +190,18 @@ void addNewPersonInfo(University &mUniversity, const std::string &filename) {
             std::cout << "=== Adding new person ===" << std::endl;
             switch (tmpOption1->getSelection()) {
                 case 1:
-                    std::cout << "[D]: Adding a student object" << std::endl;   // REMOVE
                     name = validateStringInput("Please enter name: ", 23);
                     age = tmpOption2->getSelection();
                     value = tmpOption3->getUnsignedFloat();
                     mUniversity.addPeople(new Student(name, age, value));
-                    output << "\nStudent" << "," << name << "," << age << ",";
-                    output << std::fixed << std::setprecision(2);
-                    std::cout << value;
-                    output << value;
+                    output << "\nStudent" << "," << name << "," << age << "," << value;
                     break;
                 case 2:
-                    std::cout << "[D]: Adding an Instructor object" << std::endl;   // REMOVE
                     name = validateStringInput("Please enter name: ", 23);
-                    tmpOption3 = new Option(promptRating, 0, 5);
                     age = tmpOption2->getSelection();
                     value = tmpOption4->getUnsignedFloat();
-
                     mUniversity.addPeople(new Instructor(name, age, value));
-                    output << "\nInstructor" << "," << name << "," << age << ",";
-                    output << std::setprecision(2) << std::fixed;
-                    output << value;
+                    output << "\nInstructor" << "," << name << "," << age << "," << value;
                     break;
             }
             success = true;

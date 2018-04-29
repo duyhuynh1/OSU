@@ -16,6 +16,13 @@ void Menu::addOption(Option * ptrOption) {
 }
 
 /**
+ *	Remove option starting from the back of the selection vector.
+ */
+void Menu::removeOption(int index) {
+	selection.erase(selection.begin() + index);
+}
+
+/**
  *  GetValue function returns the value selected by the user.
  *  @param index Is the index of the Option object in the selection vector.
  */

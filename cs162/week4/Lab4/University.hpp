@@ -13,6 +13,7 @@
 #include <vector>
 #include <iomanip>
 #include <string>
+#include <typeinfo>
 #include "Building.hpp"
 #include "Person.hpp"
 #include "Instructor.hpp"
@@ -24,11 +25,11 @@ class University {
         std::vector<Building *> buildings;
         std::vector<Person *> people;
     public:
-        University();
         ~University();
         void selectPersonToDoWork(int);
         void addBuilding(Building *);
         void addPeople(Person *);
+        std::string getName() const;
         void getBuildingInfo() const;
         void getPeopleInfo() const;
         int getNumberOfBuildings() const;

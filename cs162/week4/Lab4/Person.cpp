@@ -32,12 +32,9 @@ std::string Person::getName() const { return name; }
 int Person::getAge() const { return age; }
 
 /**
- *  
-For “do_work()” in Person class, if the Person is an Instructor, 
-then the function should output the following message: 
-“PERSON_NAME graded papers for X hours.” Where PERSON_NAME is the 
-person’s name, and X is the randomly generated number.
-*/
+ *	Depending on the type of person the Person does different tasks for
+ *	X amount of hours.
+ */
 void Person::do_work() {
     std::cout << name << " did " << (rand() % 12) + 1 << " hours of work." << std::endl;
 }

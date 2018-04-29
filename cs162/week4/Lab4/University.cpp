@@ -7,15 +7,7 @@
 *********************************************************************/
 #include "University.hpp"
 
-/**
- *  University class default constructor
- */
-University::University() {  // REMOVE
-    std::cout << "[D]: University constructor called" << std::endl; // REMOVE
-}
-
 University::~University() {
-    std::cout << "[D]: University destructor called" << std::endl;  // REMOVE
     for (int i = 0; i < buildings.size(); i++) {
         delete buildings[i];
     }
@@ -38,6 +30,11 @@ void University::addBuilding(Building * mBuilding) { buildings.push_back(mBuildi
  *  Appends a Person object to the people vector 
  */
 void University::addPeople(Person * mPerson) { people.push_back(mPerson); }
+
+/**
+ *  Returns the Unversity's name
+ */
+std::string University::getName() const { return name; }
 
 /**
  *  Function that prints the information for all buildings in its
