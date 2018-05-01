@@ -22,7 +22,6 @@ Animal::Animal(int cost, int numberOfBabies) {
  *	@param numberOfBabies The amount of babies an animal can have
  */
 Animal::Animal(int age, int cost, int numberOfBabies) {
-	std::cout << "Animal::Animal default constructor called" << std::endl;	// REMOVE
 	this->age = age;
 	this->cost = cost;
 	this->numberOfBabies = numberOfBabies;
@@ -32,7 +31,6 @@ Animal::Animal(int age, int cost, int numberOfBabies) {
  *	Animal class copy constructor
  */
 Animal & Animal::operator=(const Animal * rhs) {
-	std::cout << "Animal::Animal copy constructor called" << std::endl;	// REMOVE
 	baseFoodCost = rhs->getBaseFoodCost();
 	age = rhs->getAge();
 	cost = rhs->getCost();
@@ -72,12 +70,11 @@ int Animal::getAge() const { return age; }
  * 	Otherwise FALSE if Animal's age is below 3.
  */
 bool Animal::isAdult() {
-	// if (this->age >= 3) return true : return false;	// REMOVE
 	if (this->age >= 3) {
-		std::cout << "[D]: Is an adult" << std::endl;	// REMOVE
+
 		return true;
 	} else {
-		std::cout << "[D]: Is a child" << std::endl;	// REMOVE
+
 		return false;
 	}
 }
@@ -106,3 +103,21 @@ int Animal::getPayoff() const { return payoff; }
  *	Set the Animal's payoff value
  */
 void Animal::setPayoff() {}
+
+/**
+ *	Indicate if the Animal can give birth
+ */
+bool Animal::canGiveBirth() {
+	if (this->numberOfBabies > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ *	Invoked once the Animal has given birth
+ */
+void Animal::hadChild() {
+	this->numberOfBabies -= 1;
+}

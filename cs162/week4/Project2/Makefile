@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
-OBJECTS = Zoo.o Tiger.o Animal.o main.o
+OBJECTS = Menu.o Option.o Zoo.o Turtle.o Penguin.o Tiger.o Animal.o main.o
 
 TARGET = ZooTycoon
 

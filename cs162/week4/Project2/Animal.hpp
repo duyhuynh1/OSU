@@ -30,6 +30,8 @@ class Animal {
 		void increaseAge();
 		int getCost() const;
 		int getNumberOfBabies() const;
+		bool canGiveBirth();
+		void hadChild();
 		int getPayoff() const;
 		virtual void setPayoff();
 };

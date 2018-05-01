@@ -11,16 +11,25 @@
 /**
  *	Turtle class default contructor
  */
-Turtle::Turtle() : Animal(100, 10) {}
+Turtle::Turtle() : Animal(100, 10) {
+	setBaseFoodCost();
+	setPayoff();
+}
 
 /**
  *	- A Turtle cost $100
  *	- A Turtle can only have 10 babies
  */
 Turtle::Turtle(int age) : Animal(age, 100, 10) {
-	std::cout << "Turtle::Turtle default constructor called" << std::endl;	// REMOVE
 	setBaseFoodCost();
 	setPayoff();
+}
+
+/**
+ *	Copy constructor overloaded
+ */
+Turtle & Turtle::operator=(const Turtle * rhs) {
+	Animal::operator=(rhs);
 }
 
 /**
@@ -41,3 +50,16 @@ void Turtle::setBaseFoodCost() { baseFoodCost *= 0.5; }
  *	(e.g., Payoff = cost * 5% = 100 * 0.05 = 5)
  */
 void Turtle::setPayoff() { payoff = cost * 0.05; }
+
+/**
+ *	Display the Turtle's properties
+ */
+void Turtle::showInfo() {
+	std::cout << " {"
+			  << " age: " << getAge() << ","
+			  << " cost: " << getCost() << ","
+			  << " numberOfBabies: " << getNumberOfBabies() << ","
+			  << " payoff: " << getPayoff() << ","
+			  << " baseFoodCost: " << getBaseFoodCost()
+			  << " };\n";
+}

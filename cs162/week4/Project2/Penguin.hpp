@@ -2,7 +2,7 @@
 ** Program name: Zoo Tycoon
 ** Author: Tony Huynh
 ** Date: 04/29/2018
-** Description: The Tiger class inherites properties from the Animal
+** Description: The Penguin class inherites properties from the Animal
 ** class. It has properties that indicate the age, cost, number of
 ** babies, basefoodcost, and payoff.
 *********************************************************************/
@@ -14,8 +14,11 @@ class Penguin : public Animal {
 	public:
 		Penguin();
 		Penguin(int);
+		Penguin & operator=(const Penguin *);
 		std::string getClassName() const;
 		void setBaseFoodCost();
 		void setPayoff();
+		// bool canGiveBirth();
+		void showInfo();
 };
 #endif	// PENGUIN_HPP

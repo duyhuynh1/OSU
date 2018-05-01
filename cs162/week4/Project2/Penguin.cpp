@@ -11,16 +11,25 @@
 /**
  *	Penguin class default constructor
  */
-Penguin::Penguin() : Animal(1000, 5) {}
+Penguin::Penguin() : Animal(1000, 5) {
+	setBaseFoodCost();
+	setPayoff();
+}
 
 /**
  *	- A penguin cost $1,000
  *	- A penguin can only have 5 baby
  */
 Penguin::Penguin(int age) : Animal(age, 1000, 5) {
-	std::cout << "Penguin::Penguin default constructor called" << std::endl;	// REMOVE
 	setBaseFoodCost();
 	setPayoff();
+}
+
+/**
+ *	Copy constructor overloaded
+ */
+Penguin & Penguin::operator=(const Penguin * rhs) {
+	Animal::operator=(rhs);
 }
 
 /**
@@ -41,3 +50,16 @@ void Penguin::setBaseFoodCost() {}
  *	(e.g., Payoff = cost * 10% = 1000 * 0.1 = 1000)
  */
 void Penguin::setPayoff() { payoff = cost * 0.1; }
+
+/**
+ *	Display the Penguin's properties
+ */
+void Penguin::showInfo() {
+	std::cout << " {"
+			  << " age: " << getAge() << ","
+			  << " cost: " << getCost() << ","
+			  << " numberOfBabies: " << getNumberOfBabies() << ","
+			  << " payoff: " << getPayoff() << ","
+			  << " baseFoodCost: " << getBaseFoodCost()
+			  << " };\n";
+}

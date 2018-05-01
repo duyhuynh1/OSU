@@ -14,10 +14,10 @@ class Tiger : public Animal {
 	public:
 		Tiger();
 		Tiger & operator=(const Tiger *);
-		virtual ~Tiger();
 		Tiger(int);
 		std::string getClassName() const;
 		void setBaseFoodCost();
 		void setPayoff();
+		void showInfo();
 };
 #endif	// TIGER_HPP

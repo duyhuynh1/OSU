@@ -21,23 +21,16 @@ Tiger::Tiger() : Animal(10000, 1) {
  *	- A tiger can only have 1 baby
  */
 Tiger::Tiger(int age) : Animal(age, 10000, 1) {
-	std::cout << "Tiger::Tiger default constructor called" << std::endl;	// REMOVE
 	setBaseFoodCost();
 	setPayoff();
 }
 
 /**
- *
+ *	Copy constructor overloaded
  */
 Tiger & Tiger::operator=(const Tiger * rhs) {
-	std::cout << "Tiger::Tiger copy constructor called" << std::endl;
 	Animal::operator=(rhs);
 }
-
-/**
- *	
- */
-Tiger::~Tiger() {}
 
 /**
  *	Virtual function used to identify the class
@@ -57,3 +50,16 @@ void Tiger::setBaseFoodCost() { baseFoodCost *= 5; }
  *	(e.g., Payoff = cost * 20% = 10000 * 0.2 = 2000)
  */
 void Tiger::setPayoff() { payoff = cost * 0.2; }
+
+/**
+ *	Display the Tiger's properties
+ */
+void Tiger::showInfo() {
+	std::cout << " {"
+			  << " age: " << getAge() << ","
+			  << " cost: " << getCost() << ","
+			  << " numberOfBabies: " << getNumberOfBabies() << ","
+			  << " payoff: " << getPayoff() << ","
+			  << " baseFoodCost: " << getBaseFoodCost()
+			  << " };\n";
+}
