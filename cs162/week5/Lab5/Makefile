@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
-OBJECTS = function1.o main.o
+OBJECTS = Menu.o Option.o RecursiveFunction.o main.o
 
 TARGET = RecursiveFunctions
 
