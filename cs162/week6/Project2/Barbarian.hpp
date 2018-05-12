@@ -12,9 +12,7 @@
 #include "Character.hpp"
 
 class Barbarian : public Character {
-	private:
-		// TODO: Add Die class
 	public:
-		void attack();
+        Barbarian();
 };
 #endif	// BARBARIAN_HPP

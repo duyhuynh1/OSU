@@ -16,10 +16,10 @@ Dice::Dice(int side) {
     std::srand(std::time(0));
 }
 
-/**
- *	Dice default destructor
- */
-Dice::~Dice() { }
+// *
+//  *	Dice default destructor
+ 
+// Dice::~Dice() { } // REMOVE
 
 /**
  *	Dice roll function returns a random number that is between 1 and

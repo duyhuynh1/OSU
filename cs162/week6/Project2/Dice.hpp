@@ -9,6 +9,7 @@
 #ifndef DICE_HPP
 #define DICE_HPP
 
+#include <iostream> // REMOVE
 #include <cstdlib>     /* srand, rand */
 #include <ctime>       /* time */
 
@@ -17,8 +18,8 @@ class Dice {
         int numberOfSides;
     public:
         Dice(int side);
-        virtual ~Dice();
-        virtual int roll();
+        // ~Dice(); // REMOVE
+        int roll();
         int getNumberOfSides() const;
 };
 #endif  // DICE_HPP

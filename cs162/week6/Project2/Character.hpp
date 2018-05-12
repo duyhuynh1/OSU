@@ -9,19 +9,34 @@
 #ifndef	CHARACTER_HPP
 #define CHARACTER_HPP
 
-enum SpecialAbilities { NONE, CHARM, MOB, GLARE, HOGWARTS };
+#include <iostream>
+#include <vector>
+#include "Dice.hpp"
+
+enum SpecialAbilities { NONE, CHARM, MOB, GLARE, HOGWARTS };	// Even needed??
 
 class Character {
-	private:
-		int attackPoints;
-		int defensePoints;
+	protected:
+		int turns = 0;
+		int attackPoints = 0;
+		int defensePoints = 0;
 		int armorPoints;
 		int strengthPoints;
+		std::string characterType;
 		// std::string characteristics = "";
-		SpecialAbilities abilities;
+		SpecialAbilities characterAbility;
 		// virtual void defend();
+		std::vector<Dice *> attackPowerDice;
+		std::vector<Dice *> defensePowerDice;
 	public:
-		Character(int, int, int, int);
-		virtual void attack();
+		Character(std::string, SpecialAbilities, int, int);	// Do we even need SpecialAbilities
+		void initDice(int, int, int, int);	// Should this be protected?
+		virtual ~Character();
+		virtual void attack(Character *);
+		virtual void defend(int &);	// Should be private???
+		bool isAlive();
+		std::string getCharacterType() const;
+		int getArmorPoints() const;
+		int getStrengthPoints() const;
 };
 #endif	// CHARACTER_HPP
