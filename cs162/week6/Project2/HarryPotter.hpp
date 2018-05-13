@@ -13,10 +13,9 @@
 
 class HarryPotter : public Character {
     private:
-        bool wasResurrected = false;
+    	bool abilityActivated = false;
     public:
         HarryPotter();
         void defend(int &);
-        bool getResurrected() const;
 };
 #endif  // HARRY_POTTER_HPP

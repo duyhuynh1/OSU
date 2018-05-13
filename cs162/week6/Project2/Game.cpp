@@ -7,17 +7,7 @@
 *********************************************************************/
 #include "Game.hpp"
 
-Game::~Game() { // REMOVE??
-    // for (int i = 0; i < 2; i++) {
-    //     if (player[i] != nullptr) {
-    //         delete player[i];
-    //     }
-    // }
-    // delete [] player;
-}
-
 void Game::init(Character * p1, Character * p2) {
-    std::cout << "[D]: Game::init() called\n";
     this->p1 = p1;
     this->p2 = p2;
     attacker = p1;
@@ -26,13 +16,16 @@ void Game::init(Character * p1, Character * p2) {
 
 void Game::start() {
     while (attacker->isAlive() && defender->isAlive()) {
-        getInfo();
+        rounds++;
+        std::cout << "\n[ROUND#]: " << rounds << std::endl;
         attacker->attack(defender);
+        getInfo();
         if (!(defender->isAlive())) {
-            std::cout << "[D]: Defender has died\n";
+            std::cout << "\n[FINAL RESULTS]" << std::endl;
+            // TODO: Display the player who won...
+            getInfo();
             return;
         }
-        rounds++;
         swapRole(attacker, defender);
     }
 }
@@ -41,42 +34,51 @@ void Game::start() {
  *  Swaps the attacker and defender roles of the two Characters
  */
 void Game::swapRole(Character *p1, Character *p2) {
-    // std::cout << "[D]: Game::swapRole() called\n"; // REMOVE
-    // std::cout << "p1 addr: " << p1 << std::endl;    // REMOVE
-    // std::cout << "p2 addr: " << p2 << std::endl;    // REMOVE
     Character *temp = p1;
     attacker = p2;
     defender = temp;
-    // std::cout << "p1 addr: " << p1 << std::endl;    // REMOVE
-    // std::cout << "p2 addr: " << p2 << std::endl;    // REMOVE
 }
 
 /**
  *  Display the current attacking Character
  */
 void Game::getInfo() {
-    // std::cout << "[D]: Game::getInfo() called\n";  //REMOVE
+    std::cout << std::string(50, '-') << std::endl;
     if (p1 == attacker) {
-        std::cout << std::setw(2) << std::left << "*["
-                  << p1->getCharacterType() << "]* { "
-                  << "armor: " << p1->getArmorPoints() << " | "
-                  << "strength: " << p1->getStrengthPoints() << " }";
-        std::cout << " <VS> "
-                  << std::setw(2) << std::left << " ["
-                  << p2->getCharacterType() << "]  { "
-                  << "armor: " << p2->getArmorPoints() << " | "
-                  << "strength: " << p2->getStrengthPoints() << " }"
-                  << std::endl;
+        std::cout << std::setw(17) << std::right << "[" 
+                  << p1->getCharacterType() << "]<="
+                  << std::string(16, ' ')
+                  << std::setw(17) << std::left << "  ["
+                  << p2->getCharacterType() << "]" << std::endl;
+        std::cout << std::string(50, '-') << std::endl;
+        std::cout << "[Armor]: " << p1->getArmorPoints()
+                  << std::string(14, ' ') << "|" << std::string(14, ' ')
+                  << "[Armor]: " << p2->getArmorPoints() << "\n"
+                  << "[Strength]: " << p1->getStrengthPoints()
+                  << std::string(10, ' ') << "|" << std::string(10, ' ')
+                  << "[Strength]: " << p2->getStrengthPoints() << "\n"
+                  << "[Atk]: " << p1->getAttackPoints()
+                  << std::string(14, ' ') << "|" << std::string(14, ' ')
+                  << "[Def]: " << p2->getDefensePoints() << "\n"
+                  << std::string(50, '-') << "\n"
+                  << "[Total Damage]: " << p2->getTotalDamage() << std::endl;
     } else {
-        std::cout << std::setw(2) << std::left << " ["
-                  << p1->getCharacterType() << "]  { "
-                  << "armor: " << p1->getArmorPoints() << " | "
-                  << "strength: " << p1->getStrengthPoints() << " }";
-        std::cout << " <VS> "
-                  << std::setw(2) << std::left << "*["
-                  << p2->getCharacterType() << "]* { "
-                  << "armor: " << p2->getArmorPoints() << " | "
-                  << "strength: " << p2->getStrengthPoints() << " }"
-                  << std::endl;
+        std::cout << "[" << p1->getCharacterType() << "]  "
+                  << std::string(12, ' ') << "|" << std::string(11, ' ')
+                  << std::setw(3) << std::left << "=>["
+                  << p2->getCharacterType() << "]\n"
+                  << std::string(50, '-') << "\n"
+                  << "[Armor]: " << p1->getArmorPoints()
+                  << std::string(14, ' ') << "|" << std::string(14, ' ')
+                  << "[Armor]: " << p2->getArmorPoints() << "\n"
+                  << "[Strength]: " << p1->getStrengthPoints()
+                  << std::string(10, ' ') << "|" << std::string(10, ' ')
+                  << "[Strength]: " << p2->getStrengthPoints() << "\n"
+                  << "[Def]: " << p1->getDefensePoints()
+                  << std::string(14, ' ') << "|" << std::string(14, ' ')
+                  << "[Atk]: " << p2->getAttackPoints() << "\n"
+                  << std::string(50, '-') << "\n"
+                  << "[Total Damage]: " << p1->getTotalDamage() << std::endl;
     }
+    std::cout << std::string(50, '-') << std::endl;
 }

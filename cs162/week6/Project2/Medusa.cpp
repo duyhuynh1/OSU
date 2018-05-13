@@ -8,22 +8,22 @@
 *********************************************************************/
 #include "Medusa.hpp"
 
-Medusa::Medusa() : Character("Medusa", GLARE, 3, 8) {
+Medusa::Medusa() : Character("Medusa", 3, 8) {
     initDice(2, 6, 1, 6);
 }
 
 void Medusa::attack(Character *otherPlayer) {
-    // std::cout << "[D]: Medusa::attack() called\n";   // REMOVE
-    int attackPoints = 0;   // Reset attackPoints
-    // attackPoints = 12;  // TESTING REMOVE
+    abilityActivated = false;   // Reset abilityActivated
+    attackPoints = 0;           // Reset attackPoints
     for (int i = 0; i < attackPowerDice.size(); i++) {
         attackPoints += attackPowerDice[i]->roll();
     }
-    std::cout << "[Attack Roll]: " << attackPoints << std::endl;
     if (attackPoints == 12) {
-        attackPoints = -1;  // Should we use 0 instead?
+        abilityActivated = true;
+        attackPoints = -1;
     }
-    std::cout << "[Attack Roll]: - " << attackPoints << std::endl;
     otherPlayer->defend(attackPoints);
-    turns++;
+    if (attackPoints == -1) {
+        attackPoints = 12;  // Save the value 12 dice roll
+    }
 }

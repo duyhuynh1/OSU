@@ -1,11 +1,13 @@
 /*********************************************************************
 ** Program name: Fantasy Combat Game
 ** Author: Tony Huynh
-** Date: 5/13/2018
+** Date: 5/13/1618
 ** Description: Driver program that allows user to test different
 ** types of characters in combat.
 *********************************************************************/
 #include <iostream>
+#include "Menu.hpp"
+#include "Option.hpp"
 #include "Game.hpp"
 #include "Character.hpp"
 #include "Vampire.hpp"
@@ -14,46 +16,120 @@
 #include "Medusa.hpp"
 #include "HarryPotter.hpp"
 
-// There are 15 possible fighting scenarios
-// Game mGame;
-// mGame.init(p1, p2);
-// mGame.start();
-// mGame.end();
-
 int main() {
-    // Character *p1 = new Barbarian();
-    // Character *p2 = new Barbarian();
-
-    // Character *p3 = new Vampire();
-    // Character *p4 = new Vampire();
-
-    Character *p5 = new Medusa();
-    // Character *p6 = new Medusa();
-
-    // Character *p7 = new BlueMen();
-    // Character *p8 = new BlueMen();
-
-    Character *p9 = new HarryPotter();
-    // Character *p10 = new HarryPotter();
-
-    Game mGame;
-    // mGame.init(p1, p2);
-    // mGame.start();
-    // mGame.getInfo();
     std::cout << std::string(50, '-') << std::endl;
-    mGame.init(p5, p9);
-    mGame.start();
+    std::cout << std::setw(17) << std::right << "[Vampire]<<"
+              << std::string(16, ' ')
+              << std::setw(17) << std::left << ">>[Vampire]" << std::endl;
+    std::cout << std::setw(17) << std::right << "[Barbarian]<<"
+              << std::string(16, ' ') 
+              << std::setw(17) << std::left << ">>[Barbarian]" << std::endl;
+    std::cout << std::setw(17) << std::right << "[Medusa]<<"
+              << std::string(16, ' ')
+              << std::setw(17) << std::left << ">>[Medusa]" << std::endl;
+    std::cout << std::setw(17) << std::right << "[Blue Men]<<"
+              << std::string(16, ' ')
+              << std::setw(17) << std::left << ">>[Blue Men]" << std::endl;
+    std::cout << std::setw(17) << std::right << "[Harry Potter]<<"
+              << std::string(16, ' ')
+              << std::setw(17) << std::left << ">>[Harry Potter]" << std::endl;
 
-    // delete p1;
-    // delete p2;
-    // delete p3;
-    // delete p4;
-    // delete p3;
-    delete p5;
-    // delete p6;
-    // delete p7;
-    // delete p8;
-    delete p9;
-    // delete p10;
+    std::cout << std::setw(12) << std::left << "[Armor]: 10"
+              << std::string(27, ' ') << std::right << "10 :[Armor]" << std::endl;
+    std::cout << std::setw(12) << std::left << "[Armor]: 9"
+              << std::string(27, ' ') << std::right << "   :[Armor]" << std::endl;
+    std::cout << std::setw(12) << std::left << "[Strength]: 10"
+              << std::string(22, ' ') << std::right << "10 :[Strength]" << std::endl;          
+    // std::string mainMenuPrompt = "1) 1 vs 1 Battle\n2) Exit Game\n=> ";
+    // std::string playerSelectionPrompt = "1) Vampire\n2) Barbarian\n3) Blue Men\n"
+    //                                     "4) Medusa\n5) Harry Potter\n=> ";
+    // std::string replayMenuPrompt = "1) Play Again\n2) Exit Game\n=> ";
+
+    // Character *p1 = nullptr;
+    // Character *p2 = nullptr;
+    // Game mGame;
+
+    // Option *option1 = new Option(mainMenuPrompt, 1, 2);
+    // Option *option2 = new Option(playerSelectionPrompt, 1, 5);
+    // Option *option3 = new Option(playerSelectionPrompt, 1, 5);
+    // Option *option4 = new Option(replayMenuPrompt, 1, 2);
+    // Menu mMenu;
+    // mMenu.addOption(option1);   // Index 0
+    // mMenu.addOption(option2);   // Index 1
+    // mMenu.addOption(option3);   // Index 2
+    // mMenu.addOption(option4);   // Index 3
+
+    // int playerOneSeletion = 0;
+    // int playerTwoSelection = 0;
+
+    // bool done = false;
+    // do {
+    //     std::cout << std::string(50, '=') << std::endl;
+    //     std::cout << "Fantasy Combat Game\n";
+    //     std::cout << std::string(50, '=') << std::endl;
+    //     switch (mMenu.getUnsignedInteger(0)) {
+    //         case 1:
+    //             std::cout << std::string(50, '-') << std::endl;
+    //             std::cout << "Player 1 Character Selection\n";
+    //             std::cout << std::string(50, '-') << std::endl;
+    //             playerOneSeletion = mMenu.getUnsignedInteger(1);
+    //             switch (playerOneSeletion) {
+    //                 case 1:
+    //                     p1 = new Vampire();
+    //                     break;
+    //                 case 2:
+    //                     p1 = new Barbarian();
+    //                     break;
+    //                 case 3:
+    //                     p1 = new BlueMen();
+    //                     break;
+    //                 case 4:
+    //                     p1 = new Medusa();
+    //                     break;
+    //                 case 5:
+    //                     p1 = new HarryPotter();
+    //                     break;
+    //             }
+    //             std::cout << std::string(50, '-') << std::endl;
+    //             std::cout << "Player 2 Character Selection\n";
+    //             std::cout << std::string(50, '-') << std::endl;
+    //             playerTwoSelection = mMenu.getUnsignedInteger(2);
+    //             switch (playerTwoSelection) {
+    //                 case 1:
+    //                     p2 = new Vampire();
+    //                     break;
+    //                 case 2:
+    //                     p2 = new Barbarian();
+    //                     break;
+    //                 case 3:
+    //                     p2 = new BlueMen();
+    //                     break;
+    //                 case 4:
+    //                     p2 = new Medusa();
+    //                     break;
+    //                 case 5:
+    //                     p2 = new HarryPotter();
+    //                     break;
+    //             }
+    //             mGame.init(p1, p2);
+    //             mGame.start();
+    //             if (mMenu.getUnsignedInteger(3) == 2) {
+    //                 done = true;
+    //                 std::cout << ">>> EXIT GAME <<<" << std::endl;
+    //             }
+    //             delete p1;
+    //             delete p2;
+    //             break;
+    //         case 2:
+    //             done = true;
+    //             std::cout << ">>> EXIT GAME <<<" << std::endl;
+    //             break;
+    //     }
+    // } while(!done);
+
+    // delete option1;
+    // delete option2;
+    // delete option3;
+    // delete option4;
 	return 0;
 }

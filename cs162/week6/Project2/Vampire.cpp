@@ -15,7 +15,7 @@
  *  armor    = 1
  *  strength = 12
  */
-Vampire::Vampire() : Character("Vampire", CHARM, 1, 18) {
+Vampire::Vampire() : Character("Vampire", 1, 18) {
     initDice(1, 12, 1, 6);
 }
 
@@ -26,30 +26,29 @@ Vampire::Vampire() : Character("Vampire", CHARM, 1, 18) {
  *  not actually attack them).
  *  Note: If the Vampire’s “charm” ability activates when 
  *  Medusa uses “glare”, the Vampire’s charm trumps Medusa’s glare.
+ *  @param damage An integer depicting the raw amount of damage inflicted
  */
 void Vampire::defend(int &damage) {
-    // std::cout << "[D]: Vampire::defend() called\n"; // REMOVE
-    defensePoints = 0;
-    // 50% chance of mitigating damage, rolls either 0 or 1
-    int charmActivate = rand() % 2;     // 0 = false, 1 = true
+    abilityActivated = false;   // reset abilityActivated status
+    defensePoints = 0;          // reset defensePoints
+    // 50% chance of mitigating damage, rolls either 0 = false OR 1 = true
+    if (rand() % 2) {
+        abilityActivated = true;
+    }
     for (int i = 0; i < defensePowerDice.size(); i++) {
         defensePoints += defensePowerDice[i]->roll();
     }
-    std::cout << "[Defend Roll]: + " << defensePoints << std::endl;
-    std::cout << "charmActivate: " << charmActivate << std::endl;
-    std::cout << "damage: " << damage << std::endl;
-    // TODO: Need to redo logic
-    if (damage == -1 && charmActivate == 0) {
-        std::cout << "[D]: (1) GLARE true CHARM false\n";   // REMOVE
-        strengthPoints = 0;
-    } else if (damage == -1 && charmActivate == 1) {
-        std::cout << "[D]: (2) GLARE true CHARM true\n";    // REMOVE
-        return;
-    } else if (charmActivate || damage <= (defensePoints + armorPoints)) {
-        std::cout << "[D]: (3) GLARE false CHARM true OR damage less than defense\n";   // REMOVE
-        return;
+    if (damage == -1) { // Handles Medusa's Glare attack
+        if (abilityActivated) {
+            totalDamage = 0;
+        } else {
+            totalDamage = strengthPoints;
+            strengthPoints = 0;
+        }
+    } else if (abilityActivated || damage <= (defensePoints + armorPoints)) {
+        totalDamage = 0;
     } else {
-        std::cout << "[D]: (4) GLARE false CHARM false\n";  // REMOVEs
-        strengthPoints -= damage - defensePoints - armorPoints;
+        totalDamage = damage - defensePoints - armorPoints;
+        strengthPoints -= totalDamage;
     }
 }

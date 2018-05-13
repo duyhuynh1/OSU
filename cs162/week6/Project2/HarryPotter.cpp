@@ -1,4 +1,4 @@
-/*********************************************************************
+/********************************************************************
 ** Program name: Fantasy Combat Game
 ** Author: Tony Huynh
 ** Date: 5/13/2018
@@ -15,7 +15,7 @@
  *  armor    = 0
  *  strength = 10/20 * Hogwarts
  */
-HarryPotter::HarryPotter() : Character ("HarryPotter", HOGWARTS, 0, 10) {
+HarryPotter::HarryPotter() : Character ("HarryPotter", 0, 10) {
     initDice(2, 6, 2, 6);
 }
 
@@ -29,32 +29,35 @@ HarryPotter::HarryPotter() : Character ("HarryPotter", HOGWARTS, 0, 10) {
  *  then Harry Potter comes back to life after using “hogwarts”.
  */
 void HarryPotter::defend(int &damage) {
-    defensePoints = 0;  // Reset the defense value
+    defensePoints = 0;  // Reset defensePoints
+    totalDamage = 0;    // Reset totalDamage
+    // Handle's Medusa's GLARE
     if (damage == -1) {
-        if (wasResurrected == false) {
-            std::cout << "[D]: GLARE true, HOGWARTS not used, harry is revived\n";
-            wasResurrected = true;
+        if (abilityActivated == false) {
+            totalDamage = strengthPoints;
+            abilityActivated = true;
             strengthPoints = 20;
-            return;
         } else {
-            std::cout << "[D]: GLARE true, HOGWARTS used, harry dies...\n";
+            totalDamage = strengthPoints;
             strengthPoints = 0;
-            return;
         }
     }
-    
+    // Defense dice rolls
     for (int i = 0; i < defensePowerDice.size(); i++) {
         defensePoints += defensePowerDice[i]->roll();
     }
-    std::cout << "[Defend Roll]: " << defensePoints << std::endl;
+    // Damage calculations
     if (damage <= (defensePoints + armorPoints)) {
-        std::cout << "[D]: damage mitigated\n";
-        return;
+        totalDamage = 0;
     } else {
-        strengthPoints -= damage - defensePoints - armorPoints;
+        totalDamage = damage - defensePoints - armorPoints;
+        strengthPoints -= totalDamage;
+    }
+    if (strengthPoints <= 0) {
+        if (abilityActivated == false) {
+            totalDamage = damage - defensePoints - armorPoints;
+            abilityActivated = true;
+            strengthPoints = 20;
+        }
     }
 }
-
-/**
- *  Returns TRUE if the Hogwarts affect 
- */
