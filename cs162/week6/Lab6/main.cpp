@@ -11,6 +11,7 @@
 #include "DoublyLinkedList.hpp"
 
 int main() {
+	const std::string dataFilename = "data.txt";
 	DoublyLinkedList list;
 
 	std::string mainMenuPrompt = "0. Exit\n"
@@ -19,10 +20,13 @@ int main() {
 								 "3. Delete the first node in the list.\n"
 								 "4. Delete the last node in the list.\n"
 								 "5. Traverse the list reversely.\n"
-								 "6. Travers the list.\n"
+								 "6. Traverse the list.\n"
+								 "7. Print the list head.\n"
+								 "8. Print the list tail.\n"
+								 "9. Import List\n"
 								 "=> ";
 	std::string getIntegerPrompt = "Please enter an integer: ";
-	Option *mainOptions = new Option(mainMenuPrompt, 0, 6);
+	Option *mainOptions = new Option(mainMenuPrompt, 0, 9);
 	Option *getIntegerOption = new Option(getIntegerPrompt, INT_MIN, INT_MAX);
 	Menu mMenu;
 	mMenu.addOption(mainOptions);		// Index 0
@@ -59,6 +63,15 @@ int main() {
 				break;
 			case 6:
 				list.printList(HEAD);
+				break;
+			case 7:
+				list.print(HEAD);
+				break;
+			case 8:
+				list.print(TAIL);
+				break;
+			case 9:
+				list.import(dataFilename);
 				break;
 		}
 	} while (!exit);

@@ -9,6 +9,7 @@
 #define	DOUBLY_LINKED_LIST_HPP
 
 #include <iostream>
+#include <fstream>
 #include "Node.hpp"
 
 enum StartFrom { HEAD, TAIL };
@@ -23,5 +24,7 @@ class DoublyLinkedList {
 		void add(int, StartFrom);
 		void remove(StartFrom);
 		void printList(StartFrom);
+		void print(StartFrom);
+		void import(std::string);
 };
 #endif	// DOUBLY_LINKED_LIST_HPP

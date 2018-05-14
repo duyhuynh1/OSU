@@ -124,3 +124,48 @@ void DoublyLinkedList::printList(StartFrom direction) {
 	}
 	std::cout << "\n";
 }
+
+/**
+ *	Prints the Node in the specified direction
+ *	@param direction An enum indicating which end the function will print
+ */
+void DoublyLinkedList::print(StartFrom direction) {
+	Node *nodePtr;
+	if (head == nullptr || tail == nullptr) {
+		std::cout << "[INFO]: List is empty...\n";
+	} else {
+		switch (direction) {
+			case HEAD:
+				nodePtr = head;
+				std::cout << "[List Head]: " << nodePtr->val << "\n";
+				break;
+			case TAIL:
+				nodePtr = tail;
+				std::cout << "[List Tail]: " << nodePtr->val << "\n";
+				break;
+		}
+	}
+}
+
+/**
+ *	Create a linked list structure based off data from a file
+ *	Import appends the data to the linked list from the head
+ *	@param filename A string representing the file storing the data
+ */
+void DoublyLinkedList::import(std::string filename) {
+	std::ifstream input;
+	bool success = false;
+	int number;
+	do {
+		input.open(filename);
+		if (input) {
+			std::string value;
+			while (std::getline(input, value)) {
+				number = stoi(value);
+				add(number, HEAD);
+			}
+			success = true;
+		}
+	} while (!success);
+	input.close();
+}
