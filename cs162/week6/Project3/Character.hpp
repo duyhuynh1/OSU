@@ -13,29 +13,28 @@
 #include <vector>
 #include "Dice.hpp"
 
-enum SpecialAbilities { NONE, CHARM, MOB, GLARE, HOGWARTS };	// Even needed??
-
 class Character {
 	protected:
-		int turns = 0;
+		bool abilityActivated = false;
+		int totalDamage = 0;
 		int attackPoints = 0;
 		int defensePoints = 0;
 		int armorPoints;
 		int strengthPoints;
 		std::string characterType;
-		// std::string characteristics = "";
-		SpecialAbilities characterAbility;
-		// virtual void defend();
 		std::vector<Dice *> attackPowerDice;
 		std::vector<Dice *> defensePowerDice;
+		void initDice(int, int, int, int);
 	public:
-		Character(std::string, SpecialAbilities, int, int);	// Do we even need SpecialAbilities
-		void initDice(int, int, int, int);	// Should this be protected?
+		Character(std::string, int, int);
 		virtual ~Character();
 		virtual void attack(Character *);
-		virtual void defend(int &);	// Should be private???
+		virtual void defend(int &);
 		bool isAlive();
 		std::string getCharacterType() const;
+		int getTotalDamage() const;
+		int getAttackPoints() const;
+		int getDefensePoints() const;
 		int getArmorPoints() const;
 		int getStrengthPoints() const;
 };

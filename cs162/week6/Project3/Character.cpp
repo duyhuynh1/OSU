@@ -14,10 +14,8 @@
  *  @param armor An integer depicting the character's armor stats
  *  @param strength An integer depicting the character's strength stats
  */
-Character::Character(std::string type, SpecialAbilities ability,
-                     int armor, int strength) {
+Character::Character(std::string type, int armor, int strength) {
     characterType = type;
-    characterAbility = ability;
 	armorPoints = armor;
 	strengthPoints = strength;
 }
@@ -63,14 +61,11 @@ void Character::initDice(int nAtkDice, int nAtkDiceSides,
  *  Character's basic attack function
  */
 void Character::attack(Character *otherPlayer) {
-    // std::cout << "[D]: Character::attack() called\n";    // REMOVE
-    int attackPoints = 0;   // Reset attackPoints
+    attackPoints = 0;   // Reset attackPoints
     for (int i = 0; i < attackPowerDice.size(); i++) {
         attackPoints += attackPowerDice[i]->roll();
     }
-    std::cout << "[Attack Roll]: - " << attackPoints << std::endl;
     otherPlayer->defend(attackPoints);
-    turns++;
 }
 
 /**
@@ -79,19 +74,20 @@ void Character::attack(Character *otherPlayer) {
  *  from the Character's strength points
  */
 void Character::defend(int &damage) {
-    // std::cout << "[D]: Character::defend called()\n";   // REMOVE
+    totalDamage = 0;
     defensePoints = 0;  // Reset defensePoints
     for (int i = 0; i < defensePowerDice.size(); i++) {
         defensePoints += defensePowerDice[i]->roll();
     }
-    std::cout << "[Defend Roll]: + " << defensePoints << std::endl;
     if (damage == -1) {
-        std::cout << "[D]: Defender object receives Medusa's GLARE" << std::endl; 
+        std::cout << "[ABILITY ACTIVATED]: GLARE" << std::endl;
         strengthPoints = 0;
     } else if (damage <= (defensePoints + armorPoints)) {   // Damage mitigated
+        totalDamage = 0;
         return;
     } else {
-        strengthPoints -= damage - defensePoints - armorPoints;    
+        totalDamage = damage - defensePoints - armorPoints;
+        strengthPoints -= totalDamage;
     }
 }
 
@@ -103,7 +99,7 @@ bool Character::isAlive() {
     if (strengthPoints > 0) {
         return true;
     } else {
-        std::cout << "Player has died...\n";
+        std::cout << "[INFO]: Player has died...\n";
         return false;
     }
 }
@@ -112,6 +108,21 @@ bool Character::isAlive() {
  *  Return the Character's Type
  */
 std::string Character::getCharacterType() const { return characterType; }
+
+/**
+ *  Return the total damage the Character has received
+ */
+int Character::getTotalDamage() const { return totalDamage; }
+
+/**
+ *  Return the Character's attack points
+ */
+int Character::getAttackPoints() const { return attackPoints; }
+
+/**
+ *  Return the Character's defense points
+ */
+int Character::getDefensePoints() const { return defensePoints; }
 
 /**
  *  Return the Character's armor points

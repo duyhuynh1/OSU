@@ -20,7 +20,6 @@ class Game {
         Character *p2 = nullptr;
         void swapRole(Character *, Character *);
     public:
-        ~Game();
         void init(Character *, Character *);
         void start();
         void getInfo();

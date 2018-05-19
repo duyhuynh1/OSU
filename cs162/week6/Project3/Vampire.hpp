@@ -14,6 +14,7 @@
 #include "Character.hpp"
 
 class Vampire : public Character {
+		bool abilityActivated = false;
     public:
         Vampire();
         void defend(int &);

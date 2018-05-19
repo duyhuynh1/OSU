@@ -6,11 +6,6 @@
 ** has atributes such as attack, defense, armor, strength, and has
 ** the special ability "Mob".
 *********************************************************************/
-// Mob: Blue Men are actually a swarm of small
-// individuals. For every 4 points of damage, they
-// lose one defense die. For example, if they have a
-// strength of 8, they would have 2d6 for defense
-
 #ifndef BLUE_MEN_HPP
 #define BLUE_MEN_HPP
 
