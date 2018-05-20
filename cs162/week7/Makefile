@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
-OBJECTS = Queue.o main.o
+OBJECTS = Menu.o Option.o Queue.o main.o
 
 TARGET = runTest
 
