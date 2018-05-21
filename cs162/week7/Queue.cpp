@@ -1,18 +1,25 @@
+/*********************************************************************
+** Program name: Circular Linked List
+** Author: Tony Huynh
+** Date: 5/19/2018
+** Description: The Queue class implements the following functions:
+** check if Queue is empty, add a new node to the back, return the
+** value of the first Node, remove the first Node, and print the 
+** current Queue.
+*********************************************************************/
 #include "Queue.hpp"
 
 /**
  *  Queue class default constructor
  */
 Queue::Queue() {
-    // std::cout << "Queue::Queue called()\n";  // REMOVE
     first = nullptr;
 }
 
 /**
- *  Queue class default destructor
+ *  Queue class default destructor.
  */
 Queue::~Queue() {
-    // std::cout << "Queue::~Queue called()\n";    // REMOVE
     while (!isEmpty()) {
         removeFront();
     }
@@ -34,14 +41,12 @@ bool Queue::isEmpty() const {
 void Queue::addBack(int val) {
     // Adding a Node to an empty list
     if (first == nullptr) {
-        // std::cout << "case#1: Adding a Node to an empty list\n";    // REMOVE
         struct QueueNode *newNode = new QueueNode();
         newNode->val = val;
         newNode->next = newNode;
         newNode->prev = newNode;
         first = newNode;
     } else {
-        // std::cout << "case#2: Adding a Node to a non-empty List\n"; // REMOVE
         struct QueueNode *last = first->prev;
         struct QueueNode *newNode = new QueueNode();
         newNode->val = val;
@@ -57,12 +62,11 @@ void Queue::addBack(int val) {
  *  Returns the value of the node at the front of the queue.
  */
 int Queue::getFront() const {
-    // std::cout << "Queue::getFront() called\n";  // REMOVE
     if (first != nullptr) {
-        return first->val;
+        std::cout << "The first node value is: " << first->val << std::endl;
+        return 0;   // Success
     } else {
-        std::cout << "[INFO]: Queue is empty...\n\n"; // REMOVE
-        // return;
+        return 1;   // Failed
     }
 }
 
@@ -72,21 +76,18 @@ int Queue::getFront() const {
 void Queue::removeFront() {
     struct QueueNode *temp = first;
     if (isEmpty()) {
-        std::cout << "[INFO]: Queue is empty...\n\n";
+        std::cout << "[INFO]: Queue is empty...\n";
     } else {
         struct QueueNode *second = temp->next;
         if (second == first) {
-            // std::cout << "Queue has single Node...deleting Node\n"; // REMOVE
             delete first;
             first = nullptr;
         } else if (second->next == second->prev) {
-            // std::cout << "Queue has two Nodes...deleting first Node\n"; // REMOVE
             delete first;
             second->next = second;
             second->prev = second;
             first = second;             // Update first pointer to 2nd Node
         } else {
-            // std::cout << "Queue has 3+ Nodes...deleting first Node\n";  // REMOVE
             struct QueueNode *last = first->prev;
             delete first;
             first = second;
@@ -100,16 +101,15 @@ void Queue::removeFront() {
  *  the values of each QueueNode in the queue.
  */
 void Queue::printQueue() {
-    std::cout << "Your queue is: ";
     struct QueueNode *temp = first;
     // Check if the Queue is empty
     if (temp != nullptr) {
+        std::cout << "Your queue is: ";
         do {
             std::cout << temp->val << " ";
             temp = temp->next;
         } while (temp != first);    // Ends when *temp reaches first again
     } else {
-        std::cout << "Empty...";
+        std::cout << "[INFO]: Queue is empty...\n";
     }
-    std::cout << "\n";
 }

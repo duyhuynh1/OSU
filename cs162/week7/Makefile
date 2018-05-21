@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
 OBJECTS = Menu.o Option.o Queue.o main.o
 
-TARGET = runTest
+TARGET = runQueue
 
 all: $(TARGET)
 

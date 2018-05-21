@@ -38,8 +38,9 @@ int main() {
                 mQueue->addBack(mMenu.getSignedInteger(1));
                 break;
             case 2:
-                std::cout << "The first node value is: " 
-                          << mQueue->getFront() << std::endl;
+                if (mQueue->getFront() != 0) {
+                    std::cout << "[INFO]: Queue is empty...\n";
+                }
                 break;
             case 3:
                 mQueue->removeFront();
