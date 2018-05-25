@@ -25,6 +25,7 @@ class Queue {
         void addBack(int);
         int getFront() const;
         void removeFront();
+        void moveFrontToBack();
         void printQueue();
 };
 #endif  // QUEUE_HPP

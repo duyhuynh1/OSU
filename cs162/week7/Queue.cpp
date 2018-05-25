@@ -74,7 +74,7 @@ int Queue::getFront() const {
  *  Removes the front QueueNode of the queue and free the memory
  */
 void Queue::removeFront() {
-    struct QueueNode *temp = first;
+    struct QueueNode *temp = first; // Do we even need this?
     if (isEmpty()) {
         std::cout << "[INFO]: Queue is empty...\n";
     } else {
@@ -96,6 +96,22 @@ void Queue::removeFront() {
         }
     }
 }
+
+/**
+ *  Move the first object in the Queue to the end of the Queue.
+ *  Example: 1 2 3 -> moveFrontToBack() -> 2 3 1
+ */
+void Queue::moveFrontToBack() {
+    if (isEmpty()) {
+        std::cout << "[INFO]: Queue is empty...\n";
+    } else { 
+        struct QueueNode *second = first->next;
+        if (first != second) {  // For Queue sizes >= 2, point first to second.
+            first = second;     // All other node connections stay the same.
+        }
+    }
+}
+
 /**
  *  Traverses through the queue from first using next pointers, and prints 
  *  the values of each QueueNode in the queue.

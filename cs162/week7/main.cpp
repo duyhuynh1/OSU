@@ -16,11 +16,12 @@ int main() {
                                  "  1. Enter a value to be added to the back of queue\n"
                                  "  2. Display first node (front) value\n"
                                  "  3. Remove first node (front) value\n"
-                                 "  4. Display the queue contents\n"
-                                 "  5. Exit\n"
+                                 "  4. Move first node (front) to the back of queue\n"
+                                 "  5. Display the queue contents\n"
+                                 "  6. Exit\n"
                                  "=> ";
     std::string positiveIntegerPrompt = "Please enter an integer: ";
-    Option *option1 = new Option(mainMenuPrompt, 1, 5);
+    Option *option1 = new Option(mainMenuPrompt, 1, 6);
     Option *option2 = new Option(positiveIntegerPrompt, INT_MIN, INT_MAX);
     Menu mMenu;
     mMenu.addOption(option1);   // Index 0
@@ -46,9 +47,12 @@ int main() {
                 mQueue->removeFront();
                 break;
             case 4:
-                mQueue->printQueue();
+                mQueue->moveFrontToBack();
                 break;
             case 5:
+                mQueue->printQueue();
+                break;
+            case 6:
                 std::cout << ">>> Exit Program <<<" << std::endl;
                 done = true;
                 break;
