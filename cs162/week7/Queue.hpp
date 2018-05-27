@@ -22,8 +22,10 @@ class Queue {
         Queue();
         ~Queue();
         bool isEmpty() const;
-        void addBack(int);
+        void addFront(const int &);
+        void addBack(const int &);
         int getFront() const;
+        int getBack() const;
         void removeFront();
         void moveFrontToBack();
         void printQueue();

@@ -33,12 +33,36 @@ bool Queue::isEmpty() const {
     return (first == nullptr) ? true : false;
 }
 
+/** 
+ *  Creates a QueueNode with user inputted integer, and pushes it to the
+ *  front of the list.
+ */
+void Queue::addFront(const int &val) {
+    if (first == nullptr) {
+        struct QueueNode *newNode = new QueueNode();
+        newNode->val = val;
+        newNode->next = newNode;
+        newNode->prev = newNode;
+        first = newNode;
+    } else {
+        struct QueueNode *last = first->prev;
+        struct QueueNode *newNode = new QueueNode();
+        newNode->val = val;
+        // Link up all Nodes
+        newNode->next = first;
+        first->prev = newNode;
+        newNode->prev = last;
+        last->next = newNode;
+        first = newNode;
+    }
+}
+
 /**
  *  Creates a QueueNode with user­inputted integer, and appends it to the 
  *  back of the list.
  *  @param val integer value stored inside QueueNode object
  */
-void Queue::addBack(int val) {
+void Queue::addBack(const int &val) {
     // Adding a Node to an empty list
     if (first == nullptr) {
         struct QueueNode *newNode = new QueueNode();
@@ -64,6 +88,18 @@ void Queue::addBack(int val) {
 int Queue::getFront() const {
     if (first != nullptr) {
         std::cout << "The first node value is: " << first->val << std::endl;
+        return 0;   // Success
+    } else {
+        return 1;   // Failed
+    }
+}
+
+/**
+ *  Returns the value of the node at the back of the queue.
+ */
+int Queue::getBack() const {
+    if (first != nullptr) {
+        std::cout << "The last node value is: " << first->prev->val << std::endl;
         return 0;   // Success
     } else {
         return 1;   // Failed

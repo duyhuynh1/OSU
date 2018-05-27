@@ -13,15 +13,17 @@
 
 int main() {
     std::string mainMenuPrompt = "\nChoose from following options: \n\n"
-                                 "  1. Enter a value to be added to the back of queue\n"
-                                 "  2. Display first node (front) value\n"
-                                 "  3. Remove first node (front) value\n"
-                                 "  4. Move first node (front) to the back of queue\n"
-                                 "  5. Display the queue contents\n"
-                                 "  6. Exit\n"
+                                 "  1. Enter a value to be added to the (front) of queue\n"
+                                 "  2. Enter a value to be added to the (back) of queue\n"
+                                 "  3. Display first node (front) value\n"
+                                 "  4. Display last node (back) value\n"
+                                 "  5. Remove first node (front) value\n"
+                                 "  6. Move first node (front) to the (back) of queue\n"
+                                 "  7. Display the queue contents\n"
+                                 "  8. Exit\n"
                                  "=> ";
     std::string positiveIntegerPrompt = "Please enter an integer: ";
-    Option *option1 = new Option(mainMenuPrompt, 1, 6);
+    Option *option1 = new Option(mainMenuPrompt, 1, 8);
     Option *option2 = new Option(positiveIntegerPrompt, INT_MIN, INT_MAX);
     Menu mMenu;
     mMenu.addOption(option1);   // Index 0
@@ -36,23 +38,30 @@ int main() {
     do {
         switch (mMenu.getUnsignedInteger(0)) {
             case 1:
-                mQueue->addBack(mMenu.getSignedInteger(1));
+                mQueue->addFront(mMenu.getSignedInteger(1));
                 break;
             case 2:
+                mQueue->addBack(mMenu.getSignedInteger(1));
+                break;
+            case 3:
                 if (mQueue->getFront() != 0) {
                     std::cout << "[INFO]: Queue is empty...\n";
                 }
                 break;
-            case 3:
+            case 4:
+                if (mQueue->getBack() != 0) {
+                    std::cout << "[INFO]: Queue is empty...\n";
+                }
+            case 5:
                 mQueue->removeFront();
                 break;
-            case 4:
+            case 6:
                 mQueue->moveFrontToBack();
                 break;
-            case 5:
+            case 7:
                 mQueue->printQueue();
                 break;
-            case 6:
+            case 8:
                 std::cout << ">>> Exit Program <<<" << std::endl;
                 done = true;
                 break;
