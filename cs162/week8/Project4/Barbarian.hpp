@@ -13,6 +13,6 @@
 
 class Barbarian : public Character {
 	public:
-        Barbarian();
+        Barbarian(const std::string);
 };
 #endif	// BARBARIAN_HPP

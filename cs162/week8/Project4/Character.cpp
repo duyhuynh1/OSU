@@ -14,7 +14,8 @@
  *  @param armor An integer depicting the character's armor stats
  *  @param strength An integer depicting the character's strength stats
  */
-Character::Character(std::string type, int armor, int strength) {
+Character::Character(std::string name, std::string type, int armor, int strength) {
+    this->name = name;
     characterType = type;
 	armorPoints = armor;
 	strengthPoints = maxStrengthPoints = strength;
@@ -24,7 +25,7 @@ Character::Character(std::string type, int armor, int strength) {
  *  Character Class default virtual destructor
  */
 Character::~Character() {
-    // std::cout << "[D]: Character::~Character() called\n";   // REMOVE
+    std::cout << "[D]: Character::~Character() called\n";   // REMOVE
     for (int i = 0; i < attackPowerDice.size(); i++) {
         if (attackPowerDice[i] != nullptr) {
             delete attackPowerDice[i];    
@@ -103,6 +104,21 @@ bool Character::isAlive() {
         return false;
     }
 }
+
+/**
+ *  Return the Character's Info
+ */
+void Character::getCharacterInfo() const {
+    std::cout << "[" << getCharacterName() << "]|"
+              << "[" << getCharacterType() << "]|"
+              << "[Strength Points: " << getStrengthPoints() << "]|"
+              << "[Armor Points: " << getArmorPoints() << "]\n";
+}
+
+/**
+ *  Return the Character's name
+ */
+std::string Character::getCharacterName() const { return name; }
 
 /**
  *  Return the Character's Type

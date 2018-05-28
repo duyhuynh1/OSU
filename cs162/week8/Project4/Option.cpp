@@ -7,7 +7,6 @@
 *********************************************************************/
 #include "Option.hpp"
 
-
 /**
  *	Option object only with prompt
  */

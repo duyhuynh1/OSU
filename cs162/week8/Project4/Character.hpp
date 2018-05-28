@@ -15,6 +15,7 @@
 
 class Character {
 	protected:
+		std::string name = "";
 		bool abilityActivated = false;
 		int maxStrengthPoints;
 		int totalDamage = 0;
@@ -27,11 +28,13 @@ class Character {
 		std::vector<Dice *> defensePowerDice;
 		void initDice(int, int, int, int);
 	public:
-		Character(std::string, int, int);
+		Character(std::string, std::string, int, int);
 		virtual ~Character();
 		virtual void attack(Character *);
 		virtual void defend(int &);
 		bool isAlive();
+		void getCharacterInfo() const;
+		std::string getCharacterName() const;
 		std::string getCharacterType() const;
 		void recoverStrengthPoints();
 		int getTotalDamage() const;

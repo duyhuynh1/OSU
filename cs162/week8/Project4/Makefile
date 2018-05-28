@@ -1,9 +1,7 @@
 CC = g++
 CFLAGS = -std=c++0x -c -g -Wall
-OBJECTS = Menu.o Option.o Game.o Dice.o \
- 		  HarryPotter.o BlueMen.o Medusa.o \
- 		  Vampire.o Barbarian.o Character.o \
- 		  main.o
+OBJECTS = Menu.o Option.o Queue.o Tournament.o Dice.o \
+ 		  Barbarian.o Character.o main.o
 
 TARGET = StartGame
 

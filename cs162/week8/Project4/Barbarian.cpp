@@ -15,6 +15,6 @@
  *  armor    = 0
  *  strength = 12
  */
-Barbarian::Barbarian() : Character("Barbarian", 0, 12) {
+Barbarian::Barbarian(const std::string name) : Character(name, "Barbarian", 0, 12) {
     initDice(2, 6, 2, 6);
 }
