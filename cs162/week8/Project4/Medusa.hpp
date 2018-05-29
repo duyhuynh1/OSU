@@ -13,7 +13,7 @@
 
 class Medusa : public Character {
     public:
-        Medusa();
+        Medusa(std::string);
         void attack(Character *);
 };
 #endif  // MEDUSA_HPP

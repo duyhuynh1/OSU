@@ -17,6 +17,7 @@ class Queue {
             QueueNode *next = nullptr;
             QueueNode *prev = nullptr;
             Character *player = nullptr;
+            // Character player;
         };
         QueueNode *first;
     public:

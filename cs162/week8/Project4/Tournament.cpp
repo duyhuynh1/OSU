@@ -7,22 +7,6 @@
 *********************************************************************/
 #include "Tournament.hpp"
 
-Tournament::~Tournament() {
-    std::cout << "Tournament::~Tournament() called\n";
-    // while (!teamA->isEmpty()) {
-    //     teamA->removeFront();
-    // }
-    // while (!teamB->isEmpty()) {
-    //     teamB->removeFront();
-    // }
-    // while (!loserPile->isEmpty()) {
-    //     loserPile->removeFront();
-    // }
-    delete teamA;
-    delete teamB;
-    delete loserPile;
-}
-
 /**
  *  Initialize the Queue
  */
@@ -36,10 +20,15 @@ void Tournament::init(Queue *teamA, Queue *teamB, Queue *loserPile) {
  *  After player lineup selection is complete proceed with game.
  */
 void Tournament::start() {
-    getQueueInfo();
+    teamAPoints = 0;
+    teamBPoints = 0;
     bool gameOver = false;
     do {
         if (!teamA->isEmpty() && !teamB->isEmpty()) {
+            std::cout << std::string(50, '=') << std::endl;
+            std::cout << "Current Queue\n";
+            std::cout << std::string(50, '=') << std::endl;
+            getQueueInfo();
             attacker = teamA->getFront();
             p1 = attacker;
             defender = teamB->getFront();
@@ -57,15 +46,23 @@ void Tournament::start() {
                 swapRole(attacker, defender);
             }
             setupNextFight();
-            std::cout << std::string(50, '=') << std::endl;
-            std::cout << "Current Queue\n";
-            std::cout << std::string(50, '=') << std::endl;
-            getQueueInfo();
         } else {
             std::cout << std::string(50, '=') << std::endl;
             std::cout << "Tournament Results\n";
             std::cout << std::string(50, '=') << std::endl;
             getQueueInfo();
+            std::cout << std::string(50, '*') << std::endl;
+            std::cout << "Tournament Score\n";
+            std::cout << std::string(50, '*') << std::endl;
+            std::cout << "Team A: " << teamAPoints << " -vs- ";
+            std::cout << "Team B: " << teamBPoints << std::endl;
+            if (teamAPoints == teamBPoints) {
+                std::cout << "[GAME RESULT]: TIE\n";
+            } else if (teamAPoints > teamBPoints) {
+                std::cout << "[GAME RESULT]: TEAM A WON FANTASY COMBAT TOURNAMENT\n";
+            } else {
+                std::cout << "[GAME RESULT]: TEAM B WON FANTASY COMBAT TOURNAMENT\n";
+            }
             gameOver = true;
         }
     } while (!gameOver);
@@ -88,11 +85,17 @@ void Tournament::swapRole(Character *p1, Character *p2) {
 void Tournament::setupNextFight() {
     // Determines who won the round
     if (teamA->getFront()->isAlive()){
-        teamB->moveFrontToFrontOf(loserPile);   // If Team A won, move the front player to the loser pile
+        std::cout << "[ANOUNCEMENT]: Team A " << teamA->getFront()->getCharacterName() << " WON!\n";
+        teamAPoints += 1;
+        teamA->getFront()->recoverStrengthPoints(); // Activate recovery
         teamA->moveFrontToBack();   // Move Team A's front player to the back of queue
+        teamB->moveFrontToFrontOf(loserPile);   // If Team A won, move the front player to the loser pile
     } else {
-        teamA->moveFrontToFrontOf(loserPile);   // If Team B won, move the front player to the loser pile
+        std::cout << "[ANOUNCEMENT]: Team B " << teamB->getFront()->getCharacterName() << " WON!\n";
+        teamBPoints += 1;
+        teamB->getFront()->recoverStrengthPoints();
         teamB->moveFrontToBack();   // Move Team B's front player to the back of queue
+        teamA->moveFrontToFrontOf(loserPile);   // If Team B won, move the front player to the loser pile
     }
 }
 

@@ -9,15 +9,14 @@
 #define TOURNAMENT_HPP
 
 #include <iomanip>
-#include "Menu.hpp"
-#include "Option.hpp"
 #include "Queue.hpp"
 #include "Character.hpp"
-#include "Barbarian.hpp"
 
 class Tournament {
     private:
         int rounds = 0;
+        int teamAPoints = 0;
+        int teamBPoints = 0;
         int numOfPlayersPerTeam = 0;    // NEED?
         Character *p1 = nullptr;
         Character *p2 = nullptr;
@@ -28,10 +27,8 @@ class Tournament {
         Queue *loserPile = nullptr;
         void swapRole(Character *, Character *);
     public:
-        ~Tournament();
         void init(Queue *, Queue *, Queue *);
         void start();
-        void getLineup(Menu);
         void setupNextFight();
         void getInfo();
         void getQueueInfo();

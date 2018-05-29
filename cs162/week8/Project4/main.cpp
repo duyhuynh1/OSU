@@ -1,7 +1,7 @@
 /*********************************************************************
 ** Program name: Fantasy Combat Tournament
 ** Author: Tony Huynh
-** Date: 5/13/1618
+** Date: 5/27/1618
 ** Description: Driver program that allows user to test different
 ** types of characters in combat.
 *********************************************************************/
@@ -23,9 +23,6 @@ int main() {
                                         "4) Medusa\n5) Harry Potter\n=> ";
     std::string playerNamePrompt = "Enter a name for the fighter: ";
     std::string replayMenuPrompt = "1) Play Again\n2) Exit\n=> ";
-
-    // Character *p1 = nullptr;
-    // Character *p2 = nullptr;
 
     Queue *teamA = new Queue();
     Queue *teamB = new Queue();
@@ -54,9 +51,13 @@ int main() {
 
     int numOfPlayersPerTeam = 0;
 
+    std::cout << std::string(50, '=') << std::endl;
+    std::cout << "Fantasy Combat Tournament\n";
+    std::cout << std::string(50, '=') << std::endl;
+    int selection = mMenu.getUnsignedInteger(0);
     bool done = false;
     do {
-        switch (mMenu.getUnsignedInteger(0)) {
+        switch (selection) {
             case 1:
                 numOfPlayersPerTeam = mMenu.getUnsignedInteger(1);
                 for (int i = 0; i < numOfPlayersPerTeam; i++) {
@@ -66,21 +67,19 @@ int main() {
                     playerOneSeletion = mMenu.getUnsignedInteger(2);
                     switch (playerOneSeletion) {
                         case 1:
-                            // teamA->addBack(new Vampire(mMenu.getString(4)));
+                            teamA->addBack(new Vampire(mMenu.getString(4)));
                             break;
                         case 2:
-                            // p1 = new Barbarian(mMenu.getString(4));
-                            // teamA->addBack(p1);
                             teamA->addBack(new Barbarian(mMenu.getString(4)));
                             break;
                         case 3:
-                            // p1 = new BlueMen();
+                            teamA->addBack(new BlueMen(mMenu.getString(4)));
                             break;
                         case 4:
-                            // p1 = new Medusa();
+                            teamA->addBack(new Medusa(mMenu.getString(4)));
                             break;
                         case 5:
-                            // p1 = new HarryPotter();
+                            teamA->addBack(new HarryPotter(mMenu.getString(4)));
                             break;
                     }
                     std::cout << std::string(50, '-') << std::endl;
@@ -89,27 +88,41 @@ int main() {
                     playerTwoSelection = mMenu.getUnsignedInteger(2);
                     switch (playerTwoSelection) {
                         case 1:
-                            // p2 = new Vampire();
+                            teamB->addBack(new Vampire(mMenu.getString(4)));
                             break;
                         case 2:
-                            // p2 = new Barbarian(mMenu.getString(4));
-                            // teamB->addBack(p2);
                             teamB->addBack(new Barbarian(mMenu.getString(4)));
                             break;
                         case 3:
-                            // p2 = new BlueMen();
-                            break;
+                            teamB->addBack(new BlueMen(mMenu.getString(4)));
+                            break;                        
                         case 4:
-                            // p2 = new Medusa();
-                            break;
+                            teamB->addBack(new Medusa(mMenu.getString(4)));
+                            break;;
                         case 5:
-                            // p2 = new HarryPotter();
+                            teamB->addBack(new HarryPotter(mMenu.getString(4)));
                             break;
                     }
                 }
                 // Character selection complete
+                std::cout << std::string(50, '-') << std::endl;
+                std::cout << "Starting Player Lineup\n";
+                std::cout << std::string(50, '-') << std::endl;
                 mTournament.init(teamA, teamB, loserPile);
+                mTournament.getQueueInfo();
                 mTournament.start();
+                selection = mMenu.getUnsignedInteger(5);
+                if (selection == 2) { 
+                    done = true;
+                    std::cout << ">>> EXIT GAME <<<" << std::endl;
+                }
+                delete teamA;
+                delete teamB;
+                delete loserPile;
+                teamA = new Queue();
+                teamB = new Queue();
+                loserPile = new Queue();
+                break;
             case 2:
                 done = true;
                 std::cout << ">>> EXIT GAME <<<" << std::endl;
@@ -123,8 +136,5 @@ int main() {
     delete option4;
     delete option5;
     delete option6;
-    // delete teamA;
-    // delete teamB;
-    // delete loserPile;
 	return 0;
 }

@@ -8,6 +8,7 @@
 ** current Queue.
 *********************************************************************/
 #include "Queue.hpp"
+// TODO: Need to use smart pointers to deallocate dynamic memory
 
 /**
  *  Queue class default constructor
@@ -20,7 +21,6 @@ Queue::Queue() {
  *  Queue class default destructor.
  */
 Queue::~Queue() {
-    std::cout << "Queue::~Queue() called\n";
     while (!isEmpty()) {
         removeFront();
     }
@@ -98,17 +98,6 @@ void Queue::moveFrontToFrontOf(Queue *loserPile) {
     loserPile->addFront(this->getFront());
     this->removeFront();
 }
-/**
- *  Returns the value of the node at the back of the queue.
- */
-// int Queue::getBack() const {
-//     if (first != nullptr) {
-//         std::cout << "The last node value is: " << first->prev->val << std::endl;
-//         return 0;   // Success
-//     } else {
-//         return 1;   // Failed
-//     }
-// }
 
 /**
  *  Removes the front QueueNode of the queue and free the memory
@@ -120,18 +109,15 @@ void Queue::removeFront() {
     } else {
         struct QueueNode *second = temp->next;
         if (second == first) {
-            delete first->player;
             delete first;
             first = nullptr;
         } else if (second->next == second->prev) {
-            delete first->player;
             delete first;
             second->next = second;
             second->prev = second;
             first = second;             // Update first pointer to 2nd Node
         } else {
             struct QueueNode *last = first->prev;
-            delete first->player;
             delete first;
             first = second;
             second->prev = last;

@@ -13,7 +13,7 @@
 
 class BlueMen : public Character {
     public:
-        BlueMen();
+        BlueMen(std::string);
         void defend(int &);
 };
 #endif  // BLUE_MEN_HPP

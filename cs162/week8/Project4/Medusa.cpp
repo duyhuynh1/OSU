@@ -8,7 +8,7 @@
 *********************************************************************/
 #include "Medusa.hpp"
 
-Medusa::Medusa() : Character("Medusa", 3, 8) {
+Medusa::Medusa(std::string name) : Character(name, "Medusa", 3, 8) {
     initDice(2, 6, 1, 6);
 }
 

@@ -15,7 +15,7 @@
  *  armor    = 1
  *  strength = 12
  */
-Vampire::Vampire() : Character("Vampire", 1, 18) {
+Vampire::Vampire(std::string name) : Character(name, "Vampire", 1, 18) {
     initDice(1, 12, 1, 6);
 }
 

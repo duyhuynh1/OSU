@@ -15,7 +15,7 @@ class HarryPotter : public Character {
     private:
     	bool abilityActivated = false;
     public:
-        HarryPotter();
+        HarryPotter(std::string);
         void defend(int &);
 };
 #endif  // HARRY_POTTER_HPP

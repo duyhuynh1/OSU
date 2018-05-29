@@ -15,7 +15,7 @@
  *  armor    = 0
  *  strength = 10/20 * Hogwarts
  */
-HarryPotter::HarryPotter() : Character ("HarryPotter", 0, 10) {
+HarryPotter::HarryPotter(std::string name) : Character (name, "HarryPotter", 0, 10) {
     initDice(2, 6, 2, 6);
 }
 

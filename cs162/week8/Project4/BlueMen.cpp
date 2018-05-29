@@ -15,7 +15,7 @@
  *  armor    = 3
  *  strength = 12 *Mob
  */
-BlueMen::BlueMen() : Character("Blue Men", 3, 12) {
+BlueMen::BlueMen(std::string name) : Character(name, "Blue Men", 3, 12) {
     initDice(2, 10, 3, 6);
 }
 

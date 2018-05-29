@@ -42,6 +42,6 @@ class Character {
 		int getDefensePoints() const;
 		int getArmorPoints() const;
 		int getStrengthPoints() const;
-		int getMaxStrengthPoints() const;
+		// int getMaxStrengthPoints() const;
 };
 #endif	// CHARACTER_HPP

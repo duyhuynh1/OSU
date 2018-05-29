@@ -25,7 +25,6 @@ Character::Character(std::string name, std::string type, int armor, int strength
  *  Character Class default virtual destructor
  */
 Character::~Character() {
-    std::cout << "[D]: Character::~Character() called\n";   // REMOVE
     for (int i = 0; i < attackPowerDice.size(); i++) {
         if (attackPowerDice[i] != nullptr) {
             delete attackPowerDice[i];    
@@ -126,20 +125,10 @@ std::string Character::getCharacterName() const { return name; }
 std::string Character::getCharacterType() const { return characterType; }
 
 /**
- *  Restores 50% of the calling Character's current health
- *  Health restored cannot surpass character's maxStrengthPoints
+ *  Restores the calling Character back to full health
  */
 void Character::recoverStrengthPoints() {
-    std::cout << "Character::recoverStrengthPoints() called\n"; // REMOVE
-    // TODO: Store the Character's maxStrengthPoints
-    int recoveryPoints = 5;
-    if (this->getStrengthPoints() + recoveryPoints > this->getMaxStrengthPoints()) {
-        std::cout << "Character recovers to FULL HP\n"; // REMOVE
-        this->strengthPoints = getMaxStrengthPoints();
-    } else {
-        std::cout << "Character recovers +5 HP\n";  // REMOVE
-        this->strengthPoints += recoveryPoints;
-    }
+    this->strengthPoints = maxStrengthPoints;
 }
 
 /**
@@ -170,4 +159,4 @@ int Character::getStrengthPoints() const { return strengthPoints; }
 /**
  *  Return the Character's max strength points
  */
-int Character::getMaxStrengthPoints() const { return maxStrengthPoints; }
+// int Character::getMaxStrengthPoints() const { return maxStrengthPoints; }

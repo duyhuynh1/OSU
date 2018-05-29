@@ -16,7 +16,7 @@
 class Vampire : public Character {
 		bool abilityActivated = false;
     public:
-        Vampire();
+        Vampire(std::string);
         void defend(int &);
 };
 #endif  // VAMPIRE_HPP
