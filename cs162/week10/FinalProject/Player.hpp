@@ -7,13 +7,17 @@
 
 class Player {
     private:
+        int xPos = 0;
+        int yPos = 0;
         std::string inventory[1] = {" "};
         Space* current = nullptr;
+        void showSpace(Space*);
     public:
         Player(Space&);
         void move();
         void inspectSpace();
         void store(std::string);
         void showInventory();
+        void showPosition();
 };
 #endif  // PLAYER_HPP_

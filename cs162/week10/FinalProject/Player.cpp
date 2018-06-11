@@ -16,6 +16,7 @@ void Player::move() {
             case 1:
                 if (current->top != nullptr) {
                     current = current->top;
+                    yPos--;
                     success = true;
                 } else {
                     std::cout << moveError;
@@ -24,6 +25,7 @@ void Player::move() {
             case 2:
                 if (current->right != nullptr) {
                     current = current->right;
+                    xPos++;
                     success = true;
                 } else {
                     std::cout << moveError;
@@ -32,6 +34,7 @@ void Player::move() {
             case 3:
                 if (current->left != nullptr) {
                     current = current->left;
+                    xPos--;
                     success = true;
                 } else {
                     std::cout << moveError;
@@ -40,6 +43,7 @@ void Player::move() {
             case 4:
                 if (current->bottom != nullptr) {
                     current = current->bottom;
+                    yPos++;
                     success = true;
                 } else {
                     std::cout << moveError;
@@ -99,3 +103,63 @@ void Player::inspectSpace() {
  *  Display the Player's current inventory
  */
 void Player::showInventory() { std::cout << "Inventory: { " << inventory[0] << " };" << std::endl; }
+
+/**
+ *  Display the Player's current position on the Map
+ */
+void Player::showPosition() {
+    std::cout << std::string(50,'-') << std::endl;
+    std::cout << "Location\n";
+    if (current->top != nullptr &&
+        current->left != nullptr) {
+        std::cout << "    ";
+        showSpace(current->top);
+        std::cout << "\n";
+        std::cout << "     |\n";
+    } else if (current->top != nullptr) {
+        showSpace(current->top);
+        std::cout << "\n";
+        std::cout << " | \n";
+    }
+    if (current->left != nullptr) {
+        showSpace(current->left);
+        std::cout << "-";
+    }
+    // Player's position is absolute
+    std::cout << "[*]";
+    if (current->right != nullptr) {
+        std::cout << "-";
+        showSpace(current->right);
+        std::cout << "\n";
+    } else {
+        std::cout << "\n";
+    }
+    if (current->bottom != nullptr &&
+        current->left != nullptr) {
+        std::cout << "     |\n";
+        std::cout << "    ";
+        showSpace(current->bottom);
+        std::cout << "\n";
+    } else if (current->bottom != nullptr) {
+        std::cout << " | \n";
+        showSpace(current->bottom);
+        std::cout << "\n";
+    }
+    std::cout << std::string(50,'-');
+    std::cout << "\n";
+}
+
+void Player::showSpace(Space* space) {
+    if (space->getType() == "Space") {
+        std::cout << "[ ]";
+    }
+    if (space->getType() == "ItemSpace") {
+        std::cout << "[□]";
+    }
+    if (space->getType() == "PressurePlateSpace") {
+        std::cout << "[▃]";
+    }
+    if (space->getType() == "LockedItemSpace") {
+        std::cout << "[▣]";
+    }
+}

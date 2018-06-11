@@ -16,8 +16,6 @@ class Space {
         Space();
         Space(std::string type);
         virtual ~Space();
-        // // int getNextData();
-        // virtual void activate();
         virtual std::string getItem();
         virtual bool isEmpty();
         virtual bool isActivated();

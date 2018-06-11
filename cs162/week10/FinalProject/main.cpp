@@ -36,23 +36,27 @@ int main() {
     ItemSpace item2("key");
     PressurePlateSpace plate1;
     LockedItemSpace lockedItem1("master key");
-    
+
     Player p1(space1);
 
     space1.topConnectToBottomOf(item1);
     item1.bottomConnectToTopOf(space1);
 
-    item2.leftConnectToRightOf(item1);
-    item1.rightConnectToLeftOf(item2);
+    space1.leftConnectToRightOf(item2);
+    item2.rightConnectToLeftOf(space1);
+
+    space1.rightConnectToLeftOf(lockedItem1);
+    lockedItem1.leftConnectToRightOf(space1);
 
     space1.bottomConnectToTopOf(plate1);
     plate1.topConnectToBottomOf(space1);
 
-    space1.leftConnectToRightOf(lockedItem1);
-    lockedItem1.rightConnectToLeftOf(space1);
+    // space1.leftConnectToRightOf(lockedItem1);
+    // lockedItem1.rightConnectToLeftOf(space1);
 
     while (turn > 0) {
         p1.showInventory();
+        p1.showPosition();
         p1.move();
         p1.inspectSpace();
         turn--;
@@ -79,7 +83,5 @@ int main() {
     // p1.activateSpace();
     // p1.activate();
     // p1.showInventory();
-
-
     return 0;
 }
