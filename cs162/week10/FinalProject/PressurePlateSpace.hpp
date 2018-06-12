@@ -5,7 +5,7 @@
 
 class PressurePlateSpace : public Space {
     private:
-        bool activated;
+        bool activated = false;
     public:
         PressurePlateSpace();
         bool isActivated();

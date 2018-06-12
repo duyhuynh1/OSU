@@ -7,8 +7,7 @@
 
 class Player {
     private:
-        int xPos = 0;
-        int yPos = 0;
+        bool exit = false;
         std::string inventory[1] = {" "};
         Space* current = nullptr;
         void showSpace(Space*);
@@ -19,5 +18,6 @@ class Player {
         void store(std::string);
         void showInventory();
         void showPosition();
+        bool foundExit();
 };
 #endif  // PLAYER_HPP_

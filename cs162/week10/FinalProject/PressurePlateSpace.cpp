@@ -1,9 +1,7 @@
 #include <iostream>
 #include "PressurePlateSpace.hpp"
 
-PressurePlateSpace::PressurePlateSpace() : Space("PressurePlateSpace") {
-    activated = false;
-}
+PressurePlateSpace::PressurePlateSpace() : Space("PressurePlateSpace") {}
 
 /**
  *

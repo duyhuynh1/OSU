@@ -5,21 +5,23 @@
  *  Space class default constructor
  */
 Space::Space() {
-    std::string movePrompt = "1. ↑ (top)\n2. → (right)\n"
-                             "3. ← (left)\n4. ↓ (down)\n=> ";
+    std::string movePrompt = "[ 1. ↑  2. →  3. ←  4. ↓ ] move=>";
     Option option(movePrompt, 1, 4);
     mMenu.addOption(option);
 }
 
-Space::~Space() { std::cout << "Space destructor called\n"; }
+/**
+ *  Space class destructor
+ */
+Space::~Space() {}
+
 /**
  *  Space class default constructor
- *  @param:
+ *  @param type - A String indicating the type of space
  */
 Space::Space(std::string type) {
     this->type = type;
-    std::string movePrompt = "1. ↑ (top)\n2. → (right)\n"
-                             "3. ← (left)\n4. ↓ (down)\n=> ";
+    std::string movePrompt = "[ 1. ↑  2. →  3. ←  4. ↓ ] move=>";
     Option option(movePrompt, 1, 4);
     mMenu.addOption(option);
 }
