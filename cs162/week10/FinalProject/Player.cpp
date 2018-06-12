@@ -97,6 +97,20 @@ void Player::inspectSpace() {
             std::cout << "[I]: Looks like the chest needs a \'key\' in order to open\n";
         }
     }
+    // TODO: Add "LockedDoorSpace" logic
+    if (spaceType == "LockedDoorSpace") {
+        if (!current->isLocked()) {
+            std::cout << "[I]: Door is unlocked.\n";
+        } else if (current->isLocked()) {
+            if (inventory[0] == "door key") {
+                current->trigger();
+                inventory[0] = " ";
+                std::cout << "[I]: Used the key to unlock the door\n";
+            } else {
+                std::cout << "[I]: The door is locked. Looks like it requires a key\n";
+            }
+        }
+    }
 }
 
 /**
@@ -161,5 +175,8 @@ void Player::showSpace(Space* space) {
     }
     if (space->getType() == "LockedItemSpace") {
         std::cout << "[▣]";
+    }
+    if (space->getType() == "LockedDoorSpace") {
+        std::cout << "[╏]";
     }
 }

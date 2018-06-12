@@ -3,6 +3,7 @@
 #include "ItemSpace.hpp"
 #include "PressurePlateSpace.hpp"
 #include "LockedItemSpace.hpp"
+#include "LockedDoorSpace.hpp"
 #include "Player.hpp"
 
 int main() {
@@ -35,21 +36,28 @@ int main() {
     ItemSpace item1("rock");
     ItemSpace item2("key");
     PressurePlateSpace plate1;
-    LockedItemSpace lockedItem1("master key");
+    LockedItemSpace lockedItem1("door key");
+    LockedDoorSpace door1;
 
     Player p1(space1);
 
-    space1.topConnectToBottomOf(item1);
-    item1.bottomConnectToTopOf(space1);
+    space1.topConnectToBottomOf(item2);
+    item2.bottomConnectToTopOf(space1);
 
-    space1.leftConnectToRightOf(item2);
-    item2.rightConnectToLeftOf(space1);
+    space1.rightConnectToLeftOf(door1);
+    door1.leftConnectToRightOf(space1);
 
-    space1.rightConnectToLeftOf(lockedItem1);
-    lockedItem1.leftConnectToRightOf(space1);
+    space1.bottomConnectToTopOf(lockedItem1);
+    lockedItem1.topConnectToBottomOf(space1);
 
-    space1.bottomConnectToTopOf(plate1);
-    plate1.topConnectToBottomOf(space1);
+    // space1.leftConnectToRightOf(item2);
+    // item2.rightConnectToLeftOf(space1);
+
+    // space1.rightConnectToLeftOf(lockedItem1);
+    // lockedItem1.leftConnectToRightOf(space1);
+
+    // space1.bottomConnectToTopOf(plate1);
+    // plate1.topConnectToBottomOf(space1);
 
     // space1.leftConnectToRightOf(lockedItem1);
     // lockedItem1.rightConnectToLeftOf(space1);
