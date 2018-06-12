@@ -1,3 +1,11 @@
+/*********************************************************************
+** Program name: Labyrinth Escape
+** Author: Tony Huynh
+** Date: 6/12/2018
+** Description: Space class is the base class that defines all used
+** functions by all derived spaces. The Space pointers are used to
+** link other spaces together
+*********************************************************************/
 #ifndef SPACE_HPP_
 #define SPACE_HPP_
 

@@ -4,9 +4,12 @@
 #define PLAYER_HPP_
 
 #include "Space.hpp"
+#include "Menu.hpp"
+#include "Option.hpp"
 
 class Player {
     private:
+        Menu menu;
         bool exit = false;
         std::string inventory[1] = {" "};
         Space* current = nullptr;

@@ -3,7 +3,12 @@
  *  Player class default constructor
  *  @param startSpace - The space object the character is currently at
  */
-Player::Player(Space& startSpace) { current = &startSpace; }
+Player::Player(Space& startSpace) {
+    current = &startSpace;
+    std::string activateSwitch = "1. Inspect\n2. Activate\n3. Move\n=>";
+    Option option(activateSwitch, 1, 3);
+    menu.addOption(option);
+}
 
 /**
  *  Player moves to the available Spaces 
@@ -69,42 +74,99 @@ void Player::inspectSpace() {
     if (spaceType == "PressurePlateSpace") {
         if (current->isActivated() == true) {
             std::cout << "[I]: Pressure plate is already activated\n";
-        } else if (inventory[0] == "rock") {
-            if (current->isActivated() == false) {
-                current->trigger();
-                inventory[0] = " "; // Used up the rock
-                std::cout << "[I]: Used the rock to hold down the pressure plate\n";
-            } else {
-                std::cout << "[I]: Need something heavy like a "
-                         "\'rock\'' to hold the plate down\n";
-            }
+        }
+        if (current->isActivated() == false) {
+            bool done = false;
+            do {
+                std::cout << "\n[Action]:\n";
+                switch (menu.getUnsignedInteger(0)) {
+                    case 1:
+                        if (current->isActivated()) {
+                            std::cout << "[I]: Pressure plate is already activated\n";
+                        } else {
+                            std::cout << "[I]: Looks like the switch needs something heavy to hold it down\n";
+                        }
+                        break;
+                    case 2:
+                        if (inventory[0] == "rock") {
+                            current->trigger();
+                            inventory[0] = " "; // Used up the rock
+                            std::cout << "[I]: Used the rock to hold down the pressure plate\n";
+                        } else {
+                            std::cout << "[I]: Doesn't look like we have the correct item\n";
+                        }
+                        break;
+                    case 3:
+                        done = true;
+                        break;
+                }
+            } while (!done);
         }
     }
     if (spaceType == "LockedItemSpace") {
         if (current->isEmpty()) {
             std::cout << "[I]: The chest is empty\n";
-        } else if (current->isLocked() && inventory[0] == "key") {
-            inventory[0] = " "; // Used up key
-            std::cout << "[I]: Used the key to open the chest\n";
-            current->trigger();
-            inventory[0] = current->getItem();
-            std::cout << "[I]: Added a " << inventory[0] << " to the inventory\n";
-        } else {
-            std::cout << "[I]: Looks like the chest needs a \'key\' in order to open\n";
+        }
+        if (current->isLocked() == true) {
+            bool done = false;
+            do {
+                std::cout << "\n[Action]:\n";
+                switch (menu.getUnsignedInteger(0)) {
+                    case 1:
+                        if (current->isLocked()) {
+                            std::cout << "[I]: Looks like the chest needs a \'key\' in order to open\n";
+                        } else {
+                            std::cout << "[I]: The chest is unlocked\n";
+                        }
+                        break;
+                    case 2:
+                        if (inventory[0] == "key") {
+                            current->trigger();
+                            inventory[0] = " ";
+                            std::cout << "[I]: Used the key to open the locked chest\n";
+                            inventory[0] = current->getItem();
+                            std::cout << "[I]: Added a " << inventory[0] << " to the inventory\n";
+                        } else {
+                            std::cout << "[I]: Doesn't look like we have the correct item\n";
+                        }
+                        break;
+                    case 3:
+                        done = true;
+                        break;
+                }
+            } while (!done);
         }
     }
     if (spaceType == "LockedDoorSpace") {
-        if (!current->isLocked()) {
+        if (current->isLocked() == false) {
             std::cout << "[I]: Door is unlocked.\n";
-        } else if (current->isLocked()) {
-            if (inventory[0] == "door key") {
-                current->trigger();
-                inventory[0] = " ";
-                std::cout << "[I]: Used the key to unlock the door\n";
-                exit = true;
-            } else {
-                std::cout << "[I]: The door is locked. Looks like it requires a key\n";
-            }
+        }
+        if (current->isLocked() == true) {
+            bool done = false;
+            do {
+                switch (menu.getUnsignedInteger(0)) {
+                    case 1:
+                        if (current->isLocked()) {
+                            std::cout << "[I]: The door is locked. Looks like it requires a key\n";
+                        } else {
+                            std::cout << "[I]: Looks like the door is unlocked\n";
+                        }
+                        break;
+                    case 2:
+                        if (inventory[0] == "door key") {
+                            current->trigger();
+                            inventory[0] = " ";
+                            std::cout << "[I]: Used the key to unlock the door\n";
+                            exit = true;
+                        } else {
+                            std::cout << "[I]: Doesn't look like we have the correct item\n";
+                        }
+                        break;
+                    case 3:
+                        done = true;
+                        break;
+                }
+            } while (!done);
         }
     }
 }
@@ -157,7 +219,7 @@ void Player::showPosition() {
         showSpace(current->bottom);
         std::cout << "\n";
     }
-    std::cout << std::string(50,'-');
+    std::cout << std::string(75,'-');
     std::cout << "\n";
 }
 

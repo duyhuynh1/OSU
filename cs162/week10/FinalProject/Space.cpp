@@ -1,3 +1,9 @@
+/*********************************************************************
+** Program name: Labyrinth Escape
+** Author: Tony Huynh
+** Date: 6/12/2018
+** Description: Implemenets all of the Space class functionality.
+*********************************************************************/
 #include <iostream>
 #include "Space.hpp"
 
