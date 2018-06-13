@@ -1,3 +1,11 @@
+/*********************************************************************
+** Program name: Labyrinth Escape
+** Author: Tony Huynh
+** Date: 6/12/2018
+** Description: Locked item space class implementation. It has functions to
+** return the item if the Player's inventory is empty. It requires the
+** Player to have a key in order to return the item.
+*********************************************************************/
 #include "LockedItemSpace.hpp"
 
 LockedItemSpace::LockedItemSpace(std::string item) : Space("LockedItemSpace") {

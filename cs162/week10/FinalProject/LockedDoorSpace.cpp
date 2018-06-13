@@ -1,3 +1,11 @@
+/*********************************************************************
+** Program name: Labyrinth Escape
+** Author: Tony Huynh
+** Date: 6/12/2018
+** Description: Locked door space class implementation. It requires
+** a "door key" in order to open. When the door is locked it prevents
+** the Player from exiting the labyrinth.
+*********************************************************************/
 #include "LockedDoorSpace.hpp"
 
 /**

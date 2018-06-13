@@ -1,5 +1,11 @@
-// The player has the two prompts, one to move and another to inspect the Space.
-
+/*********************************************************************
+** Program name: Labyrinth Escape
+** Author: Tony Huynh
+** Date: 6/12/2018
+** Description: Player class. It has functions that 
+** allow the user to move, inspect, and interact with the current
+** Space.
+*********************************************************************/
 #ifndef PLAYER_HPP_
 #define PLAYER_HPP_
 

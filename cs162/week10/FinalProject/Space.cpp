@@ -11,7 +11,7 @@
  *  Space class default constructor
  */
 Space::Space() {
-    std::string movePrompt = "[ 1. ↑  2. →  3. ←  4. ↓ ] move=>";
+    std::string movePrompt = "[Direction]:\n[ 1. ↑  2. →  3. ←  4. ↓ ] move=>";
     Option option(movePrompt, 1, 4);
     mMenu.addOption(option);
 }
@@ -27,7 +27,7 @@ Space::~Space() {}
  */
 Space::Space(std::string type) {
     this->type = type;
-    std::string movePrompt = "[ 1. ↑  2. →  3. ←  4. ↓ ] move=>";
+    std::string movePrompt = "[Direction]:\n[ 1. ↑  2. →  3. ←  4. ↓ ] move=>";
     Option option(movePrompt, 1, 4);
     mMenu.addOption(option);
 }

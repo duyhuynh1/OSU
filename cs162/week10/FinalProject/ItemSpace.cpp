@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program name: Labyrinth Escape
+** Author: Tony Huynh
+** Date: 6/12/2018
+** Description: Item space class implementation. It has functions to
+** return the item if the Player's inventory is empty.
+*********************************************************************/
 #include <iostream>
 #include "ItemSpace.hpp"
 

@@ -1,3 +1,11 @@
+/*********************************************************************
+** Program name: Labyrinth Escape
+** Author: Tony Huynh
+** Date: 6/12/2018
+** Description: Player class implementation. It has functions that 
+** allow the user to move, inspect, and interact with the current
+** Space.
+*********************************************************************/
 #include "Player.hpp"
 /**
  *  Player class default constructor
@@ -55,7 +63,7 @@ void Player::move() {
 }
 
 /**
- *  Activates the space special event
+ *  Activates the space special events.
  */
 void Player::inspectSpace() {
     std::string spaceType = current->getType();

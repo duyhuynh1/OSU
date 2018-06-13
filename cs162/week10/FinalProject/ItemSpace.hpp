@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program name: Labyrinth Escape
+** Author: Tony Huynh
+** Date: 6/12/2018
+** Description: Item space class is a derived Space class. It's main
+** purpose is to store an item.
+*********************************************************************/
 #ifndef ITEM_SPACE_HPP_
 #define ITEM_SPACE_HPP_
 

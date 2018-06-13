@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program name: Labyrinth Escape
+** Author: Tony Huynh
+** Date: 6/12/2018
+** Description: Locked item space class is dervied from the Space class.
+** It has functions to return the item if the Player's inventory is empty.
+*********************************************************************/
 #ifndef LOCKED_ITEM_SPACE_HPP_
 #define LOCKED_ITEM_SPACE_HPP_
 

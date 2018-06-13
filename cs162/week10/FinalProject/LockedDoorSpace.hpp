@@ -1,3 +1,10 @@
+/*********************************************************************
+** Program name: Labyrinth Escape
+** Author: Tony Huynh
+** Date: 6/12/2018
+** Description: Locked door space class is a derived Space class. It
+** represents the exit of the labyrinth.
+*********************************************************************/
 #ifndef LOCKED_DOOR_SPACE_HPP_
 #define LOCKED_DOOR_SPACE_HPP_
 
